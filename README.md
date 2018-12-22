@@ -48,7 +48,8 @@ NICE TO HAVES
 
 ## Wireframe
 
-![Initial Wireframe](/client/src/images/NoRegretsReact.png?raw=true "Wireframe")	
+![Initial Wireframe](/client/src/images/noRegretsReact.png "Wireframe")	
+      
 
 Figma Project hosted here: [Wireframe on Figma](https://www.figma.com/file/LDWugkgTKSfMenndfzpRQgIW/Untitled?node-id=0%3A1)
 

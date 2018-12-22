@@ -44,11 +44,13 @@ PHASE THREE
 
 NICE TO HAVES
 * Test Driven Development integrated utilized through development.
-* 
 
-## Wireframe	
-![Initial Wireframe](./client/src/images/NoRegretsReact.png?raw=true "Wireframe")
-Figma Project hosted here: [Wireframe](https://www.figma.com/file/LDWugkgTKSfMenndfzpRQgIW/Untitled?node-id=0%3A1);
+
+## Wireframe
+
+![Initial Wireframe](/client/src/images/NoRegretsReact.png?raw=true "Wireframe")	
+
+Figma Project hosted here: [Wireframe on Figma](https://www.figma.com/file/LDWugkgTKSfMenndfzpRQgIW/Untitled?node-id=0%3A1)
 
 ## Demo
 		

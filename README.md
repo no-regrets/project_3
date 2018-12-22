@@ -20,12 +20,14 @@ Drink Database to import Drink Items w/ alcohol content.
 BAC Database. We may need to convert a public table to our own private table.
 
 
-## Roles / Strengths
+## Roles / Strengths / Learning Goals
 
-- Joe: Full Stack -	Figuring out what Wes is doing
-- Wes: Full Stack - Figuring out what John is doing
-- John: Full Stack - Figuring out what Casey is doing
-- Casey: Full Stack - Figuring out what Joe is doing
+- Joe: Full Stack -	Figuring out what Wes is doing. 
+- Wes: Full Stack - Figuring out what John is doing.
+- John: Full Stack - Figuring out what Casey is doing.
+- Casey: Full Stack - Figuring out what Joe is doing.
+
+- All of us are looking to become strong React developers. 
 
 ## MVP	
 PHASE ONE	
@@ -45,7 +47,7 @@ NICE TO HAVES
 * 
 
 ## Wireframe	
-![Initial Wireframe](client/src/images/NoRegretsReact.png?raw=true "Wireframe")
+![Initial Wireframe](./client/src/images/NoRegretsReact.png?raw=true "Wireframe")
 Figma Project hosted here: [Wireframe](https://www.figma.com/file/LDWugkgTKSfMenndfzpRQgIW/Untitled?node-id=0%3A1);
 
 ## Demo

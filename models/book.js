@@ -1,13 +1,15 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+//From the class example. For reference only. Delete after working
 
-const bookSchema = new Schema({
-  title: { type: String, required: true },
-  author: { type: String, required: true },
-  synopsis: String,
-  date: { type: Date, default: Date.now }
-});
+// const mongoose = require("mongoose");
+// const Schema = mongoose.Schema;
 
-const Book = mongoose.model("Book", bookSchema);
+// const bookSchema = new Schema({
+//   title: { type: String, required: true },
+//   author: { type: String, required: true },
+//   synopsis: String,
+//   date: { type: Date, default: Date.now }
+// });
 
-module.exports = Book;
+// const Book = mongoose.model("Book", bookSchema);
+
+// module.exports = Book;

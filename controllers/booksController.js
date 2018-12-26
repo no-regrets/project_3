@@ -1,3 +1,5 @@
+//REMOVE ONCE APP IS MIGRATED OVER
+
 const db = require("../models");
 
 // Defining methods for the booksController

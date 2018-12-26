@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const sessionSchema = new Schema({
   drinkGoal: { type: Number, required: true },
   maxBAC: { type: Number, required: true },
+  budget: {type: Number },
   createdAt: { type: Date, default: Date.now },
   endedAt: { type: Date, default: Date.now }
 });

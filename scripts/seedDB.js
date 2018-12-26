@@ -50,12 +50,14 @@ const sessionSeed = [
   {
   drinkGoal: 4,
   maxBAC: 0,
+  budget: 40,
   createdAt: { type: Date, default: Date.now },
   endedAt: { type: Date, default: Date.now }
   },
   {
     drinkGoal: 7,
     maxBAC: 0,
+    budget: 200,
     createdAt: { type: Date, default: Date.now },
     endedAt: { type: Date, default: Date.now }
     },

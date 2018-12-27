@@ -1,3 +1,5 @@
+// From the inclass example. For reference only. Delete after working
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 

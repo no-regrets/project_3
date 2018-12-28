@@ -14,10 +14,11 @@ if (process.env.NODE_ENV === "production") {
 }
 // Add routes, both API and view
 app.use(routes);
-
+// app.get("/", (req, res) => console.log("hello"))
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/noRegretsDB", { useNewUrlParser: true } 
+  process.env.MONGODB_URI ||
+  "mongodb://localhost/noRegretsDB", { useNewUrlParser: true }
 );
 
 // Start the API server

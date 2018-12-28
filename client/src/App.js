@@ -1,12 +1,17 @@
 import React from "react";
-import Books from "./pages/Books";
 import Nav from "./components/Nav";
+import Users from "./pages/Users"
+import Sessions from "./pages/Sessions"
+import Drinks from "./pages/Drinks";
+
 
 function App() {
   return (
     <div>
       <Nav />
-      <Books />
+      <Users />
+      <Sessions />
+      <Drinks />
     </div>
   );
 }

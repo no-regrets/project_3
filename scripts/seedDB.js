@@ -13,7 +13,7 @@ const userSeed = [
     username: "joepathetic",
     email: "joepathetic@yahoo.com",
     password: "heydoink",
-    set: "m",
+    sex: "m",
     weight: 225,
     date: new Date(Date.now())
   },
@@ -21,7 +21,7 @@ const userSeed = [
     username: "craycray",
     email: "ragergrrl@gmail.com",
     password: "OMGsoWasted",
-    set: "f",
+    sex: "f",
     weight: 105,
     date: new Date(Date.now())
   },

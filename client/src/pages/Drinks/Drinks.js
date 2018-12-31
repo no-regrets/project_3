@@ -14,7 +14,7 @@ class Drinks extends Component {
     alcoholContent: 0
   };
 
-  // When the component mounts, load all drinks and save them to this.state.books
+  // When the component mounts, load all drinks and save them to this.state.drinks
   componentDidMount() {
     this.loadDrinks();
   }

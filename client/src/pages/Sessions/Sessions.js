@@ -15,7 +15,7 @@ class Sessions extends Component {
     budget: 0,
   };
 
-  // When the component mounts, load all sessions and save them to this.state.books
+  // When the component mounts, load all sessions and save them to this.state.sessions
   componentDidMount() {
     this.loadSessions();
   }

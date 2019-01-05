@@ -2,7 +2,7 @@ import React from 'react';
 
 function StartBtn() {
     return(
-        <div> Start Btn holder </div>
+        <div> Start Btn Holder </div>
     )
 }
 

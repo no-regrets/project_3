@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { Component } from 'react';
 import { Navbar, Button } from 'react-bootstrap';
 import Books from "./pages/Books";
@@ -94,3 +93,4 @@ class App extends Component {
       </div>
     );
   }
+}

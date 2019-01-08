@@ -8,7 +8,7 @@ const userSchema = new Schema({
   sex: { type: String, required: true },
   weight: {type: Number, required: true},
   date: { type: Date, default: Date.now },
-  notes: [
+  session: [
     {
       // Store ObjectIds in the array
       type: Schema.Types.ObjectId,

@@ -14,7 +14,7 @@ class Users extends Component {
     email: "",
     password: "",
     sex: "",
-    weight: ""
+    weight: "",
   };
 
   // When the component mounts, load all users and save them to this.state.users

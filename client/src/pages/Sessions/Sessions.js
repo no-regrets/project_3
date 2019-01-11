@@ -9,6 +9,7 @@ import { Input, FormBtn } from "../../components/Form";
 class Sessions extends Component {
   // Setting our component's initial state
   state = {
+    user:{id:"5c3804c120104e9b3bdfbd47"}, 
     sessions: [],
     drinkGoal: 0,
     maxBAC: 0,
@@ -53,8 +54,8 @@ class Sessions extends Component {
         drinkGoal: this.state.drinkGoal,
         maxBAC: this.state.maxBAC,
         budget: this.state.budget,
-      })
-        .then(res => this.loadSessions())
+        userid: this.state.user.id,
+      }).then(res => this.loadSessions())
         .catch(err => console.log(err));
     }
   };

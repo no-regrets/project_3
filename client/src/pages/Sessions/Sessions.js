@@ -9,10 +9,13 @@ import { Input, FormBtn } from "../../components/Form";
 class Sessions extends Component {
   // Setting our component's initial state
   state = {
+    //HARDCODED - WE'LL NEED TO GET THIS FROM A POST-AUTH0 LOGIN
+    // user:{id:"5c3804c120104e9b3bdfbd47"}, 
     sessions: [],
     drinkGoal: 0,
     maxBAC: 0,
     budget: 0,
+    drink: [],
   };
 
   // When the component mounts, load all sessions and save them to this.state.sessions
@@ -24,7 +27,7 @@ class Sessions extends Component {
   loadSessions = () => {
     API.getSessions()
       .then(res =>
-        this.setState({ sessions: res.data, drinkGoal: "", maxBAC: "", budget: ""})
+        this.setState({ sessions: res.data, drinkGoal: "", maxBAC: "", budget: "", drink:[]})
       )
       .catch(err => console.log(err));
   };
@@ -53,8 +56,8 @@ class Sessions extends Component {
         drinkGoal: this.state.drinkGoal,
         maxBAC: this.state.maxBAC,
         budget: this.state.budget,
-      })
-        .then(res => this.loadSessions())
+        userid: this.state.user.id,
+      }).then(res => this.loadSessions())
         .catch(err => console.log(err));
     }
   };
@@ -106,7 +109,7 @@ class Sessions extends Component {
                     <ListItem key={session._id}>
                       <a href={"/sessions/" + session._id}>
                         <strong>
-                        {session._id} |{session.drinkGoal} | {session.maxBAC} | {session.budget} 
+                        {session._id} |{session.drinkGoal} | {session.maxBAC} | {session.budget} | {session.drink[0].name}
                         </strong>
                       </a>
                       <DeleteBtn onClick={() => this.deleteSession(session._id)} />

@@ -4,14 +4,14 @@ const db = require("../models");
 module.exports = {
   findAll: function(req, res) {
     db.Session
-      .find(req.query)
+      .find(req.query).populate("drink")
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
     db.Session
-      .findById(req.params.id)
+      .findById(req.params.id).populate("drink")
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -29,7 +29,7 @@ module.exports = {
   },
   update: function(req, res) {
     db.Session
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .findOneAndUpdate({ _id: req.params.id }, req.body).populate("drink")
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

@@ -14,6 +14,7 @@ class Sessions extends Component {
     drinkGoal: 0,
     maxBAC: 0,
     budget: 0,
+    drink: [],
   };
 
   // When the component mounts, load all sessions and save them to this.state.sessions
@@ -25,7 +26,7 @@ class Sessions extends Component {
   loadSessions = () => {
     API.getSessions()
       .then(res =>
-        this.setState({ sessions: res.data, drinkGoal: "", maxBAC: "", budget: ""})
+        this.setState({ sessions: res.data, drinkGoal: "", maxBAC: "", budget: "", drink:[]})
       )
       .catch(err => console.log(err));
   };

@@ -18,7 +18,10 @@ module.exports = {
   create: function(req, res) {
     db.Drink
       .create(req.body)
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => {
+        db.Session.find({}).then(res => (console.log(res)));
+        db.Session.updateOne({_id: req.body.sessionid}, { $push: { drink: dbModel._id } }, { new: true }).then(res => (console.log(res)))
+        res.json(dbModel)})
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {

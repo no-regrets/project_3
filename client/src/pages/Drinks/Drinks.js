@@ -9,6 +9,7 @@ import { Input, FormBtn } from "../../components/Form";
 class Drinks extends Component {
   // Setting our component's initial state
   state = {
+    session:{id:"5c38cb8234fd9705c9f4f096"}, 
     drinks: [],
     name: "",
     alcoholContent: 0
@@ -51,6 +52,7 @@ class Drinks extends Component {
       API.saveDrink({
         name: this.state.name,
         alcoholContent: this.state.alcoholContent,
+        sessionid: this.state.session.id,
       })
         .then(res => this.loadDrinks())
         .catch(err => console.log(err));

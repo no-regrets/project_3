@@ -58,49 +58,6 @@ class App extends Component {
   render() {
     const { isAuthenticated } = this.props.auth;
 
-    
-// // var lock = new Auth0Lock('BNboUTXnoHw0YR7BC-zR2r7gEjU3sJJ0', 'wkruger.auth0.com', {
-//   var options = {
-//     auth: {
-//     redirectUrl: 'http://localhost:3000/callback',
-//     responseType: 'code',
-//     params: {
-//       scope: 'openid email' // Learn about scopes: https://auth0.com/docs/scopes
-//     }
-//   },
-//   additionalSignUpFields: [
-//     {
-//       name: "sex",
-//       placeholder: "your sex"
-//     },
-//     {
-//       name: "weight",
-//       placeholder: "your weight in lbs",
-//       validator: function (weight) {
-//         return {
-//           valid: weight = Number,
-//           hint: "Please enter a number"
-//         }
-//       }
-//     }]
-//   }
-
-// // var lock = new Auth0Lock('BNboUTXnoHw0YR7BC-zR2r7gEjU3sJJ0', 'wkruger.auth0.com', options);
-// var lock = new Auth0Lock('pVTfYsTtf95n63QjfX3EfJMUBi1RCN2t', 'wkruger.auth0.com', options);
-// lock.on("authenticated", function (authResult) {
-//   lock.getUserInfo(authResult.accessToken, function (error, profile) {
-//     if (error) {
-//       console.log("error hit: " + error);
-//       return;
-//     }
-//     console.log("access token retrieved");
-//     document.getElementById('nick').textContent = profile.nickname;
-
-//     localStorage.setItem('accessToken', authResult.accessToken);
-//     localStorage.setItem('profile', JSON.stringify(profile));
-//   })
-// })
-
     return (
       <div>
         <Navbar fluid>

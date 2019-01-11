@@ -9,7 +9,8 @@ import { Input, FormBtn } from "../../components/Form";
 class Drinks extends Component {
   // Setting our component's initial state
   state = {
-    session:{id:"5c38cb8234fd9705c9f4f096"}, 
+    //HARDCODED - WE'LL NEED TO GET THIS FROM A POST-AUTH0 LOGIN & SESSION CREATION
+    // session:{id:"5c38cb8234fd9705c9f4f096"}, 
     drinks: [],
     name: "",
     alcoholContent: 0

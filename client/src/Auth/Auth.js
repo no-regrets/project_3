@@ -109,3 +109,28 @@ export default class Auth {
     return new Date().getTime() < expiresAt;
   }
 }
+
+
+// // GET THE USER INFORMATION
+// // Gets the user information from Auth0 and dispatches it to the store.
+// export const getUserInfo = () =>
+//     console.log('This ran');
+//       const webAuth = new auth0.WebAuth({
+//         domain: AUTH_CONFIG.domain,
+//         clientID: AUTH_CONFIG.clientId,
+//       });
+
+//       webAuth.client.userInfo(
+//         this.accessToken,
+//         (err, userData) => {
+//           if (err) {
+//             console.log(err);
+//           }
+//           const userInfo = {
+//             email: userData.email,
+//             sex: userData.user_metadata.sex,
+//             weight: userData.user_metadata.weight,
+//           };
+
+//         },
+//       );

@@ -1,5 +1,7 @@
 import auth0 from 'auth0-js';
-import { AUTH_CONFIG } from './auth0-variables';
+import {
+  AUTH_CONFIG
+} from './auth0-variables';
 import history from '../history';
 
 export default class Auth {
@@ -16,6 +18,19 @@ export default class Auth {
     scope: 'openid profile'
   });
 
+  // auth0.signup({
+  //   connection: 'CONNECTION',
+  //   email: 'EMAIL',
+  //   password: 'PASSWORD',
+  //   user_metadata: {
+  //     plan: 'silver',
+  //     team_id: 'a111'
+  //   }
+  // }, function (err) {
+  //   if (err) return alert('Something went wrong: ' + err.message);
+  //   return alert('success signup without login!')
+  // });
+
   constructor() {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
@@ -24,7 +39,7 @@ export default class Auth {
     this.getAccessToken = this.getAccessToken.bind(this);
     this.getIdToken = this.getIdToken.bind(this);
     this.renewSession = this.renewSession.bind(this);
-    this.getProfile = this.getProfile.bind(this);
+    this.getUserInfo = this.getUserInfo.bind(this);
   }
 
   login() {
@@ -67,17 +82,17 @@ export default class Auth {
 
   renewSession() {
     this.auth0.checkSession({}, (err, authResult) => {
-       if (authResult && authResult.accessToken && authResult.idToken) {
-         this.setSession(authResult);
-       } else if (err) {
-         this.logout();
-         console.log(err);
-         alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
-       }
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        this.setSession(authResult);
+      } else if (err) {
+        this.logout();
+        console.log(err);
+        alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
+      }
     });
   }
 
-  getProfile(cb) {
+  getUserInfo(cb) {
     this.auth0.client.userInfo(this.accessToken, (err, profile) => {
       if (profile) {
         this.userProfile = profile;

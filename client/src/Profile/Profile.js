@@ -5,9 +5,9 @@ import './Profile.css';
 class Profile extends Component {
   componentWillMount() {
     this.setState({ profile: {} });
-    const { userProfile, getProfile } = this.props.auth;
+    const { userProfile, getUserInfo } = this.props.auth;
     if (!userProfile) {
-      getProfile((err, profile) => {
+      getUserInfo((err, profile) => {
         this.setState({ profile });
       });
     } else {

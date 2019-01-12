@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import Auth from './Auth'
+import Auth from './Auth/Auth'
 
 it('renders without crashing', () => {
     const auth = new Auth();

@@ -11,7 +11,12 @@ import Auth from './Auth/Auth'
 // });
 
 
+  describe('Navbar', () => {
+    let wrapper;
+    beforeEach(() => wrapper = shallow(<Navbar />));
 
-it('should render a <Navbar />', () => {
-    expect(wrapper.find('Navbar').length).toEqual(1);
+    it('should render a <Navbar />', () => {
+      expect(wrapper.find('Navbar').length).toEqual(1);
+    });
+  
   });

@@ -15,7 +15,7 @@ class Users extends Component {
     password: "",
     sex: "",
     weight: "",
-    session: []
+    session: [],
   };
 
   // When the component mounts, load all users and save them to this.state.users
@@ -27,8 +27,9 @@ class Users extends Component {
   loadUsers = () => {
     API.getUsers()
       .then(res => {
-        console.log("Populate!", res);
-        this.setState({ users: res.data, email: "", password: "", sex: "", weight: "", session:[] })
+        console.log("Populate Object!", res);
+        this.setState({ users: res.data, email: "", password: "", sex: "", weight: "" });
+        console.log("THIS ONE STUPID" + this.state);
       }
       )
       .catch(err => console.log(err));
@@ -124,7 +125,7 @@ class Users extends Component {
                     <ListItem key={user._id}>
                       <a href={"/users/" + user._id}>
                         <strong>
-                          {user.username} | {user.email} | {user.password} | {user.sex} | {user.weight} | {user.session[0].budget}
+                          {user.username} | {user.email} | {user.password} | {user.sex} | {user.weight} | {user.session[0].budget} | {user.session[0].drink[0]}
                         </strong>
                       </a>
                       <DeleteBtn onClick={() => this.deleteUser(user._id)} />

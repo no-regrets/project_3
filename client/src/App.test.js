@@ -16,7 +16,7 @@ import Auth from './Auth/Auth'
     beforeEach(() => wrapper = shallow(<Navbar />));
 
     it('should render a <Navbar />', () => {
-      expect(wrapper.find('Navbar').length).toEqual(1);
+      expect(wrapper.find('Navbar.Header').length).toEqual(1);
     });
   
   });

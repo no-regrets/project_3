@@ -25,7 +25,18 @@ const userSeed = [
     weight: 105,
     date: new Date(Date.now())
   },
+  {
+    username: "Baraka",
+    email: "joepathetic@yahoo.com",
+    password: "doink",
+    sex: "m",
+    weight: 225,
+    date: new Date(Date.now())
+  }
 ];
+
+//CHANGE ID OF BARAKA TO 
+// 5c3804c120104e9b3bdfbd47
 
 const drinkSeed = [
   {

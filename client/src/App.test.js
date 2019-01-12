@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import Auth from './Auth/Auth'
+import { shallow } from 'enzyme';
 
 // it('renders without crashing', () => {
 //     const auth = new Auth();

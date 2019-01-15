@@ -24,7 +24,7 @@ class Drinkory extends Component {
           <div className="row">
             <Link to="/start" className={window.location.pathname === "/start"
                 ? "nav-link active" : "nav-link"
-            }>Start
+            }><SessionBtn />
             </Link>
             or 
             <Link to="/end" className={window.location.pathname === "/end"

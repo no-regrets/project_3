@@ -2,8 +2,12 @@ import React from "react";
 import "./SessionBtn.css";
 
 function SessionBtn() {
-    return(
-        <div>SessionBtn</div>
+    return (
+        <div className="container">
+            <div className="row">
+                SessionBtn
+        </div>
+        </div>
     )
 }
 

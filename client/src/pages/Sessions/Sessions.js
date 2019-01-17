@@ -109,7 +109,7 @@ class Sessions extends Component {
                     <ListItem key={session._id}>
                       <a href={"/sessions/" + session._id}>
                         <strong>
-                        {session._id} |{session.drinkGoal} | {session.maxBAC} | {session.budget} | {session.drink[0].name}
+                        {session._id} |{session.drinkGoal} | {session.maxBAC} | {session.budget}
                         </strong>
                       </a>
                       <DeleteBtn onClick={() => this.deleteSession(session._id)} />

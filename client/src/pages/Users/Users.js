@@ -124,7 +124,7 @@ class Users extends Component {
                     <ListItem key={user._id}>
                       <a href={"/users/" + user._id}>
                         <strong>
-                          {user.username} | {user.email} | {user.password} | {user.sex} | {user.weight} | {user.session[0].budget}
+                          {user.username} | {user.email} | {user.password} | {user.sex} | {user.weight} 
                         </strong>
                       </a>
                       <DeleteBtn onClick={() => this.deleteUser(user._id)} />

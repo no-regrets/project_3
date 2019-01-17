@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import "./Nav.css"
-import { Link } from "react-router-dom";
+
+import {SideNav, SideNavItem, Button } from "react-materialize";
+
+// import { Link } from "react-router-dom";
+
 
 import BAC from "../BAC/BAC";
 
@@ -8,39 +12,24 @@ import BAC from "../BAC/BAC";
 class Nav extends Component {
   render() {
     return (
-      <nav>
-        <div className="nav-wrapper">
-
-          {/* No Regrets Title */}
-
-          <span className="brand-logo">No Regrets</span>
-
-          {/* Nav List */}
-
-          <ul id="nav-mobile" className="right hide-on-med-and-down">
-
-            {/* Sessions Link */}
-
-            <li><Link to="/sessions" className={
-              window.location.pathname === "/sessions"
-                ? "nav-link active" : "nav-link"
-            }> Sessions
-              </Link>
-              or
-
-            </li>
-
-            {/* Drinkory Link */}
-
-            <li><Link to="/drinkory" className={
-              window.location.pathname === "/drinkory"
-                ? "nav-link active" : "nav-link"
-            }> Drinkory
-              </Link></li>
-          </ul>
-        </div>
-      </nav>
-
+      <SideNav
+  trigger={<Button>SIDE NAV DEMO</Button>}
+  options={{ closeOnClick: true }}
+  >
+  <SideNavItem userView
+    user={{
+      background: 'img/office.jpg',
+      image: 'img/yuna.jpg',
+      name: 'John Doe',
+      email: 'jdandturk@gmail.com'
+    }}
+  />
+  <SideNavItem href='#!icon' icon='cloud'>First Link With Icon</SideNavItem>
+  <SideNavItem href='#!second'>Second Link</SideNavItem>
+  <SideNavItem divider />
+  <SideNavItem subheader>Subheader</SideNavItem>
+  <SideNavItem waves href='#!third'>Third Link With Waves</SideNavItem>
+</SideNav>
     )
   }
 

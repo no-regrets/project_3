@@ -1,13 +1,11 @@
 import React from "react";
 import "./SessionBtn.css";
 
+import { Button } from "react-materialize";
+
 function SessionBtn() {
     return (
-        <div className="container">
-            <div className="row">
-                SessionBtn
-        </div>
-        </div>
+        <Button>Session Btn</Button>
     )
 }
 

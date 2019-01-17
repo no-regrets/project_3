@@ -1,19 +1,20 @@
 import React, {Component} from "react";
 import "./BAC.css";
+import { Container, Row } from "react-materialize";
 
 class BAC extends Component {
     render(){
         return(
-            <div className="container border">
-                <div className="row">
+            <Container>
+                <Row>
                     <label>CurrentBAC:</label>
                     <span> BAC # </span>
-                </div>
-                <div className="row">
+                </Row>
+                <Row>
                     <label>Estimated time until sober:</label>
                     <span>00:00</span>
-                </div>
-            </div>
+                </Row>
+            </Container>
         )
     }
 }

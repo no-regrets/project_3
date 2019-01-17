@@ -4,10 +4,9 @@ import "./Sessions.css";
 
 import Nav from "../../components/Nav/Nav";
 import BAC from "../../components/BAC/BAC";
+import DrinkSession from "../../components/DrinkSession/DrinkSession"
 import DrinkBtn from "../../components/DrinkBtn/DrinkBtn";
-import SessionBtn from "../../components/SessionBtn/SessionBtn";
-
-import API from "../../utils/API";
+import EndBtn from "../../components/EndBtn/EndBtn";
 
 
 class Sessions extends Component {
@@ -21,7 +20,7 @@ class Sessions extends Component {
             <BAC />
           </div>
           <div className="row">
-            {/* <DrinkSummary /> */}
+            <DrinkSession />
           </div>
           <div className="row">
             <DrinkBtn/>
@@ -32,7 +31,7 @@ class Sessions extends Component {
           <div className="row">
             <Link to="/end" className={window.location.pathname === "/end"
                 ? "nav-link active" : "nav-link"
-            }>End
+            }><EndBtn />
             </Link>
           </div>
         </div>

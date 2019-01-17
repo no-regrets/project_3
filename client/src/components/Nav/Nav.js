@@ -1,62 +1,79 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
+import "./Nav.css"
+
+import {SideNav, SideNavItem, Button } from "react-materialize";
+
+// import { Link } from "react-router-dom";
 
 
-function Nav() {
-  return (
-    <div>
-      <nav>
-        <div className="container">
-          <div className="nav-wrapper">
-            <a href="#!" className="brand-logo">No Regrets</a>
-            <a href="#!" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
-            <ul className="right hide-on-med-and-down">
+import BAC from "../BAC/BAC";
 
-              {/* User's Link */}
 
-              <li>
-                <Link to="/"
-                  className={
-                    window.location.pathname === "/" || window.location.pathname === "/users"
-                      ? "nav-link active" : "nav-link"
-                  }>
-                  Users
-                </Link>
-              </li>
+class Nav extends Component {
+  render() {
+    return (
+      <SideNav
+  trigger={<Button>SIDE NAV DEMO</Button>}
+  options={{ closeOnClick: true }}
+  >
+  <SideNavItem userView
+    user={{
+      background: 'img/office.jpg',
+      image: 'img/yuna.jpg',
+      name: 'John Doe',
+      email: 'jdandturk@gmail.com'
+    }}
+  />
+  <SideNavItem href='#!icon' icon='cloud'>First Link With Icon</SideNavItem>
+  <SideNavItem href='#!second'>Second Link</SideNavItem>
+  <SideNavItem divider />
+  <SideNavItem subheader>Subheader</SideNavItem>
+  <SideNavItem waves href='#!third'>Third Link With Waves</SideNavItem>
+</SideNav>
+    )
+  }
 
-              {/* Session's Link */}
-
-              <li>
-                <Link to="/sessions"
-                  className={
-                  window.location.pathname === "/sessions"
-                      ? "nav-link active" : "nav-link"
-                  }>
-                  Sessions
-                  </Link>
-              </li>
-              <li>
-                <Link to="/drinks"
-                  className={
-                  window.location.pathname === "/drinks"
-                      ? "nav-link active" : "nav-link"
-                  }>
-                  Drinks
-          </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-      {/* <ul className="sidenav" id="mobile-demo">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">Javascript</a></li>
-        <li><a href="mobile.html">Mobile</a></li>
-      </ul> */}
-    </div>
-  )
-}
+};
 
 export default Nav;
+
+//          For Side Bar Nav, still not sure how to implement, may need to NPM Matrialize to use properly
+// componentDidMount() {
+//   var elem = document.querySelector(".sidenav");
+//   var instance = M.Sidenav.init(elem, {
+//       edge: "left",
+//       inDuration: 250
+//   });
+// }
+// render() {
+//   return (
+//     <div>
+//       <ul id="slide-out" className="sidenav">
+//         <li />
+//         <li>
+//           <a href="#!">
+//             <i className="material-icons">cloud</i>First Link
+//             With Icon
+//                     </a>
+//         </li>
+//         <li>
+//           <a href="#!">Second Link</a>
+//         </li>
+//         <li>
+//           <div className="divider" />
+//         </li>
+//         <li>
+//           <a className="subheader">Subheader</a>
+//         </li>
+//         <li>
+//           <a className="waves-effect" href="#!">
+//             Third Link With Waves
+//                     </a>
+//         </li>
+//       </ul>
+//       <a href="#" data-target="slide-out" className="sidenav-trigger">
+//         <i className="material-icons">menu</i>
+//       </a>
+//     </div>
+//   );
+// };

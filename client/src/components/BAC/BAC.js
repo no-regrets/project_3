@@ -1,17 +1,18 @@
 import React, {Component} from "react";
 import "./BAC.css";
 import { Container, Row } from "react-materialize";
+import { userInfo } from "os";
 
 class BAC extends Component {
     render(){
         return(
             <Container>
                 <Row>
-                    <label>CurrentBAC:</label>
+                    <label>CurrentBAC: {this.props.bac}</label>
                     <span> BAC # </span>
                 </Row>
                 <Row>
-                    <label>Estimated time until sober:</label>
+                    <label>Estimated time until sober: {this.props.tts}</label>
                     <span>00:00</span>
                 </Row>
             </Container>

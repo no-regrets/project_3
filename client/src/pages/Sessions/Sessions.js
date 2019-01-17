@@ -8,7 +8,6 @@ import DrinkSession from "../../components/DrinkSession/DrinkSession"
 import DrinkBtn from "../../components/DrinkBtn/DrinkBtn";
 import EndBtn from "../../components/EndBtn/EndBtn";
 
-
 class Sessions extends Component {
 
   render() {
@@ -16,6 +15,12 @@ class Sessions extends Component {
       <div>
         <Nav />
         <div className="container">
+        <div className="row">
+            <Link to="/profile" className={window.location.pathname === "/profile"
+                ? "nav-link active" : "nav-link"
+            }>Profile
+            </Link>
+          </div>
           <div className="row">
             <BAC />
           </div>

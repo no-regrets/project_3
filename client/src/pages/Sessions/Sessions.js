@@ -38,6 +38,7 @@ class Sessions extends Component {
                 ? "nav-link active" : "nav-link"
             }><EndBtn />
             </Link>
+            
           </div>
         </div>
       </div>

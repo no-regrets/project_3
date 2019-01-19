@@ -3,12 +3,12 @@ import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
 import './Profile.css';
 import API from "../utils/API"
 import { Button } from "react-materialize";
-import SessionBtn from "../components/SessionBtn/SessionBtn"
 
 class Profile extends Component {
 
   state = {
-    profile: {}
+    profile: {},
+    sessionID: ""
   }
 
   componentWillMount() {
@@ -27,18 +27,6 @@ class Profile extends Component {
     }
   }
 
-  startSession = () => { 
-   let sub = (this.state.profile.sub);
-   API.saveSession({
-    // drinkGoal: this.state.drinkGoal,
-    // maxBAC: this.state.maxBAC,
-    // budget: this.state.budget,
-    sub: sub,
-  }).then(res => this.loadSessions())
-    .catch(err => console.log(err))
-    // API.getUser({sub: subID}).then(console.log("I got a thing"))
-  }
-
   startSession = event => {
     event.preventDefault();
       API.saveSession({
@@ -46,11 +34,19 @@ class Profile extends Component {
         maxBAC: this.state.maxBAC,
         budget: this.state.budget,
         sub: this.state.profile.sub,
-      }).then(res => this.loadSessions())
-        .catch(err => console.log(err));
-    
+      })
+      .then(res => this.setState({sessionID: res.data._id}))
+      .catch(err => console.log(err));
   };
   
+  addDrink = event => {
+    event.preventDefault();
+      API.saveDrink({
+        sessionid: this.state.sessionID
+      })
+      // .then(res => this.loadSessions())
+      .catch(err => console.log(err));
+  };
 
 
   render() {
@@ -68,6 +64,7 @@ class Profile extends Component {
             <pre>{JSON.stringify(profile, null, 2)}</pre>
           </Panel>
           <Button onClick={this.startSession}>Session</Button>
+          <Button onClick={this.addDrink}>Drink</Button>
           <Button >Logout</Button>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
 import './Profile.css';
 import API from "../utils/API"
 import { Button } from "react-materialize";
+import SessionBtn from "../components/SessionBtn/SessionBtn"
 
 class Profile extends Component {
 
@@ -22,9 +23,34 @@ class Profile extends Component {
           .catch(err => console.log(err));});
       });
     } else {
-      this.setState({ profile: userProfile });
+      this.setState({ profile: userProfile }) ;
     }
   }
+
+  startSession = () => { 
+   let sub = (this.state.profile.sub);
+   API.saveSession({
+    // drinkGoal: this.state.drinkGoal,
+    // maxBAC: this.state.maxBAC,
+    // budget: this.state.budget,
+    sub: sub,
+  }).then(res => this.loadSessions())
+    .catch(err => console.log(err))
+    // API.getUser({sub: subID}).then(console.log("I got a thing"))
+  }
+
+  startSession = event => {
+    event.preventDefault();
+      API.saveSession({
+        drinkGoal: this.state.drinkGoal,
+        maxBAC: this.state.maxBAC,
+        budget: this.state.budget,
+        sub: this.state.profile.sub,
+      }).then(res => this.loadSessions())
+        .catch(err => console.log(err));
+    
+  };
+  
 
 
   render() {
@@ -41,6 +67,7 @@ class Profile extends Component {
             </div>
             <pre>{JSON.stringify(profile, null, 2)}</pre>
           </Panel>
+          <Button onClick={this.startSession}>Session</Button>
           <Button >Logout</Button>
         </div>
       </div>

@@ -20,10 +20,10 @@ module.exports = {
       .create(req.body)
       .then(dbModel => {
         // console.log(req.body.userid)
-        console.log(dbModel)
-        db.User.find({}).then(res => (console.log(res)));
+        // console.log(dbModel)
+        // db.User.find({}).then(res => (console.log(res)));
         // db.User.updateOne({_id: req.body.userid}, {username: "Baraka"}).then(res => (console.log(res)))
-        db.User.updateOne({_id: req.body.userid}, { $push: { session: dbModel._id } }, { new: true }).then(res => (console.log(res)))
+        db.User.updateOne({sub: req.body.sub}, { $push: { session: dbModel._id } }, { new: true }).then(res => (console.log(res)))
         res.json(dbModel)})
       .catch(err => res.status(422).json(err));
   },

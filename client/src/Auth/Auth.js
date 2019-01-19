@@ -51,7 +51,7 @@ export default class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
       } else if (err) {
-        history.replace('/home');
+        history.replace('/login');
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -76,8 +76,8 @@ export default class Auth {
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
 
-    // navigate to the home route
-    history.replace('/home');
+    // navigate to the profile route
+    history.replace('/profile');
   }
 
   renewSession() {
@@ -113,8 +113,8 @@ export default class Auth {
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem('isLoggedIn');
 
-    // navigate to the home route
-    history.replace('/home');
+    // navigate to the login route
+    history.replace('/login');
   }
 
   isAuthenticated() {

@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
 import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
 import './Profile.css';
+import API from "../utils/API"
+import { Button } from "react-materialize";
 
 class Profile extends Component {
+
+  state = {
+    profile: {}
+  }
+
   componentWillMount() {
     this.setState({ profile: {} });
     const { userProfile, getUserInfo } = this.props.auth;
     if (!userProfile) {
       getUserInfo((err, profile) => {
-        this.setState({ profile });
+        this.setState({ profile }, () => {API.saveUser({
+          sub: this.state.profile.sub,
+        })
+          .then(res => this.loadUsers())
+          .catch(err => console.log(err));});
       });
     } else {
       this.setState({ profile: userProfile });
     }
   }
+
+
   render() {
     const { profile } = this.state;
     return (
@@ -28,6 +41,7 @@ class Profile extends Component {
             </div>
             <pre>{JSON.stringify(profile, null, 2)}</pre>
           </Panel>
+          <Button >Logout</Button>
         </div>
       </div>
     );

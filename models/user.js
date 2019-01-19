@@ -2,11 +2,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  username: { type: String, required: true },
-  email: { type: String, required: true },
-  password: { type: String, required: true },
-  sex: { type: String, required: true },
-  weight: {type: Number, required: true},
+  sub: {type: String, required: true},
+  username: { type: String , required: false},
+  email: { type: String, required: false},
+  password: { type: String, required: false},
+  sex: { type: String, default: "m" },
+  weight: {type: Number, default: "200"},
   date: { type: Date, default: Date.now },
   session: [
     {

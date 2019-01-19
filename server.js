@@ -5,6 +5,8 @@ const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+console.log('env???', process.env.AUTH0_CALLBACK_URL);
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

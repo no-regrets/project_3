@@ -19,7 +19,7 @@ class Profile extends Component {
         this.setState({ profile }, () => {API.saveUser({
           sub: this.state.profile.sub,
         })
-          .then(res => this.loadUsers())
+          // .then(res => this.loadUsers())
           .catch(err => console.log(err));});
       });
     } else {
@@ -67,6 +67,7 @@ class Profile extends Component {
           <Button onClick={this.addDrink}>Drink</Button>
           <Button >Logout</Button>
         </div>
+        
       </div>
     );
   }

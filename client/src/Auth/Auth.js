@@ -13,7 +13,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: AUTH_CONFIG.domain,
     clientID: AUTH_CONFIG.clientId,
-    redirectUri: AUTH_CONFIG.callbackUrl,
+    redirectUri: "https://noregrets-project3.herokuapp.com/callback",
     responseType: 'token id_token',
     scope: 'openid profile'
   });
@@ -51,7 +51,7 @@ export default class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
       } else if (err) {
-        history.replace('/home');
+        history.replace('/login');
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -69,6 +69,7 @@ export default class Auth {
   setSession(authResult) {
     // Set isLoggedIn flag in localStorage
     localStorage.setItem('isLoggedIn', 'true');
+   
 
     // Set the time that the access token will expire at
     let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
@@ -76,8 +77,8 @@ export default class Auth {
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
 
-    // navigate to the home route
-    history.replace('/home');
+    // navigate to the profile route
+    history.replace('/profile');
   }
 
   renewSession() {
@@ -113,8 +114,8 @@ export default class Auth {
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem('isLoggedIn');
 
-    // navigate to the home route
-    history.replace('/home');
+    // navigate to the login route
+    history.replace('/login');
   }
 
   isAuthenticated() {

@@ -48,12 +48,15 @@ export default class Auth {
 
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
+      console.log('authresult is: ' + authResult);
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
       } else if (err) {
         history.replace('/login');
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
+      } else {
+        console.log('no err but no authresult');
       }
     });
   }

@@ -13,7 +13,9 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: AUTH_CONFIG.domain,
     clientID: AUTH_CONFIG.clientId,
-    redirectUri: "https://noregrets-project3.herokuapp.com/callback",
+    redirectUri: "http://noregrets-project3.herokuapp.com/callback",
+    // 'http://localhost:3000/callback',
+    // "https://noregrets-project3.herokuapp.com/callback",
     responseType: 'token id_token',
     scope: 'openid profile'
   });
@@ -76,6 +78,9 @@ export default class Auth {
     this.accessToken = authResult.accessToken;
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
+
+    localStorage.setItem('accessToken', this.accessToken);
+    localStorage.setItem('idToken', this.idToken);
 
     // navigate to the profile route
     history.replace('/profile');

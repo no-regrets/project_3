@@ -12,10 +12,13 @@ import history from './history';
 const auth = new Auth();
 
 const handleAuthentication = ({location}) => {
+  console.log(location);
   if (/access_token|id_token|error/.test(location.hash)) {
+    console.log('i am in the hashing area');
     auth.handleAuthentication();
   }
 }
+
 
 export const makeMainRoutes = () => {
   return (
@@ -23,20 +26,12 @@ export const makeMainRoutes = () => {
         <div>
           {/* <Route path="/" render={(props) => <LoginPage auth={auth} {...props} />} /> */}
           <Route path="/" render={(props) => (
-            !auth.isAuthenticated() ? (
               <Redirect to="/login"/>
-            ) : (
-              <Sessions auth={auth} {...props} />
-            )
           )} />
           <Route path="/home" render={(props) => <App auth={auth} {...props} />} />
           <Route path="/login" render={(props) => <LoginPage auth={auth} {...props} />} />
           <Route path="/profile" render={(props) => (
-            !auth.isAuthenticated() ? (
-              <Redirect to="/login"/>
-            ) : (
               <Profile auth={auth} {...props} />
-            )
           )} />
           <Route path="/callback" render={(props) => {
             handleAuthentication(props);
@@ -46,3 +41,34 @@ export const makeMainRoutes = () => {
       </Router>
   );
 }
+
+
+// export const makeMainRoutes = () => {
+//   return (
+//     <Router history={history}>
+//         <div>
+//           {/* <Route path="/" render={(props) => <LoginPage auth={auth} {...props} />} /> */}
+//           <Route path="/" render={(props) => (
+//             !auth.isAuthenticated() ? (
+//               <Redirect to="/login"/>
+//             ) : (
+//               <Sessions auth={auth} {...props} />
+//             )
+//           )} />
+//           <Route path="/home" render={(props) => <App auth={auth} {...props} />} />
+//           <Route path="/login" render={(props) => <LoginPage auth={auth} {...props} />} />
+//           <Route path="/profile" render={(props) => (
+//             !auth.isAuthenticated() ? (
+//               <Redirect to="/login"/>
+//             ) : (
+//               <Profile auth={auth} {...props} />
+//             )
+//           )} />
+//           <Route path="/callback" render={(props) => {
+//             handleAuthentication(props);
+//             return <Callback {...props} /> 
+//           }}/>        
+//         </div>
+//       </Router>
+//   );
+// }

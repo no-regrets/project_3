@@ -3,9 +3,15 @@ import { Link } from "react-router-dom";
 import { Container, Row } from "react-materialize";
 
 import SessionBtn from "../../components/SessionBtn/SessionBtn";
+import API from "../../utils/API";
 
 class Start extends Component {
 
+  Start = () => {
+    API.saveSession()
+    .then()
+  }
+  
   render() {
     return (
       <Container>
@@ -24,7 +30,7 @@ class Start extends Component {
                   window.location.pathname === "/sessions"
                       ? "nav-link active" : "nav-link"
                   }>
-                  <SessionBtn />
+                  <SessionBtn Start={this.Start}/>
                   </Link>
                   <Link to="/drinkory"
                   className={

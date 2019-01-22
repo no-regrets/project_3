@@ -14,7 +14,7 @@ module.exports = {
   },
   findById: function(req, res) {
     db.User
-      .findById(req.params.id).populate({
+      .findOne({sub: req.params.id}).populate({
         path: 'session',
         populate: { path: 'drink' }
     })
@@ -29,7 +29,7 @@ module.exports = {
   },
   update: function(req, res) {
     db.User
-      .findOneAndUpdate({ _id: req.params.id }, req.body).populate({
+      .findOneAndUpdate({sub: req.params.id }, req.body).populate({
         path: 'session',
         populate: { path: 'drink' }
     })
@@ -38,7 +38,7 @@ module.exports = {
   },
   remove: function(req, res) {
     db.User
-      .findById({ _id: req.params.id })
+      .findById({ sub: req.params.id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

@@ -7,54 +7,52 @@ import Start from "./pages/Start/Start";
 import React, { Component } from 'react';
 import { Navbar, Button } from 'react-bootstrap';
 // import './App.css';
-import About from "./pages/About/About";
 
 class App extends Component {
-  // goTo(route) {
-  //   this.props.history.replace(`/${route}`)
-  // }
+  goTo(route) {
+    this.props.history.replace(`/${route}`)
+  }
 
-  // login() {
-  //   this.props.auth.login();
-  // }
+  login() {
+    this.props.auth.login();
+  }
 
-  // logout() {
-  //   this.props.auth.logout();
-  // }
+  logout() {
+    this.props.auth.logout();
+  }
 
-  // componentDidMount() {
-  //   const { renewSession } = this.props.auth;
+  componentDidMount() {
+    const { renewSession } = this.props.auth;
 
-  //   if (localStorage.getItem('isLoggedIn') === 'true') {
-  //     renewSession();
-  //   }
-  // }
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+      renewSession();
+    }
+  }
 
   render() {
-    // const { isAuthenticated } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
 
     return (
       // <div>
-        <Router>
+      //   <Router>
     <div>
       {/* <Nav />
       <Users />
       <Sessions />
       <Drinks /> */}
       {/*CASEY - GIVE SOMETHING LIKE THE BELOW A SHOT FOR YOUR PAGES*/}
-      <Switch>
+      {/* <Switch>
           <Route exact path="/" component={Start} />
           <Route exact path="/start" component={Start} />
           <Route exact path="/drinkory" component={Drinkory} />
           <Route exact path="/sessions/" component={Sessions} />
-          <Route exact path="/end/" component={End} />
-          <Route exact path="/about/" component={About} />
+          <Route exact path="/end/" component={End} /> */}
 
-          <Route exact path="/sessions/:id" component={Sessions} />
-      </Switch>
+          {/* <Route exact path="/sessions/:id" component={Sessions} /> */}
+      {/* </Switch>
     </div>
-    </Router>
-    //   </div>
+    </Router> */}
+      </div>
 
     );
   }

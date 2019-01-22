@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
+import { Container } from "react-materialize";
 import "./Sessions.css";
 
-import Nav from "../../components/Nav/Nav";
+import Header from "../../components/Header/Header";
 import BAC from "../../components/BAC/BAC";
 import DrinkSession from "../../components/DrinkSession/DrinkSession"
 import DrinkBtn from "../../components/DrinkBtn/DrinkBtn";
@@ -12,8 +13,8 @@ class Sessions extends Component {
 
   render() {
     return (
-      <div>
-        <Nav />
+      <Container>
+        <Header />
         <div className="container">
         <div className="row">
             <Link to="/profile" className={window.location.pathname === "/profile"
@@ -41,7 +42,7 @@ class Sessions extends Component {
             
           </div>
         </div>
-      </div>
+      </Container>
     );
   }
 }

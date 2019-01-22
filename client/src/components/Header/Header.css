@@ -1,0 +1,12 @@
+.header{
+
+        height: 50px;
+        width: 100%;
+        background-color: black;
+        color: rgb(56,181,230);
+        text-shadow: 1px 1px rgb(225,60,176);
+}
+
+.noMargin{
+    margin: 0;
+}

@@ -5,7 +5,7 @@ import { Container, Row } from "react-materialize";
 class BAC extends Component {
     render(){
         return(
-            <Container>
+            <Container className="BAC">
                 <Row>
                     <label>CurrentBAC:</label>
                     <span> BAC # </span>

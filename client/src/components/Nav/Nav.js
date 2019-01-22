@@ -6,14 +6,11 @@ import {SideNav, SideNavItem, Button } from "react-materialize";
 // import { Link } from "react-router-dom";
 
 
-import BAC from "../BAC/BAC";
-
-
 class Nav extends Component {
   render() {
     return (
-      <SideNav
-  trigger={<Button>SIDE NAV DEMO</Button>}
+      <SideNav 
+  trigger={<Button className="menuBtn" icon="menu" />}
   options={{ closeOnClick: true }}
   >
   <SideNavItem userView
@@ -30,6 +27,7 @@ class Nav extends Component {
   <SideNavItem subheader>Subheader</SideNavItem>
   <SideNavItem waves href='#!third'>Third Link With Waves</SideNavItem>
 </SideNav>
+
     )
   }
 

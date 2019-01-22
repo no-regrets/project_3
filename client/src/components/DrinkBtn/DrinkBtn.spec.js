@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import DrinkBtn from './DrinkBtn';
 
-describe('DeleteBtn', () => {
+describe('DrinkBtn', () => {
   let wrapper;
   beforeEach(() => wrapper = shallow(<DrinkBtn />));
 

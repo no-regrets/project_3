@@ -6,7 +6,7 @@ import { Button } from "react-materialize";
 class DrinkBtn extends Component {
     render(){
     return (
-        <Button onClick={this.props.Drink}> {this.props.name}</Button>
+      <div><Button onClick={this.props.Drink}> {this.props.name}</Button></div> 
     )
 }
 }

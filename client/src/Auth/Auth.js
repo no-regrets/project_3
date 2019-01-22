@@ -13,7 +13,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: AUTH_CONFIG.domain,
     clientID: AUTH_CONFIG.clientId,
-    redirectUri: "http://localhost:3000/callback",//"https://noregrets-project3.herokuapp.com/callback",
+    redirectUri: "http://noregrets-project3.herokuapp.com/callback",
     responseType: 'token id_token',
     scope: 'openid profile'
   });
@@ -48,12 +48,15 @@ export default class Auth {
 
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
+      console.log('authresult is: ' + authResult);
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
       } else if (err) {
         history.replace('/login');
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
+      } else {
+        console.log('no err but no authresult');
       }
     });
   }

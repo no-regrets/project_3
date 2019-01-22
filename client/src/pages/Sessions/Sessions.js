@@ -7,6 +7,7 @@ import BAC from "../../components/BAC/BAC";
 import DrinkSession from "../../components/DrinkSession/DrinkSession"
 import DrinkBtn from "../../components/DrinkBtn/DrinkBtn";
 import EndBtn from "../../components/EndBtn/EndBtn";
+import { Button } from "react-materialize";
 
 class Sessions extends Component {
 
@@ -20,17 +21,49 @@ class Sessions extends Component {
       drink:[]
     }],
     bac: 0,
-    tts: ""
+    maxBAC: 0,
+    tts: "",
+    sessionID: ""
   }
 
-  componentDidMount() {
-    this.loadUser();
+//   componentWillMount() {
+//       //this.setState({profile: {} })
+//       console.log(this.props)
+//   }
+
+componentWillMount() {
+    this.setState({ profile: {} });
+    const { userProfile, getUserInfo } = this.props.auth;
+    if (!userProfile) {
+      getUserInfo((err, profile) => {
+        this.setState({ profile }, () => {
+            let newsub = this.state.profile.sub
+            let newersub = newsub.substr(newsub.length  - 15)
+            this.setState({sub: newersub})
+            API.saveUser({
+          sub: newersub,
+        })
+          this.loadUser()
+          ;});
+      });
+    } else {
+
+      this.setState({ profile: userProfile }, this.loadUser()) ;
+      
+    }
+    
   }
+
 
   loadUser = () => {
-    API.getUser("5c3804c120104e9b3bdfbd47")
+    let newsub = this.state.profile.sub
+    let newersub = newsub.substr(newsub.length  - 15)
+    API.getUser(newersub)
       .then(res => {
-        this.setState({username: res.data.username, sex: res.data.sex, weight: res.data.weight, session: []})
+          
+        console.log("FIND ME" + res);
+
+        this.setState({sex: res.data.sex, weight: res.data.weight, session: []})
 
       }).catch(err => console.log(err))
   }
@@ -40,7 +73,7 @@ class Sessions extends Component {
     let bac = this.state.bac
     let weight = this.state.weight
     let sex =this.state.sex
-    if(sex === "male"){
+    if(sex === "male" || "m"){
       if(weight >= 90 && weight < 110){
           bac += .038
       }
@@ -103,6 +136,10 @@ class Sessions extends Component {
   // if(bac < 0){
   //     bac = 0
   // }
+  let maxBAC = this.state.maxBAC
+  if(bac > maxBAC){
+      this.setState({maxBAC: bac})
+  }
   //console.log(bac)
 
 
@@ -158,6 +195,33 @@ bacDecay = (tbac) =>{
     this.setState({tts: TimeOfSober})
     console.log(this.state.tts)
 }
+End = () => {
+    this.setState({bac: 0, tts: ""})
+    API.saveSession({maxBAC: this.state.maxBAC, endedAt: Date.now})
+        .then(res => console.log(res))
+        .catch(err=>console.log(err))
+}
+
+startSession = () => {
+    //event.preventDefault();
+      API.saveSession({
+        drinkGoal: this.state.drinkGoal,
+        maxBAC: this.state.maxBAC,
+        budget: this.state.budget,
+        sub: this.state.sub,
+      })
+      .then(res => this.setState({sessionID: res.data._id}))
+      .catch(err => console.log(err));
+  };
+  
+  addDrink = () => {
+    //event.preventDefault();
+      API.saveDrink({
+        sessionid: this.state.sessionID
+      })
+      // .then(res => this.loadSessions())
+      .catch(err => console.log(err));
+  };
 
 
   render() {
@@ -170,6 +234,7 @@ bacDecay = (tbac) =>{
                 ? "nav-link active" : "nav-link"
             }>Profile
             </Link>
+            {this.state.weight}
           </div>
           <div className="row">
             <BAC bac={this.state.bac} tts={this.state.tts} />
@@ -179,14 +244,23 @@ bacDecay = (tbac) =>{
           </div>
           <div className="row">
             <DrinkBtn bac={this.props.bac} Drink={this.Drink} name="beer"/>
-            <DrinkBtn/>
-            <DrinkBtn/>
-            <DrinkBtn/>
+            <DrinkBtn bac={this.props.bac} Drink={this.Drink} name="wine"/>
+            <DrinkBtn bac={this.props.bac} Drink={this.Drink} name="liquor"/>
+            {/* <DrinkContainer>
+                this.state.sessions.drinks.map(drink=>{
+                    return(
+                        <DrinkBtn oz=this.props.drink.oz alc= this.props.drink.alc Drink={this.CreatedDrink(drink.oz, drink.alc)} name=this.props.drink.name />
+                    )
+                })
+            
+            </DrinkContainer>*/}
           </div>
           <div className="row">
+          <Button onClick={this.startSession}>Session</Button>
+          <Button onClick={this.addDrink}>Drink</Button>
             <Link to="/end" className={window.location.pathname === "/end"
                 ? "nav-link active" : "nav-link"
-            }><EndBtn />
+            }><EndBtn End={this.End}/>
             </Link>
             
           </div>

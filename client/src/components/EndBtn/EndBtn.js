@@ -1,12 +1,14 @@
-import React from "react";
+import React, {Component} from "react";
 import "./EndBtn.css";
 
 import { Button } from "react-materialize";
 
-function EndBtn() {
-    return (
-        <Button>End Btn</Button>
-    )
-}
+
+class EndBtn extends Component {
+    render(){
+        return(
+            <Button onClick={this.props.End}>End Btn</Button>
+        )}}
+
 
 export default EndBtn;

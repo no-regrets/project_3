@@ -6,7 +6,7 @@ import { userInfo } from "os";
 class BAC extends Component {
     render(){
         return(
-            <Container>
+            <Container className="BAC">
                 <Row>
                     <label>CurrentBAC: {this.props.bac}</label>
                     <span> BAC # </span>

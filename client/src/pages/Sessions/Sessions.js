@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
+import { Container } from "react-materialize";
 import "./Sessions.css";
+
+import Header from "../../components/Header/Header";
 import API from "../../utils/API"
 import Nav from "../../components/Nav/Nav";
 import BAC from "../../components/BAC/BAC";
@@ -226,8 +229,8 @@ startSession = () => {
 
   render() {
     return (
-      <div>
-        <Nav />
+      <Container>
+        <Header />
         <div className="container">
         <div className="row">
             <Link to="/profile" className={window.location.pathname === "/profile"
@@ -265,7 +268,7 @@ startSession = () => {
             
           </div>
         </div>
-      </div>
+      </Container>
     );
   }
 }

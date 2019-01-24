@@ -30,7 +30,7 @@ class App extends Component {
     return (
       <div>
             <Button
-              bsStyle="primary"
+              bsstyle="primary"
               className="btn-margin"
               onClick={this.goTo.bind(this, 'profile')}
             >
@@ -40,7 +40,7 @@ class App extends Component {
               !isAuthenticated() && (
                   <Button
                     id="qsLoginBtn"
-                    bsStyle="primary"
+                    bsstyle="primary"
                     className="btn-margin"
                     onClick={this.login.bind(this)}
                   >
@@ -52,7 +52,7 @@ class App extends Component {
               isAuthenticated() && (
                   <Button
                     id="qsLogoutBtn"
-                    bsStyle="primary"
+                    bsstyle="primary"
                     className="btn-margin"
                     onClick={this.logout.bind(this)}
                   >

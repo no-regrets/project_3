@@ -63,7 +63,7 @@ componentWillMount() {
 
       //this.setState({ profile: userProfile }, this.loadUser()) ;
       
-    }
+    }}
 
 
     loadUser = () => {
@@ -268,7 +268,8 @@ componentWillMount() {
                 })
             
             </DrinkContainer>*/}
-          </div>
+    
+          
           <div className="row">
           <Button onClick={this.startSession}>Start</Button>
           <Button onClick={this.addDrink}>Drink</Button>
@@ -278,8 +279,9 @@ componentWillMount() {
             </Link>
             {/* <EndBtn End={this.End}/> */}
           </div>
-        </div>
+        
       </Container>
+      </div>
     );
   }
 }

@@ -14,7 +14,6 @@ const auth = new Auth();
 const handleAuthentication = ({location}) => {
   console.log(location);
   if (/access_token|id_token|error/.test(location.hash)) {
-    console.log('i am in the hashing area');
     auth.handleAuthentication();
   }
 }
@@ -25,14 +24,12 @@ export const makeMainRoutes = () => {
     <Router history={history}>
         <div>
           {/* <Route path="/" render={(props) => <LoginPage auth={auth} {...props} />} /> */}
-          <Route path="/" render={(props) => (
+          {/* <Route path="/" render={(props) => (
               <Redirect to="/login"/>
-          )} />
+          )} /> */}
+          <Route path="/" render={(props) => <LoginPage auth={auth} {...props} />} />
           <Route path="/home" render={(props) => <App auth={auth} {...props} />} />
-          <Route path="/login" render={(props) => <LoginPage auth={auth} {...props} />} />
-          <Route path="/profile" render={(props) => (
-              <Profile auth={auth} {...props} />
-          )} />
+          <Route path="/profile" render={(props) => <Profile auth={auth} {...props} />} />
           <Route path="/callback" render={(props) => {
             handleAuthentication(props);
             return <Callback {...props} /> 

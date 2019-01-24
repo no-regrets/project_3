@@ -1,157 +1,90 @@
-import auth0 from 'auth0-js';
-import {
-  AUTH_CONFIG
-} from './auth0-variables';
-import history from '../history';
+import Auth0Lock from "auth0-lock";
+import { AUTH_CONFIG } from "./auth0-variables";
+import history from "../history";
+var options = {
+  theme: {
+    logo:
+      "https://vignette.wikia.nocookie.net/wii/images/6/66/Blurb_1up_mushroom_20090220-1-.png/revision/latest?cb=20100427010802"
+  },
+  languageDictionary: {
+    title: "Log In to No-Regrets"
+  }
+};
 
 export default class Auth {
-  accessToken;
-  idToken;
-  expiresAt;
-  userProfile;
-
-  auth0 = new auth0.WebAuth({
-    domain: AUTH_CONFIG.domain,
-    clientID: AUTH_CONFIG.clientId,
-    redirectUri: "http://noregrets-project3.herokuapp.com/callback",
-    // 'http://localhost:3000/callback',
-    // "https://noregrets-project3.herokuapp.com/callback",
-    responseType: 'token id_token',
-    scope: 'openid profile'
+  lock = new Auth0Lock(AUTH_CONFIG.clientId, AUTH_CONFIG.domain, {
+    autoclose: true,
+    auth: {
+      redirectUrl: AUTH_CONFIG.callbackUrl,
+      responseType: "token id_token",
+      params: {
+        scope: "openid profile"
+      }
+    }
   });
 
-  // auth0.signup({
-  //   connection: 'CONNECTION',
-  //   email: 'EMAIL',
-  //   password: 'PASSWORD',
-  //   user_metadata: {
-  //     plan: 'silver',
-  //     team_id: 'a111'
-  //   }
-  // }, function (err) {
-  //   if (err) return alert('Something went wrong: ' + err.message);
-  //   return alert('success signup without login!')
-  // });
-
   constructor() {
+    this.handleAuthentication();
+    console.log("in handles")
+    // binds functions to keep this context
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
-    this.handleAuthentication = this.handleAuthentication.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
-    this.getAccessToken = this.getAccessToken.bind(this);
-    this.getIdToken = this.getIdToken.bind(this);
-    this.renewSession = this.renewSession.bind(this);
-    this.getUserInfo = this.getUserInfo.bind(this);
   }
 
   login() {
-    this.auth0.authorize();
+    // Call the show method to display the widget.
+    this.lock.show();
   }
 
   handleAuthentication() {
-    this.auth0.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        this.setSession(authResult);
-      } else if (err) {
-        history.replace('/login');
-        console.log(err);
-        alert(`Error: ${err.error}. Check the console for further details.`);
-      }
+    // Add a callback for Lock's `authenticated` event
+    this.lock.on("authenticated", this.setSession.bind(this));
+
+    // Add a callback for Lock's `authorization_error` event
+    this.lock.on("authorization_error", err => {
+      console.log(err);
+      alert(`Error: ${err.error}. Check the console for further details.`);
+      history.replace("/profile");
     });
-  }
-
-  getAccessToken() {
-    return this.accessToken;
-  }
-
-  getIdToken() {
-    return this.idToken;
   }
 
   setSession(authResult) {
-    // Set isLoggedIn flag in localStorage
-    localStorage.setItem('isLoggedIn', 'true');
-   
+    if (authResult && authResult.accessToken && authResult.idToken) {
+      // Set the time that the access token will expire at
+      let expiresAt = JSON.stringify(
+        authResult.expiresIn * 1000 + new Date().getTime()
+      );
 
-    // Set the time that the access token will expire at
-    let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
-    this.accessToken = authResult.accessToken;
-    this.idToken = authResult.idToken;
-    this.expiresAt = expiresAt;
+      this.lock.getUserInfo(authResult.accessToken, function(error, profile) {
+        if (error) {
+          return;
+        }
+        console.log(profile);
+        localStorage.setItem("profile", JSON.parse(profile));
+      });
 
-    localStorage.setItem('accessToken', this.accessToken);
-    localStorage.setItem('idToken', this.idToken);
-
-    // navigate to the profile route
-    history.replace('/profile');
-  }
-
-  renewSession() {
-    this.auth0.checkSession({}, (err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        this.setSession(authResult);
-      } else if (err) {
-        this.logout();
-        console.log(err);
-        alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
-      }
-    });
-  }
-
-  getUserInfo(cb) {
-    this.auth0.client.userInfo(this.accessToken, (err, profile) => {
-      if (profile) {
-        this.userProfile = profile;
-      }
-      cb(err, profile);
-    });
+      localStorage.setItem("access_token", authResult.accessToken);
+      localStorage.setItem("id_token", authResult.idToken);
+      localStorage.setItem("expires_at", expiresAt);
+      // navigate to the home route
+      history.replace("/profile");
+    }
   }
 
   logout() {
-    // Remove tokens and expiry time
-    this.accessToken = null;
-    this.idToken = null;
-    this.expiresAt = 0;
-
-    // Remove user profile
-    this.userProfile = null;
-
-    // Remove isLoggedIn flag from localStorage
-    localStorage.removeItem('isLoggedIn');
-
-    // navigate to the login route
-    history.replace('/login');
+    // Clear access token and ID token from local storage
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("id_token");
+    localStorage.removeItem("expires_at");
+    // navigate to the home route
+    history.replace("/profile");
   }
 
   isAuthenticated() {
     // Check whether the current time is past the
     // access token's expiry time
-    let expiresAt = this.expiresAt;
+    let expiresAt = JSON.parse(localStorage.getItem("expires_at"));
     return new Date().getTime() < expiresAt;
   }
 }
-
-
-// // GET THE USER INFORMATION
-// // Gets the user information from Auth0 and dispatches it to the store.
-// export const getUserInfo = () =>
-//     console.log('This ran');
-//       const webAuth = new auth0.WebAuth({
-//         domain: AUTH_CONFIG.domain,
-//         clientID: AUTH_CONFIG.clientId,
-//       });
-
-//       webAuth.client.userInfo(
-//         this.accessToken,
-//         (err, userData) => {
-//           if (err) {
-//             console.log(err);
-//           }
-//           const userInfo = {
-//             email: userData.email,
-//             sex: userData.user_metadata.sex,
-//             weight: userData.user_metadata.weight,
-//           };
-
-//         },
-//       );

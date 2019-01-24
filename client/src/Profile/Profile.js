@@ -11,21 +11,38 @@ class Profile extends Component {
     sessionID: ""
   }
 
-  componentWillMount() {
-    this.setState({ profile: {} });
-    const { userProfile, getUserInfo } = this.props.auth;
-    if (!userProfile) {
-      getUserInfo((err, profile) => {
-        this.setState({ profile }, () => {API.saveUser({
-          sub: this.state.profile.sub,
-        })
-          // .then(res => this.loadUsers())
-          .catch(err => console.log(err));});
+  // componentWillMount() {
+  //   this.setState({ profile: {} });
+  //   const { userProfile, getUserInfo } = this.props.auth;
+  //   if (!userProfile) {
+  //     getUserInfo((err, profile) => {
+  //       this.setState({ profile }, () => {API.saveUser({
+  //         sub: this.state.profile.sub,
+  //       })
+  //         // .then(res => this.loadUsers())
+  //         .catch(err => console.log(err));});
+  //     });
+  //   } else {
+  //     this.setState({ profile: userProfile }) ;
+  //   }
+  // }
+
+  componentDidMount() {
+    const { userProfile, getUserInfo, userInfo } = this.props.auth;
+    if (this.props.auth.isAuthenticated()) {
+      let oldToken = localStorage.getItem("access_token");
+      let newProfile;
+      this.props.auth.lock.getUserInfo(oldToken, (err, profile) => {
+        console.log(profile);
+        newProfile = profile;
+        this.setState({ profile: newProfile });
       });
-    } else {
-      this.setState({ profile: userProfile }) ;
-    }
+    } //else {
+    //this.setState({ profile: userProfile });
+    //}
   }
+  //With arrow functions as opposed to standard functions, the context of 'this' points to Profile instead of the getUserInfo function.
+
 
   startSession = event => {
     event.preventDefault();

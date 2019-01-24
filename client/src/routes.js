@@ -30,7 +30,7 @@ export const makeMainRoutes = () => {
           <Route
             exact
             path="/"
-            render={props => <LoginPage auth={auth} {...props} />}
+            render={props => <App auth={auth} {...props} />}
           />
           <Route
             exact

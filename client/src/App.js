@@ -6,6 +6,7 @@ import Sessions from "./pages/Sessions/Sessions";
 import Start from "./pages/Start/Start";
 import React, { Component } from 'react';
 import { Navbar, Button } from 'react-bootstrap';
+import LoginPage from './pages/LoginPage/LoginPage';
 // import './App.css';
 
 class App extends Component {
@@ -21,13 +22,13 @@ class App extends Component {
     this.props.auth.logout();
   }
 
-  componentDidMount() {
-    const { renewSession } = this.props.auth;
+  // componentDidMount() {
+  //   const { renewSession } = this.props.auth;
 
-    if (localStorage.getItem('isLoggedIn') === 'true') {
-      renewSession();
-    }
-  }
+  //   if (localStorage.getItem('isLoggedIn') === 'true') {
+  //     renewSession();
+  //   }
+  // }
 
   render() {
     const { isAuthenticated } = this.props.auth;
@@ -36,6 +37,7 @@ class App extends Component {
       // <div>
       //   <Router>
     <div>
+      <LoginPage auth={this.props.auth} />
       {/* <Nav />
       <Users />
       <Sessions />

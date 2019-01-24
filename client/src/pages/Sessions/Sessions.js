@@ -43,15 +43,23 @@ componentWillMount() {
             let newsub = this.state.profile.sub
             let newersub = newsub.substr(newsub.length  - 15)
             this.setState({sub: newersub})
-            API.saveUser({
-          sub: newersub,
-        })
-          this.loadUser()
+            API.getUser(newersub).then(res => {
+                if(res.length > 0){
+                    console.log("FIND ME" + res);
+
+                    this.setState({sex: res.data.sex, weight: res.data.weight, session: []})    
+                }
+      }).catch(API.saveUser({
+        sub: newersub,
+    }).then(this.loadUser()))
+
+        
+          //this.loadUser()
           ;});
       });
     } else {
 
-      this.setState({ profile: userProfile }, this.loadUser()) ;
+      //this.setState({ profile: userProfile }, this.loadUser()) ;
       
     }
     
@@ -259,13 +267,13 @@ startSession = () => {
             </DrinkContainer>*/}
           </div>
           <div className="row">
-          <Button onClick={this.startSession}>Session</Button>
+          <Button onClick={this.startSession}>Start</Button>
           <Button onClick={this.addDrink}>Drink</Button>
             <Link to="/end" className={window.location.pathname === "/end"
                 ? "nav-link active" : "nav-link"
-            }><EndBtn End={this.End}/>
+            }>
             </Link>
-            
+            {/* <EndBtn End={this.End}/> */}
           </div>
         </div>
       </Container>

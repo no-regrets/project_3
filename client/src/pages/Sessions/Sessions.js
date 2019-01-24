@@ -36,28 +36,34 @@ class Sessions extends Component {
     //       console.log(this.props)
     //   }
 
-    componentWillMount() {
-        this.setState({ profile: {} });
-        // const { userProfile, getUserInfo } = this.props.auth;
-        // if (!userProfile) {
-        //   getUserInfo((err, profile) => {
-        //     this.setState({ profile }, () => {
-        //         let newsub = this.state.profile.sub
-        //         let newersub = newsub.substr(newsub.length  - 15)
-        //         this.setState({sub: newersub})
-        //         API.saveUser({
-        //       sub: newersub,
-        //     })
-        //       this.loadUser()
-        //       ;});
-        //   });
-        // } else {
+componentWillMount() {
+    this.setState({ profile: {} });
+    const { userProfile, getUserInfo } = this.props.auth;
+    if (!userProfile) {
+      getUserInfo((err, profile) => {
+        this.setState({ profile }, () => {
+            let newsub = this.state.profile.sub
+            let newersub = newsub.substr(newsub.length  - 15)
+            this.setState({sub: newersub})
+            API.getUser(newersub).then(res => {
+                if(res.length > 0){
+                    console.log("FIND ME" + res);
 
-        //   this.setState({ profile: userProfile }, this.loadUser()) ;
+                    this.setState({sex: res.data.sex, weight: res.data.weight, session: []})    
+                }
+      }).catch(API.saveUser({
+        sub: newersub,
+    }).then(this.loadUser()))
 
-        // }
+        
+          //this.loadUser()
+          ;});
+      });
+    } else {
 
-    }
+      //this.setState({ profile: userProfile }, this.loadUser()) ;
+      
+    }}
 
 
     loadUser = () => {
@@ -262,19 +268,26 @@ class Sessions extends Component {
                 })
             
             </DrinkContainer>*/}
+    
+          
+          <div className="row">
+          {/* <Button onClick={this.startSession}>Start</Button>
+          <Button onClick={this.addDrink}>Drink</Button> */}
+          <Row className="sessionBtn" onClick={this.startSession}><SessionBtn Start={this.startSession}/></Row>
+                   <Row>
+                       <Link to="/end" className={window.location.pathname === "/end"
+                           ? "nav-link active" : "nav-link"
+                       }><EndBtn End={this.End} />
+                       </Link>
 
-                    <Row className="sessionBtn" onClick={this.startSession}><SessionBtn/></Row>
-                    <Row>
-                        <Link to="/end" className={window.location.pathname === "/end"
-                            ? "nav-link active" : "nav-link"
-                        }><EndBtn End={this.End} />
-                        </Link>
-
-                    </Row>
-                </Container>
-            </div>
-        );
-    }
+                   </Row>
+            {/* <EndBtn End={this.End}/> */}
+          </div>
+        
+      </Container>
+      </div>
+    );
+  }
 }
 
 export default Sessions;

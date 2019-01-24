@@ -271,12 +271,16 @@ componentWillMount() {
     
           
           <div className="row">
-          <Button onClick={this.startSession}>Start</Button>
-          <Button onClick={this.addDrink}>Drink</Button>
-            <Link to="/end" className={window.location.pathname === "/end"
-                ? "nav-link active" : "nav-link"
-            }>
-            </Link>
+          {/* <Button onClick={this.startSession}>Start</Button>
+          <Button onClick={this.addDrink}>Drink</Button> */}
+          <Row className="sessionBtn" onClick={this.startSession}><SessionBtn Start={this.startSession}/></Row>
+                   <Row>
+                       <Link to="/end" className={window.location.pathname === "/end"
+                           ? "nav-link active" : "nav-link"
+                       }><EndBtn End={this.End} />
+                       </Link>
+
+                   </Row>
             {/* <EndBtn End={this.End}/> */}
           </div>
         

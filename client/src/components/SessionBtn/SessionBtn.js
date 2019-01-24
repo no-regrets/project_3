@@ -3,10 +3,10 @@ import "./SessionBtn.css";
 import { Button } from "react-materialize";
 import startBtn from "../../images/startBtn.png"
 
-function SessionBtn() {
+function SessionBtn(props) {
     
     return (
-        <div className="start center"><img alt="Start Session" src={startBtn}/></div>
+        <div onClick={props.Start} className="start center"><img alt="Start Session" src={startBtn}/></div>
     )
 }
 

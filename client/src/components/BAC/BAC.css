@@ -1,3 +1,29 @@
 .BAC {
-    box-shadow: 5px;
+    background-color: white;
+    padding: 10px 5px 5px; 
+    margin-bottom: 15px;
+    opacity: .9
 }
+
+.time {
+    background-color:rgb(56,181,230);
+    padding: 10px 0 5px; 
+    margin-bottom: 15px;
+}
+
+.label {
+    color: black;
+    text-shadow: 1px 1px rgb(56,181,230);
+
+    padding-right: 15px;
+    padding-left:10px;
+}
+
+.info {
+    color: black;
+    text-shadow: 1px 1px rgb(225,60,176);
+    float: left;
+}
+
+/* rgb(56,181,230); */
+/* rgb(225,60,176); */

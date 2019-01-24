@@ -1,11 +1,12 @@
 import React from "react";
 import "./SessionBtn.css";
 import { Button } from "react-materialize";
+import startBtn from "../../images/startBtn.png"
 
 function SessionBtn() {
     
     return (
-        <Button>Session Btn</Button>
+        <div className="start center"><img alt="Start Session" src={startBtn}/></div>
     )
 }
 

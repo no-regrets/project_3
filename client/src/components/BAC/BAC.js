@@ -1,20 +1,29 @@
 import React, {Component} from "react";
 import "./BAC.css";
-import { Container, Row } from "react-materialize";
+import { Container, Row, Col } from "react-materialize";
+import { userInfo } from "os";
 
 class BAC extends Component {
     render(){
         return(
-            <Container>
+            <div>
+            <Container className="BAC">
                 <Row>
-                    <label>CurrentBAC:</label>
-                    <span> BAC # </span>
+                    <Col className="label">CurrentBAC:</Col>
+                    <Col className="info">{this.props.bac}</Col>
                 </Row>
                 <Row>
-                    <label>Estimated time until sober:</label>
-                    <span>00:00</span>
+                    <Col className="label">Estimated time until sober:</Col>
+                    <Col className="info"> {this.props.tts} </Col>
                 </Row>
             </Container>
+            {/* <Container className="time">
+                <Row>
+                    <Col clasName="label">Estimated time until sober:</Col>
+                    <Col className="info"> {this.props.tts} </Col>
+                </Row>
+            </Container> */}
+            </div>
         )
     }
 }

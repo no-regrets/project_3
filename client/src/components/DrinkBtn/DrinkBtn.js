@@ -1,14 +1,14 @@
-import React from "react";
+import React, {Component} from "react";
 import "./DrinkBtn.css";
 
 import { Button } from "react-materialize";
  
-function DrinkBtn({...props}) {
+class DrinkBtn extends Component {
+    render(){
     return (
-        <div>
-        <Button>DrinkBtn</Button>
-        </div>
+      <div className="button"><div onClick={this.props.Drink}> {this.props.name}</div></div> 
     )
+}
 }
 
 export default DrinkBtn;

@@ -1,35 +1,46 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./Nav.css"
 
-import {SideNav, SideNavItem, Button } from "react-materialize";
+import { SideNav, SideNavItem, Button } from "react-materialize";
 
 // import { Link } from "react-router-dom";
-
-
-import BAC from "../BAC/BAC";
 
 
 class Nav extends Component {
   render() {
     return (
       <SideNav
-  trigger={<Button>SIDE NAV DEMO</Button>}
-  options={{ closeOnClick: true }}
-  >
-  <SideNavItem userView
-    user={{
-      background: 'img/office.jpg',
-      image: 'img/yuna.jpg',
-      name: 'John Doe',
-      email: 'jdandturk@gmail.com'
-    }}
-  />
-  <SideNavItem href='#!icon' icon='cloud'>First Link With Icon</SideNavItem>
-  <SideNavItem href='#!second'>Second Link</SideNavItem>
-  <SideNavItem divider />
-  <SideNavItem subheader>Subheader</SideNavItem>
-  <SideNavItem waves href='#!third'>Third Link With Waves</SideNavItem>
-</SideNav>
+        trigger={<Button className="menuBtn" icon="menu" />}
+        options={{ closeOnClick: true }}
+      >
+        <SideNavItem userView
+          user={{
+            background: 'img/office.jpg',
+            image: 'img/yuna.jpg',
+            name: 'John Doe',
+            email: 'jdandturk@gmail.com'
+          }}
+        />
+        <SideNavItem href='#!icon' icon='cloud'>
+          <Link
+            to="/sessions"
+            className={window.location.pathname === "/sessions" ? "nav-link active" : "nav-link"}
+          >Sessions
+          </Link>
+        </SideNavItem>
+        <SideNavItem href='#!second'>
+          <Link
+            to="/drinkory"
+            className={window.location.pathname === "/drinkory" ? "nav-link active" : "nav-link"}
+          >About
+          </Link>
+        </SideNavItem>
+        <SideNavItem divider />
+        <SideNavItem subheader>Subheader</SideNavItem>
+        <SideNavItem waves href='#!third'>Third Link With Waves</SideNavItem>
+      </SideNav>
+
     )
   }
 
@@ -37,7 +48,7 @@ class Nav extends Component {
 
 export default Nav;
 
-//          For Side Bar Nav, still not sure how to implement, may need to NPM Matrialize to use properly
+    //          For Side Bar Nav, still not sure how to implement, may need to NPM Matrialize to use properly
 // componentDidMount() {
 //   var elem = document.querySelector(".sidenav");
 //   var instance = M.Sidenav.init(elem, {

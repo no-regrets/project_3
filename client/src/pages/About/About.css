@@ -1,0 +1,27 @@
+body {
+    background-size: auto 100%;
+    background-image: url("../../images/vice_bar.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+}
+
+.margin{
+    max-width: 85%;
+    margin-top: 20px;
+}
+
+.card {
+    height: 30px;
+    width: auto;
+    padding-top: 25px;
+    background: black;
+    color: rgb(56,181,230);
+    text-shadow: 1px 1px rgb(225,60,176);
+
+}
+
+.link {
+    color: rgb(225,60,176);
+    text-shadow: 1px 1px rgb(56,181,230);
+}

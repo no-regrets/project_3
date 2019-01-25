@@ -37,7 +37,42 @@ class App extends Component {
       // <div>
       //   <Router>
     <div>
-      <LoginPage auth={this.props.auth} />
+            <div>
+            <Button
+              bsstyle="primary"
+              className="btn-margin"
+              onClick={this.goTo.bind(this, 'profile')}
+            >
+              Profile
+            </Button>
+            {
+              !isAuthenticated() && (
+                  <Button
+                    id="qsLoginBtn"
+                    bsstyle="primary"
+                    className="btn-margin"
+                    onClick={this.login.bind(this)}
+                  >
+                    Log In
+                  </Button>
+                )
+            }
+            {
+              isAuthenticated() && (
+                  <Button
+                    id="qsLogoutBtn"
+                    bsstyle="primary"
+                    className="btn-margin"
+                    onClick={this.logout.bind(this)}
+                  >
+                    Log Out
+                  </Button>
+                )
+            }
+
+        {/* <Button onClick={this.lock.show()}>Lock Login</Button> */}
+      </div>
+      {/* <LoginPage auth={this.props.auth} /> */}
       {/* <Nav />
       <Users />
       <Sessions />

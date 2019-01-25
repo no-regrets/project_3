@@ -6,10 +6,10 @@ import { Button } from "react-materialize";
 
 class Profile extends Component {
 
-  // state = {
-  //   profile: {},
-  //   sessionID: ""
-  // }
+  state = {
+    profile: {},
+    sessionID: ""
+  }
 
   // componentWillMount() {
   //   this.setState({ profile: {} });
@@ -56,33 +56,33 @@ class Profile extends Component {
       .catch(err => console.log(err));
   };
   
-  // addDrink = () => {
-  //   //event.preventDefault();
-  //     API.saveDrink({
-  //       sessionid: this.state.sessionID
-  //     })
-  //     // .then(res => this.loadSessions())
-  //     .catch(err => console.log(err));
-  // };
+  addDrink = event => {
+    event.preventDefault();
+      API.saveDrink({
+        sessionid: this.state.sessionID
+      })
+      // .then(res => this.loadSessions())
+      .catch(err => console.log(err));
+  };
 
 
   render() {
-    // const { profile } = this.state;
+    const { profile } = this.state;
     return (
       <div className="container">
         <div className="profile-area">
-          {/* <h1>{profile.name}</h1> */}
+          <h1>{profile.name}</h1>
           <Panel header="Profile">
-            {/* <img src={profile.picture} alt="profile" /> */}
+            <img src={profile.picture} alt="profile" />
             <div>
               <ControlLabel><Glyphicon glyph="user" /> Nickname</ControlLabel>
-              {/* <h3>{profile.nickname}</h3> */}
+              <h3>{profile.nickname}</h3>
             </div>
-            {/* <pre>{JSON.stringify(profile, null, 2)}</pre> */}
+            <pre>{JSON.stringify(profile, null, 2)}</pre>
           </Panel>
-          {/* <Button onClick={this.startSession}>Session</Button>
+          <Button onClick={this.startSession}>Session</Button>
           <Button onClick={this.addDrink}>Drink</Button>
-          <Button >Logout</Button> */}
+          <Button >Logout</Button>
         </div>
         
       </div>

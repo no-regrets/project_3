@@ -1,15 +1,7 @@
 import Auth0Lock from "auth0-lock";
 import { AUTH_CONFIG } from "./auth0-variables";
 import history from "../history";
-var options = {
-  theme: {
-    logo:
-      "https://vignette.wikia.nocookie.net/wii/images/6/66/Blurb_1up_mushroom_20090220-1-.png/revision/latest?cb=20100427010802"
-  },
-  languageDictionary: {
-    title: "Log In to No-Regrets"
-  }
-};
+
 
 export default class Auth {
   lock = new Auth0Lock(AUTH_CONFIG.clientId, AUTH_CONFIG.domain, {
@@ -68,7 +60,7 @@ export default class Auth {
       localStorage.setItem("id_token", authResult.idToken);
       localStorage.setItem("expires_at", expiresAt);
       // navigate to the home route
-      history.replace("/profile");
+      history.replace("/home");
     }
   }
 
@@ -78,7 +70,7 @@ export default class Auth {
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
     // navigate to the home route
-    history.replace("/profile");
+    history.replace("/");
   }
 
   isAuthenticated() {

@@ -1,6 +1,6 @@
 import Auth0Lock from "auth0-lock";
 import { AUTH_CONFIG } from "./auth0-variables";
-import history from "../history";
+import history from "../../history";
 
 
 export default class Auth {
@@ -17,7 +17,6 @@ export default class Auth {
 
   constructor() {
     this.handleAuthentication();
-    console.log("in handles")
     // binds functions to keep this context
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
@@ -37,7 +36,7 @@ export default class Auth {
     this.lock.on("authorization_error", err => {
       console.log(err);
       alert(`Error: ${err.error}. Check the console for further details.`);
-      history.replace("/profile");
+      history.replace("/home");
     });
   }
 
@@ -60,7 +59,7 @@ export default class Auth {
       localStorage.setItem("id_token", authResult.idToken);
       localStorage.setItem("expires_at", expiresAt);
       // navigate to the home route
-      history.replace("/home");
+      history.replace("/profile");
     }
   }
 
@@ -70,7 +69,7 @@ export default class Auth {
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
     // navigate to the home route
-    history.replace("/");
+    history.replace("/home");
   }
 
   isAuthenticated() {

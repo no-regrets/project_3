@@ -1,18 +1,19 @@
 import React from 'react';
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import App from './App';
-import Home from './Home/Home';
-import Profile from './Profile/Profile';
-import Sessions from './pages/Sessions/Sessions';
-import Callback from './Callback/Callback';
-import LoginPage from './pages/LoginPage/LoginPage'
-import Auth from './Auth/Auth';
+// import Home from './Home/Home';
+import Profile from './pages/Profile';
+// import Sessions from './pages/Sessions/Sessions';
+import Callback from './components/Callback/Callback';
+// import LoginPage from './pages/LoginPage/LoginPage'
+import Auth from './components/Authorization/Authorization';
 import history from './history';
 
 const auth = new Auth();
 
 const handleAuthentication = ({ location }) => {
   if (/access_token|id_token|error/.test(location.hash)) {
+    console.log(location.hash);
     auth.handleAuthentication();
   }
 };

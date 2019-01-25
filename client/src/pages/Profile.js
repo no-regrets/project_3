@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
-import './Profile.css';
+// import './Profile.css';
 import API from "../utils/API"
 import { Button } from "react-materialize";
 

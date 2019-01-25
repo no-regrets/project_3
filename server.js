@@ -1,5 +1,4 @@
 const express = require("express");
-// const dot
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
@@ -14,14 +13,17 @@ if (process.env.NODE_ENV === "production") {
 }
 // Add routes, both API and view
 app.use(routes);
-// app.get("/", (req, res) => console.log("hello"))
-// Connect to the Mongo DB
-mongoose.connect(
-  process.env.MONGODB_URI ||
-  "mongodb://localhost/noRegretsDB", { useNewUrlParser: true }
-);
+
+// // Connect to the Mongo DB
+// mongoose.connect(
+//   process.env.MONGODB_URI || "mongodb://localhost/greentoadPosts" //the correct db
+// );
 
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
+
+//make sure db is correct above, run mongod - 1 window
+//run server - 2 window
+//then start client - 3 window

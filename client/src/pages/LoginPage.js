@@ -1,13 +1,7 @@
 // import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import End from "./pages/End/End";
-// import Drinkory from "./pages/Drinkory/Drinkory";
-// import Sessions from "./pages/Sessions/Sessions";
-// import Start from "./pages/Start/Start";
+import { Button } from 'react-materialize';
+
 import React, { Component } from 'react';
-import { Navbar, Button } from 'react-bootstrap';
-import LoginPage from './pages/LoginPage';
-// import './App.css';
 
 class App extends Component {
   goTo(route) {
@@ -34,10 +28,7 @@ class App extends Component {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      // <div>
-      //   <Router>
-    <div>
-            <div>
+      <div>
             <Button
               bsstyle="primary"
               className="btn-margin"
@@ -71,24 +62,6 @@ class App extends Component {
             }
 
         {/* <Button onClick={this.lock.show()}>Lock Login</Button> */}
-      </div>
-      {/* <LoginPage auth={this.props.auth} /> */}
-      {/* <Nav />
-      <Users />
-      <Sessions />
-      <Drinks /> */}
-      {/*CASEY - GIVE SOMETHING LIKE THE BELOW A SHOT FOR YOUR PAGES*/}
-      {/* <Switch>
-          <Route exact path="/" component={Start} />
-          <Route exact path="/start" component={Start} />
-          <Route exact path="/drinkory" component={Drinkory} />
-          <Route exact path="/sessions/" component={Sessions} />
-          <Route exact path="/end/" component={End} /> */}
-
-          {/* <Route exact path="/sessions/:id" component={Sessions} /> */}
-      {/* </Switch>
-    </div>
-    </Router> */}
       </div>
 
     );

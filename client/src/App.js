@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import Sessions from "./pages/Sessions/Sessions";
 // import Start from "./pages/Start/Start";
 import React, { Component } from 'react';
-import { Navbar, Button } from 'react-bootstrap';
+import { Button } from "react-materialize";
 import LoginPage from './pages/LoginPage';
 // import './App.css';
 

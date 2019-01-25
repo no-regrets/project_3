@@ -1,11 +1,12 @@
 // import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import End from "./pages/End/End";
-import Drinkory from "./pages/Drinkory/Drinkory";
-import Sessions from "./pages/Sessions/Sessions";
-import Start from "./pages/Start/Start";
+// import End from "./pages/End/End";
+// import Drinkory from "./pages/Drinkory/Drinkory";
+// import Sessions from "./pages/Sessions/Sessions";
+// import Start from "./pages/Start/Start";
 import React, { Component } from 'react';
-import { Navbar, Button } from 'react-bootstrap';
+import { Button } from "react-materialize";
+import LoginPage from './pages/LoginPage';
 // import './App.css';
 
 class App extends Component {
@@ -21,13 +22,13 @@ class App extends Component {
     this.props.auth.logout();
   }
 
-  componentDidMount() {
-    const { renewSession } = this.props.auth;
+  // componentDidMount() {
+  //   const { renewSession } = this.props.auth;
 
-    if (localStorage.getItem('isLoggedIn') === 'true') {
-      renewSession();
-    }
-  }
+  //   if (localStorage.getItem('isLoggedIn') === 'true') {
+  //     renewSession();
+  //   }
+  // }
 
   render() {
     const { isAuthenticated } = this.props.auth;
@@ -36,6 +37,42 @@ class App extends Component {
       // <div>
       //   <Router>
     <div>
+            <div>
+            <Button
+              bsstyle="primary"
+              className="btn-margin"
+              onClick={this.goTo.bind(this, 'profile')}
+            >
+              Profile
+            </Button>
+            {
+              !isAuthenticated() && (
+                  <Button
+                    id="qsLoginBtn"
+                    bsstyle="primary"
+                    className="btn-margin"
+                    onClick={this.login.bind(this)}
+                  >
+                    Log In
+                  </Button>
+                )
+            }
+            {
+              isAuthenticated() && (
+                  <Button
+                    id="qsLogoutBtn"
+                    bsstyle="primary"
+                    className="btn-margin"
+                    onClick={this.logout.bind(this)}
+                  >
+                    Log Out
+                  </Button>
+                )
+            }
+
+        {/* <Button onClick={this.lock.show()}>Lock Login</Button> */}
+      </div>
+      {/* <LoginPage auth={this.props.auth} /> */}
       {/* <Nav />
       <Users />
       <Sessions />

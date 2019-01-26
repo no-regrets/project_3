@@ -16,9 +16,9 @@ import drinkImg from '../../images/cocktail.png';
 class Sessions extends Component {
 	state = {
 		profile: {},
-		sub: '',
-		username: '',
-		sex: '',
+		sub: "",
+		username: "",
+		sex: "",
 		weight: 0,
 		session: [
 			{
@@ -27,8 +27,8 @@ class Sessions extends Component {
 		],
 		bac: 0,
 		maxBAC: 0,
-		tts: '',
-		sessionID: '',
+		tts: "",
+		sessionID: "",
 	};
 
 	componentWillMount() {

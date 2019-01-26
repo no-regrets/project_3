@@ -23,18 +23,10 @@ class Nav extends Component {
           }}
         />
         <SideNavItem href='#!icon' icon='cloud'>
-          <Link
-            to="/sessions"
-            className={window.location.pathname === "/sessions" ? "nav-link active" : "nav-link"}
-          >Sessions
-          </Link>
+            First Item
         </SideNavItem>
         <SideNavItem href='#!second'>
-          <Link
-            to="/drinkory"
-            className={window.location.pathname === "/drinkory" ? "nav-link active" : "nav-link"}
-          >About
-          </Link>
+            Second Item
         </SideNavItem>
         <SideNavItem divider />
         <SideNavItem subheader>Subheader</SideNavItem>

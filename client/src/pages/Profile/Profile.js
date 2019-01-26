@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
 import './Profile.css';
 import API from '../../utils/API';
 import SessionBtn from '../../components/SessionBtn/SessionBtn';
+import Header from "../../components/Header/Header";
+import { Container, Row, Col } from 'react-materialize';
+import ProfileChg from "../../components/ProfileChg/ProfileChg";
 
 class Profile extends Component {
 	state = {
@@ -67,9 +70,32 @@ class Profile extends Component {
 	render() {
 		const { profile } = this.state;
 		return (
-			<div className="container">
+			<div>
+				<Header />
 				<div className="profile-area">
-					<h1>{profile.name}</h1>
+					<Container>
+						<Row>
+							<Container>
+								<div className="card horizontal">
+									<div className="card-image">
+										<img src={profile.picture} alt="profile" />
+									</div>
+									<div>
+										<h2 className="header"></h2>
+
+									</div>
+									<div className="card-stacked">
+										<div className="card-content">
+											<p>I am a very simple card. I am good at containing small bits of information.</p>
+										</div>
+										<div className="card-action">
+											<ProfileChg/>
+										</div>
+									</div>
+								</div>
+							</Container>
+						</Row>
+						{/* <h1>{profile.name}</h1>
 					<Panel header="Profile">
 						<img src={profile.picture} alt="profile" />
 						<div>
@@ -79,11 +105,11 @@ class Profile extends Component {
 							<h3>{profile.nickname}</h3>
 						</div>
 						<pre>{JSON.stringify(profile, null, 2)}</pre>
-					</Panel>
-					<Link to="/sessions">
-						<SessionBtn />
-					</Link>
-
+					</Panel> */}
+						<Link to="/sessions">
+							<SessionBtn />
+						</Link>
+					</Container>
 					{/* <Button onClick={this.addDrink}>Drink</Button>
           <Button >Logout</Button> */}
 				</div>

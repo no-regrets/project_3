@@ -41,18 +41,18 @@ export const makeMainRoutes = () => {
           />
           <Route
             exact
+            path="/sessions"
+            render={props => <Sessions auth={auth} {...props} />}
+          />
+          <Route
+            exact
             path="/callback"
             render={props => {
               handleAuthentication(props);
               return <Callback {...props} />;
             }}
           />
-          <Route
-            exact
-            path="/sessions"
-            render={props => <Sessions auth={auth} {...props} />}
-          />
-
+          
           <Route component={NoMatch} />
         </Switch>
       </Router>

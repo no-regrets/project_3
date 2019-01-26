@@ -9,7 +9,7 @@ class EndBtn extends Component {
     render(){
         return(
             <div className="end center" alt="End Session" onClick={this.props.End}>
-                <img src={endBtn}/>
+                <img src={endBtn} alt=""/>
             </div>
         )}}
 

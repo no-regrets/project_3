@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-materialize";
 import "./Sessions.css";
 import Header from "../../components/Header/Header";
 import API from "../../utils/API"
-import Nav from "../../components/Nav/Nav";
+//import Nav from "../../components/Nav/Nav";
 import BAC from "../../components/BAC/BAC";
 import DrinkSession from "../../components/DrinkSession/DrinkSession"
 // import DrinkBtn from "../../components/DrinkBtn/DrinkBtn";
@@ -31,30 +31,34 @@ class Sessions extends Component {
     }
 
 componentWillMount() {
-    this.setState({ profile: {} });
-    const { userProfile, getUserInfo } = this.props.auth;
-    if (!userProfile) {
-      getUserInfo((err, profile) => {
-        this.setState({ profile }, () => {
-            let newsub = this.state.profile.sub
-            let newersub = newsub.substr(newsub.length  - 8)
-            this.setState({sub: newersub})
-            API.getUser(newersub).then(res => {
-                if(res.length > 0){
-                    console.log("FIND ME" + res);
+    //this.setState({ profile: {} });
+    const { userProfile, getUserInfo, userInfo } = this.props.auth;
+		if (this.props.auth.isAuthenticated()) {
+			let oldToken = localStorage.getItem('access_token');
+			let newProfile;
+			this.props.auth.lock.getUserInfo(oldToken, (err, profile) => {
+				console.log(profile);
+				newProfile = profile;
+				this.setState({ profile: newProfile }, () => {
+                    let newsub = this.state.profile.sub
+                    let newersub = newsub.substr(newsub.length  - 8)
+                    this.setState({sub: newersub})
+                    API.getUser(newersub).then(res => {
+                    if(res.length > 0){
+                        console.log("FIND ME" + res);
 
-                    this.setState({sex: res.data.sex, weight: res.data.weight, session: []})    
-                }
-      }).catch(API.saveUser({
-        sub: newersub,
-    }).then(this.loadUser()))
+                        this.setState({sex: res.data.sex, weight: res.data.weight, session: []})    
+                    }
+                    }).catch(API.saveUser({
+                                sub: newersub,
+                            }).then(this.loadUser()))
 
         
           //this.loadUser()
           ;});
       });
     } else {
-
+            console.log("RINGA")
       this.setState({ profile: userProfile }, this.loadUser()) ;
       
     }}

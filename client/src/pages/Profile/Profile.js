@@ -11,24 +11,8 @@ import ProfileChg from "../../components/ProfileChg/ProfileChg";
 class Profile extends Component {
 	state = {
 		profile: {},
-		sessionID: '',
+		sessionID: "",
 	};
-
-	// componentWillMount() {
-	//   this.setState({ profile: {} });
-	//   const { userProfile, getUserInfo } = this.props.auth;
-	//   if (!userProfile) {
-	//     getUserInfo((err, profile) => {
-	//       this.setState({ profile }, () => {API.saveUser({
-	//         sub: this.state.profile.sub,
-	//       })
-	//         // .then(res => this.loadUsers())
-	//         .catch(err => console.log(err));});
-	//     });
-	//   } else {
-	//     this.setState({ profile: userProfile }) ;
-	//   }
-	// }
 
 	componentDidMount() {
 		const { userProfile, getUserInfo, userInfo } = this.props.auth;

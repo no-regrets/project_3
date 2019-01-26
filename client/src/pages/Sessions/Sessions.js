@@ -11,7 +11,8 @@ import DrinkSession from '../../components/DrinkSession/DrinkSession';
 import SessionBtn from '../../components/SessionBtn/SessionBtn';
 import EndBtn from '../../components/EndBtn/EndBtn';
 // import { Button } from "react-materialize";
-import drinkImg from '../../images/cocktail.png';
+import drinkImg from "../../images/cocktail.png";
+import DrinkGauge from "../../components/DrinkGauge/DrinkGauge";
 
 class Sessions extends Component {
 	state = {
@@ -323,7 +324,10 @@ class Sessions extends Component {
 								<EndBtn End={this.End} />
 							</Link>
 						</Row>
-						{/* <EndBtn End={this.End}/> */}
+                        {/* <EndBtn End={this.End}/> */}
+                        <Row>
+                            <DrinkGauge DrinkGoal={this.state.drinkGoal} DrinkCount={this.state.session.drink.length} />
+                        </Row>
 					</div>
 				</Container>
 			</div>

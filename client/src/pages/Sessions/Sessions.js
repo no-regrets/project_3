@@ -28,14 +28,15 @@ class Sessions extends Component {
 		bac: 0,
 		maxBAC: 0,
 		tts: "",
-		sessionID: "",
+        sessionID: "",
+        startTime: ""
 	};
 
 	componentWillMount() {
 		const { userProfile, getUserInfo, userInfo } = this.props.auth;
 		if (this.props.auth.isAuthenticated()) {
 			let oldToken = localStorage.getItem('access_token');
-			let newProfile;
+            let newProfile;
 			this.props.auth.lock.getUserInfo(oldToken, (err, profile) => {
 				console.log(profile);
 				newProfile = profile;
@@ -65,6 +66,7 @@ class Sessions extends Component {
 
 
     loadUser = () => {
+        
         let newsub = this.state.profile.sub
         let newersub = newsub.substr(newsub.length - 8)
         API.getUser(newersub)
@@ -72,7 +74,7 @@ class Sessions extends Component {
 
                 console.log("FIND ME" + res);
 
-                this.setState({ sex: res.data.sex, weight: res.data.weight, session: [] })
+                this.setState({ sex: res.data.sex, weight: res.data.weight, session: []})
 
             }).catch(err => console.log(err))
         }
@@ -80,7 +82,9 @@ class Sessions extends Component {
 	Drink = () => {
 		let bac = this.state.bac;
 		let weight = this.state.weight;
-		let sex = this.state.sex;
+        let sex = this.state.sex;
+        var moment = require('moment');
+		moment().format();
 		if (sex === 'male' || 'm') {
 			if (weight >= 90 && weight < 110) {
 				bac += 0.038;
@@ -133,15 +137,15 @@ class Sessions extends Component {
 				bac += 0.019;
 			}
 		}
-		// console.log(bac)
-		// var current = moment()
-		// var difference = startTime.diff(current, "minutes")
-		// console.log(difference)
-		// difference *= (.015/60)
-		// bac -= difference
-		// if(bac < 0){
-		//     bac = 0
-		// }
+		console.log(bac)
+		var current = moment()
+		var difference = this.state.startTime.diff(current, "minutes")
+		console.log(difference)
+		difference *= (.015/60)
+		bac -= difference
+		if(bac < 0){
+		    bac = 0
+		}
 		let maxBAC = this.state.maxBAC;
 		if (bac > maxBAC) {
 			this.setState({ maxBAC: bac });
@@ -210,6 +214,8 @@ class Sessions extends Component {
 	};
 
 	startSession = () => {
+        var moment = require('moment');
+		moment().format();
 		//event.preventDefault();
 		API.saveSession({
 			drinkGoal: this.state.drinkGoal,
@@ -217,8 +223,9 @@ class Sessions extends Component {
 			budget: this.state.budget,
 			sub: this.state.sub,
 		})
-			.then(res => this.setState({ sessionID: res.data._id }))
-			.catch(err => console.log(err));
+			.then(res => this.setState({ sessionID: res.data._id , startTime: moment()}, () => console.log("TIME: "+ this.state.startTime)))
+            .catch(err => console.log(err));
+            
 	};
 
 	addDrink = () => {
@@ -251,7 +258,7 @@ class Sessions extends Component {
 						<DrinkSession />
 					</div>
 					<div className="row">
-						<img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="beer" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.Drink} name="beer" alt="" />
 						<img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="wine" alt="" />
 						<img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="liquor" alt="" />
 						<img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="liquor" alt="" />
@@ -268,7 +275,7 @@ class Sessions extends Component {
 					<div className="row">
 						{/* <Button onClick={this.startSession}>Start</Button>
           <Button onClick={this.addDrink}>Drink</Button> */}
-						<Row className="sessionBtn" onClick={this.startSession}>
+						<Row className="sessionBtn" >
 							<SessionBtn Start={this.startSession} />
 						</Row>
 						<Row>

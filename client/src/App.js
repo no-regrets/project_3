@@ -1,12 +1,11 @@
-// import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, { Component } from 'react';
+import { Button } from "react-materialize";
+// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import End from "./pages/End/End";
 // import Drinkory from "./pages/Drinkory/Drinkory";
 // import Sessions from "./pages/Sessions/Sessions";
 // import Start from "./pages/Start/Start";
-import React, { Component } from 'react';
-import { Button } from "react-materialize";
-import LoginPage from './pages/LoginPage';
+// import LoginPage from './pages/LoginPage';
 // import './App.css';
 
 class App extends Component {

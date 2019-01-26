@@ -2,16 +2,15 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-materialize";
 import "./Sessions.css";
-
 import Header from "../../components/Header/Header";
 import API from "../../utils/API"
 import Nav from "../../components/Nav/Nav";
 import BAC from "../../components/BAC/BAC";
 import DrinkSession from "../../components/DrinkSession/DrinkSession"
-import DrinkBtn from "../../components/DrinkBtn/DrinkBtn";
+// import DrinkBtn from "../../components/DrinkBtn/DrinkBtn";
 import SessionBtn from "../../components/SessionBtn/SessionBtn"
 import EndBtn from "../../components/EndBtn/EndBtn";
-import { Button } from "react-materialize";
+// import { Button } from "react-materialize";
 import drinkImg from "../../images/cocktail.png";
 
 class Sessions extends Component {
@@ -31,11 +30,6 @@ class Sessions extends Component {
         sessionID: ""
     }
 
-    //   componentWillMount() {
-    //       //this.setState({profile: {} })
-    //       console.log(this.props)
-    //   }
-
 componentWillMount() {
     this.setState({ profile: {} });
     const { userProfile, getUserInfo } = this.props.auth;
@@ -43,7 +37,7 @@ componentWillMount() {
       getUserInfo((err, profile) => {
         this.setState({ profile }, () => {
             let newsub = this.state.profile.sub
-            let newersub = newsub.substr(newsub.length  - 15)
+            let newersub = newsub.substr(newsub.length  - 8)
             this.setState({sub: newersub})
             API.getUser(newersub).then(res => {
                 if(res.length > 0){
@@ -61,14 +55,14 @@ componentWillMount() {
       });
     } else {
 
-      //this.setState({ profile: userProfile }, this.loadUser()) ;
+      this.setState({ profile: userProfile }, this.loadUser()) ;
       
     }}
 
 
     loadUser = () => {
         let newsub = this.state.profile.sub
-        let newersub = newsub.substr(newsub.length - 15)
+        let newersub = newsub.substr(newsub.length - 8)
         API.getUser(newersub)
             .then(res => {
 
@@ -254,10 +248,10 @@ componentWillMount() {
                         <DrinkSession />
                     </div>
                     <div className="row">
-                        <img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="beer" />
-                        <img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="wine" />
-                        <img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="liquor" />
-                        <img src={drinkImg} bac={this.props.bac}    Drink={this.Drink} name="liquor" />
+                        <img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="beer" alt=""/>
+                        <img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="wine" alt="" />
+                        <img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="liquor" alt="" />
+                        <img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="liquor" alt=""/>
 
                         </div>
                         {/* <DrinkContainer>

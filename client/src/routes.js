@@ -1,6 +1,6 @@
 import React from 'react';
-// import { Redirect, Route, Router, Switch } from 'react-router-dom';
-import { Route, Router, Switch } from 'react-router-dom';
+import { Redirect, Route, Router, Switch } from 'react-router-dom';
+// import { Route, Router, Switch } from 'react-router-dom';
 import App from './App';
 // import Home from './Home/Home';
 import Profile from './pages/Profile/Profile';

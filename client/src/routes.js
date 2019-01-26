@@ -3,7 +3,7 @@ import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import App from './App';
 // import Home from './Home/Home';
 import Profile from './pages/Profile';
-// import Sessions from './pages/Sessions/Sessions';
+import Sessions from './pages/Sessions/Sessions';
 import Callback from './components/Callback/Callback';
 // import LoginPage from './pages/LoginPage/LoginPage'
 import Auth from './components/Authorization/Authorization';
@@ -45,6 +45,11 @@ export const makeMainRoutes = () => {
               handleAuthentication(props);
               return <Callback {...props} />;
             }}
+          />
+          <Route
+            exact
+            path="/sessions"
+            render={props => <Sessions auth={auth} {...props} />}
           />
 
           <Route component={NoMatch} />

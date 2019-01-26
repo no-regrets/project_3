@@ -9,36 +9,37 @@ import { SideNav, SideNavItem, Button } from "react-materialize";
 class Nav extends Component {
   render() {
     return (
-      <SideNav
-        trigger={<Button className="menuBtn" icon="menu" />}
-        options={{ closeOnClick: true }}
-      >
-        <SideNavItem userView
-          user={{
-            background: 'img/office.jpg',
-            image: 'img/yuna.jpg',
-            name: 'John Doe',
-            email: 'jdandturk@gmail.com'
-          }}
-        />
-        <SideNavItem href='#!icon' icon='cloud'>
-          <Link
-            to="/sessions"
-            className={window.location.pathname === "/sessions" ? "nav-link active" : "nav-link"}
-          >Sessions
-          </Link>
-        </SideNavItem>
-        <SideNavItem href='#!second'>
-          <Link
-            to="/drinkory"
-            className={window.location.pathname === "/drinkory" ? "nav-link active" : "nav-link"}
-          >About
-          </Link>
-        </SideNavItem>
-        <SideNavItem divider />
-        <SideNavItem subheader>Subheader</SideNavItem>
-        <SideNavItem waves href='#!third'>Third Link With Waves</SideNavItem>
-      </SideNav>
+      // <SideNav
+      //   trigger={<Button className="menuBtn" icon="menu" />}
+      //   options={{ closeOnClick: true }}
+      // >
+      //   <SideNavItem userView
+      //     user={{
+      //       //background: 'img/office.jpg',
+      //       //image: 'img/yuna.jpg',
+      //       name: 'John Doe',
+      //       email: 'jdandturk@gmail.com'
+      //     }}
+      //   />
+      //   <SideNavItem href='#!icon' icon='cloud'>
+      //     <Link
+      //       to="/sessions"
+      //       className={window.location.pathname === "/sessions" ? "nav-link active" : "nav-link"}
+      //     >Sessions
+      //     </Link>
+      //   </SideNavItem>
+      //   <SideNavItem href='#!second'>
+      //     <Link
+      //       to="/drinkory"
+      //       className={window.location.pathname === "/drinkory" ? "nav-link active" : "nav-link"}
+      //     >About
+      //     </Link>
+      //   </SideNavItem>
+      //   <SideNavItem divider />
+      //   <SideNavItem subheader>Subheader</SideNavItem>
+      //   <SideNavItem waves href='#!third'>Third Link With Waves</SideNavItem>
+      // </SideNav>
+      <div></div>
 
     )
   }

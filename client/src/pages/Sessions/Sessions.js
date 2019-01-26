@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'react-materialize';
-import './Sessions.css';
-import Header from '../../components/Header/Header';
-import API from '../../utils/API';
-import Nav from '../../components/Nav/Nav';
-import BAC from '../../components/BAC/BAC';
-import DrinkSession from '../../components/DrinkSession/DrinkSession';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { Container, Row, Col } from "react-materialize";
+import "./Sessions.css";
+import Header from "../../components/Header/Header";
+import API from "../../utils/API"
+//import Nav from "../../components/Nav/Nav";
+import BAC from "../../components/BAC/BAC";
+import DrinkSession from "../../components/DrinkSession/DrinkSession"
 // import DrinkBtn from "../../components/DrinkBtn/DrinkBtn";
 import SessionBtn from '../../components/SessionBtn/SessionBtn';
 import EndBtn from '../../components/EndBtn/EndBtn';
@@ -39,87 +39,43 @@ class Sessions extends Component {
 			this.props.auth.lock.getUserInfo(oldToken, (err, profile) => {
 				console.log(profile);
 				newProfile = profile;
-                this.setState({ profile: newProfile });
-                let newsub = this.state.profile.sub;
-                let newersub = newsub.substr(newsub.length - 8);
-                this.setState({ sub: newersub });
-                API.getUser(this.state.sub)
-			.then(res => {
-				if (res.length > 0) {
-					console.log('FIND ME' + res);
-                    this.setState({ sex: res.data.sex, weight: res.data.weight, session: [] });
-					}
-				}).catch(API.saveUser({
-					sub: newersub,
-					}).then(this.loadUser())
-				)
+				this.setState({ profile: newProfile }, () => {
+                    let newsub = this.state.profile.sub
+                    let newersub = newsub.substr(newsub.length  - 8)
+                    this.setState({sub: newersub})
+                    API.getUser(newersub).then(res => {
+                    if(res.length > 0){
+                        console.log("FIND ME" + res);
+
+                        this.setState({sex: res.data.sex, weight: res.data.weight, session: []})    
+                    }
+                    }).catch(API.saveUser({
+                                sub: newersub,
+                            }).then(this.loadUser()))
+
         
-			});
-		} else {
-			this.setState({ profile: userProfile });
-		}
-    }
-    
-    componentDidMount() {
-        console.log("Sub: " + this.state.profile.sub)
-        // const { userProfile, getUserInfo, userInfo } = this.props.auth;
-        // this.setState({ profile }, () => {
-        //     console.log("SUB HERE: " + this.state.profile.sub)
-        //     let newsub = this.state.profile.sub;
-        //     let newersub = newsub.substr(newsub.length - 8);
-        //     this.setState({ sub: newersub });
-        //     API.getUser(this.state.sub)
-		// 	.then(res => {
-		// 		if (res.length > 0) {
-		// 			// console.log('FIND ME' + res);
-        //             this.setState({ sex: res.data.sex, weight: res.data.weight, session: [] });
-		// 			}
-		// 		}).catch(API.saveUser({
-		// 			sub: newersub,
-		// 			}).then(this.loadUser())
-		// 		)
-        // });
-	}
+          //this.loadUser()
+          ;});
+      });
+    } else {
+            console.log("RINGA")
+      this.setState({ profile: userProfile }, this.loadUser()) ;
+      
+    }}
 
-	// componentDidMount() {
-	// 	const { userProfile, getUserInfo, userInfo } = this.props.auth;
-	// 	if (!userProfile) {
-	// 		getUserInfo((err, profile) => {
-	// 			this.setState({ profile }, () => {
-	// 				let newsub = this.state.profile.sub;
-	// 				let newersub = newsub.substr(newsub.length - 8);
-	// 				this.setState({ sub: newersub });
-	// 				API.getUser(newersub)
-	// 					.then(res => {
-	// 						if (res.length > 0) {
-	// 							console.log('FIND ME' + res);
 
-	// 							this.setState({ sex: res.data.sex, weight: res.data.weight, session: [] });
-	// 						}
-	// 					})
-	// 					.catch(
-	// 						API.saveUser({
-	// 							sub: newersub,
-	// 						}).then(this.loadUser())
-	// 					);
-	// 			});
-	// 		});
-	// 	} else {
-	// 		this.setState({ profile: userProfile }, this.loadUser());
-	// 	}
-	// }
+    loadUser = () => {
+        let newsub = this.state.profile.sub
+        let newersub = newsub.substr(newsub.length - 8)
+        API.getUser(newersub)
+            .then(res => {
 
-	loadUser = () => {
-		let newsub = this.state.profile.sub;
-		let newersub = newsub.substr(newsub.length - 8);
-		API.getUser(newersub)
-			.then(res => {
-				console.log('FIND ME' + res);
+                console.log("FIND ME" + res);
 
-				this.setState({ sex: res.data.sex, weight: res.data.weight, session: [] });
-			})
-			.catch(err => console.log(err));
-	};
+                this.setState({ sex: res.data.sex, weight: res.data.weight, session: [] })
+
+            }).catch(err => console.log(err))
+        }
 
 	Drink = () => {
 		let bac = this.state.bac;

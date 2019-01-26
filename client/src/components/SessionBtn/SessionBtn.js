@@ -1,6 +1,6 @@
 import React from "react";
 import "./SessionBtn.css";
-import { Button } from "react-materialize";
+// import { Button } from "react-materialize";
 import startBtn from "../../images/startBtn.png"
 
 function SessionBtn(props) {

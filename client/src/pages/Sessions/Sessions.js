@@ -31,11 +31,6 @@ class Sessions extends Component {
         sessionID: ""
     }
 
-    //   componentWillMount() {
-    //       //this.setState({profile: {} })
-    //       console.log(this.props)
-    //   }
-
 componentWillMount() {
     this.setState({ profile: {} });
     const { userProfile, getUserInfo } = this.props.auth;

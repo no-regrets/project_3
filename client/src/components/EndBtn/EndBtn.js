@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import "./EndBtn.css";
 import endBtn from "../../images/endBtn.png"
 
-import { Button } from "react-materialize";
+// import { Button } from "react-materialize";
 
 
 class EndBtn extends Component {

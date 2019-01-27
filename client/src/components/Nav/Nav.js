@@ -8,7 +8,7 @@ import { SideNav, SideNavItem, Button } from "react-materialize";
 
 function Nav(props) {
   let values = props.props.props
-  console.log("NAV Props " + values.name)
+  // console.log("NAV Props " + values.name)
     return (
      
       <SideNav
@@ -19,18 +19,22 @@ function Nav(props) {
           user={{
             // background: values.picture,
             image: values.picture,
-            name: values.name,
+            // name: values.name,
           }}
         />
-        <SideNavItem href='#!icon' icon='cloud'>
-            First Item
-        </SideNavItem>
-        <SideNavItem href='#!second'>
-            {values.name}
+        <SideNavItem>
+            Welcome {values.name}
         </SideNavItem>
         <SideNavItem divider />
-        <SideNavItem subheader>Subheader</SideNavItem>
-        <SideNavItem waves href='#!third'>Third Link With Waves</SideNavItem>
+        <SideNavItem waves href='/profile'>User Profile</SideNavItem>
+        <SideNavItem waves href='/sessions'>Sessions</SideNavItem>
+        <SideNavItem waves href='/drinkory'>Drink History</SideNavItem>
+        <SideNavItem waves href='/aboutus'>About Us</SideNavItem>
+        {/* <SideNavItem href='#!icon' icon='cloud'>
+            First Item
+        </SideNavItem> */}
+        {/* <SideNavItem subheader>Subheader</SideNavItem> */}
+   
       </SideNav>
 
     )

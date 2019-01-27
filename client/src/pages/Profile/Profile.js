@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
+// import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
 import './Profile.css';
 import API from '../../utils/API';
 import SessionBtn from '../../components/SessionBtn/SessionBtn';
@@ -8,10 +8,14 @@ import Header from "../../components/Header/Header";
 import { Container, Row, Col } from 'react-materialize';
 import ProfileChg from "../../components/ProfileChg/ProfileChg";
 
+
 class Profile extends Component {
 	state = {
 		profile: {},
 		sessionID: "",
+		sub: "",
+		sex: "",
+		weight: "",
 	};
 
 	componentDidMount() {
@@ -22,13 +26,30 @@ class Profile extends Component {
 			this.props.auth.lock.getUserInfo(oldToken, (err, profile) => {
 				console.log(profile);
 				newProfile = profile;
-				this.setState({ profile: newProfile });
+				this.setState({ profile: newProfile, sub: newProfile.sub.split('|').pop() });
+				this.fetchUser();
 			});
 		} //else {
 		//this.setState({ profile: userProfile });
 		//}
 	}
 	//With arrow functions as opposed to standard functions, the context of 'this' points to Profile instead of the getUserInfo function.
+
+	fetchUser = () => {
+		API.getUser(this.state.sub).then(res => {
+			// console.log("PAYLOAD: " + res.data.sex)
+			this.setState({sex: res.data.sex, weight: res.data.weight}) 
+			// if(res.length > 0){
+			// 	console.log("FIND ME" + res);
+			// 	this.setState({sex: res.data.sex, weight: res.data.weight})    
+			// }
+			// }).catch(API.saveUser({
+			// 			sub: this.state.sub,
+			// 		})
+			// 		// .then(this.loadUser())
+			// 		)
+	});
+}
 
 	startSession = event => {
 		event.preventDefault();
@@ -51,6 +72,34 @@ class Profile extends Component {
 			.catch(err => console.log(err));
 	};
 
+	handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+          [name]: value
+        });
+      };
+    
+      handleFormSubmit = event => {
+		// event.preventDefault();
+		console.log("I'm Working")
+        // API.updateUser(this.state.sub, {
+        //     sex: "female",
+        //     weight: 500
+        // })
+        // if (this.state.title && this.state.author) {
+        //   API.updateUser({
+        //     sex: this.state.title,
+        //     weight: this.state.author,
+        //   })
+        //     // .then(res => this.loadBooks())
+        //     .catch(err => console.log(err));
+        // }
+	  };
+	  
+	  sayHello(){
+		  console.log("Hello There")
+	  }
+
 	render() {
 		const { profile } = this.state;
 		return (
@@ -70,11 +119,25 @@ class Profile extends Component {
 									</div>
 									<div className="card-stacked">
 										<div className="card-content">
-											<p>I am a very simple card. I am good at containing small bits of information.</p>
+											<p>Welcome {profile.name}</p>
+											<p>Your Stats are currently listed as:</p> 
+											<p>Sex: {this.state.sex} | Weight: {this.state.weight} lbs</p>
 										</div>
 										<div className="card-action">
-											<ProfileChg/>
+											<ProfileChg props={this.state} />
 										</div>
+										<form onSubmit={this.handleSubmit}>
+        <label>
+          Pick your favorite flavor:
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="grapefruit">Grapefruit</option>
+            <option value="lime">Lime</option>
+            <option value="coconut">Coconut</option>
+            <option value="mango">Mango</option>
+          </select>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
 									</div>
 								</div>
 							</Container>

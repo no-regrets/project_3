@@ -5,7 +5,7 @@ import "./Header.css"
 import Nav from "../Nav/Nav";
 
 function Header(props) {
-    console.log("header props: " + JSON.stringify(props))
+    // console.log("header props: " + JSON.stringify(props))
     return (
         <header className="header">
             <div className="background">

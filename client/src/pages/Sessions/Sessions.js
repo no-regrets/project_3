@@ -261,7 +261,7 @@ class Sessions extends Component {
 						<DrinkSession />
 					</div>
 					<div className="row">
-						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} name="beer" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="beer" alt="" />
 						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} name="wine" alt="" />
 						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} name="liquor" alt="" />
 						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} name="liquor" alt="" />

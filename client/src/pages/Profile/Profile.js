@@ -40,15 +40,15 @@ class Profile extends Component {
 	fetchUser = () => {
 		let sub = this.state.sub
 		API.getUser(sub).then(res => {
-			console.log("PAYLOAD" + JSON.stringify(res))
+			// console.log("PAYLOAD" + JSON.stringify(res))
 			if(!res.data){
-				console.log("SAVING A NEW ONE")
+				console.log("SAVING A NEW USER")
 				API.saveUser({
 					sub: sub,
 				}).then(res => this.updateUser(sub))
 			} else {
-				console.log("LOADING AN EXISTING")
-				console.log("PAYLOAD" + JSON.stringify(res))
+				console.log("LOADING AN EXISTING USER")
+				// console.log("PAYLOAD" + JSON.stringify(res))
 				this.setState({ sex: res.data.sex, weight: res.data.weight });
 			}
 			
@@ -57,7 +57,7 @@ class Profile extends Component {
 
 	updateUser = (sub) => {
 		API.getUser(sub).then(res2 => {
-			console.log("PAYLOAD TWO" + JSON.stringify(res2))
+			// console.log("PAYLOAD TWO" + JSON.stringify(res2))
 		this.setState({ sex: res2.data.sex, weight: res2.data.weight })
 		})
 	}

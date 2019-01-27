@@ -3,6 +3,11 @@ body {
  text-align: center;
 }
 
+.name{
+   max-width: 50px;
+
+}
+
 .sessionBtn{
    float: center;
 }

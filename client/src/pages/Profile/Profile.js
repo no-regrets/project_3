@@ -60,22 +60,27 @@ class Profile extends Component {
 					<Container>
 						<Row>
 							<Container>
-								<div className="card horizontal">
-									<div className="card-image">
+								<div className="card">
+								<Row>
+									<Col s={4}>
 										<img src={profile.picture} alt="profile" />
-									</div>
-									<div>
-										<h2 className="header"></h2>
+									</Col>
+									<Col s={8}>
+									<h2 className="name">{profile.name}</h2>
 
-									</div>
-									<div className="card-stacked">
-										<div className="card-content">
-											<p>I am a very simple card. I am good at containing small bits of information.</p>
-										</div>
-										<div className="card-action">
+									</Col>
+									</Row>
+									<Container className="card-stacked">
+
+										<Row className="card-content">
+											<Col>Sex:</Col><Col> from Database</Col>
+											<Col>Weight:</Col><Col>from Database</Col>
+											</Row>
+									
+										<Row className="card-action">
 											<ProfileChg/>
-										</div>
-									</div>
+										</Row>
+									</Container>
 								</div>
 							</Container>
 						</Row>

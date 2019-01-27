@@ -29,7 +29,7 @@ function Nav(props) {
         <SideNavItem waves href='/profile'>User Profile</SideNavItem>
         <SideNavItem waves href='/sessions'>Sessions</SideNavItem>
         <SideNavItem waves href='/drinkory'>Drink History</SideNavItem>
-        <SideNavItem waves href='/aboutus'>About Us</SideNavItem>
+        <SideNavItem waves href='/about'>About Us</SideNavItem>
         {/* <SideNavItem href='#!icon' icon='cloud'>
             First Item
         </SideNavItem> */}

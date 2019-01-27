@@ -6,6 +6,7 @@ import App from './App';
 import Profile from './pages/Profile/Profile';
 import Sessions from './pages/Sessions/Sessions';
 import About from './pages/About/About';
+import Drinkory from './pages/Drinkory/Drinkory';
 import Callback from './components/Callback/Callback';
 // import LoginPage from './pages/LoginPage/LoginPage'
 import Auth from './components/Authorization/Authorization';
@@ -49,6 +50,11 @@ export const makeMainRoutes = () => {
             exact
             path="/about"
             render={props => <About auth={auth} {...props} />}
+          />
+          <Route
+            exact
+            path="/drinkory"
+            render={props => <Drinkory auth={auth} {...props} />}
           />
           <Route
             exact

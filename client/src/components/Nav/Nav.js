@@ -15,8 +15,6 @@ class Nav extends Component {
       >
         <SideNavItem userView
           user={{
-            background: 'img/office.jpg',
-            image: 'img/yuna.jpg',
             name: 'John Doe',
             email: 'jdandturk@gmail.com'
           }}

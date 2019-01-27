@@ -32,7 +32,7 @@ class Sessions extends Component {
         startTime: ""
 	};
 
-	componentDidMount() {
+	componentWillMount() {
 		const { userProfile, getUserInfo, userInfo } = this.props.auth;
 		if (this.props.auth.isAuthenticated()) {
 			let oldToken = localStorage.getItem('access_token');
@@ -79,7 +79,7 @@ class Sessions extends Component {
             }).catch(err => console.log(err))
         }
 
-	Drink = () => {
+	takeDrink = () => {
 		let bac = this.state.bac;
 		let weight = this.state.weight;
         let sex = this.state.sex;
@@ -259,10 +259,10 @@ class Sessions extends Component {
 						<DrinkSession />
 					</div>
 					<div className="row">
-						<img src={drinkImg} bac={this.props.bac} onClick={this.Drink} name="beer" alt="" />
-						<img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="wine" alt="" />
-						<img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="liquor" alt="" />
-						<img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="liquor" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} name="beer" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} name="wine" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} name="liquor" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} name="liquor" alt="" />
 					</div>
 					{/* <DrinkContainer>
                 this.state.sessions.drinks.map(drink=>{
@@ -277,7 +277,7 @@ class Sessions extends Component {
 						{/* <Button onClick={this.startSession}>Start</Button>
           <Button onClick={this.addDrink}>Drink</Button> */}
 						<Row className="sessionBtn" >
-							<SessionBtn Start={this.startSession} />
+							<SessionBtn onClick={this.startSession} />
 						</Row>
 						<Row>
 							<Link

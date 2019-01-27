@@ -50,9 +50,11 @@ class Sessions extends Component {
 
                         this.setState({sex: res.data.sex, weight: res.data.weight, session: []})    
                     }
-                    }).catch(API.saveUser({
-                                sub: newersub,
-                            }).then(this.loadUser()))
+					})
+					// .catch(API.saveUser({
+                    //             sub: newersub,
+					// 		})
+							.then(this.loadUser())
 
         
           //this.loadUser()
@@ -79,7 +81,7 @@ class Sessions extends Component {
             }).catch(err => console.log(err))
         }
 
-	Drink = () => {
+	takeDrink = () => {
 		let bac = this.state.bac;
 		let weight = this.state.weight;
         let sex = this.state.sex;
@@ -238,9 +240,10 @@ class Sessions extends Component {
 	};
 
 	render() {
+		const { profile } = this.state;
 		return (
 			<div>
-				<Header />
+				<Header props={profile} />
 				<Container>
 					<Row>
 						<Link
@@ -258,10 +261,10 @@ class Sessions extends Component {
 						<DrinkSession />
 					</div>
 					<div className="row">
-						<img src={drinkImg} bac={this.props.bac} onClick={this.Drink} name="beer" alt="" />
-						<img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="wine" alt="" />
-						<img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="liquor" alt="" />
-						<img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="liquor" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="beer" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} name="wine" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} name="liquor" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} name="liquor" alt="" />
 					</div>
 					{/* <DrinkContainer>
                 this.state.sessions.drinks.map(drink=>{
@@ -276,7 +279,7 @@ class Sessions extends Component {
 						{/* <Button onClick={this.startSession}>Start</Button>
           <Button onClick={this.addDrink}>Drink</Button> */}
 						<Row className="sessionBtn" >
-							<SessionBtn Start={this.startSession} />
+							<SessionBtn onClick={this.startSession} />
 						</Row>
 						<Row>
 							<Link

@@ -18,20 +18,6 @@ export function TextArea(props) {
 	);
 }
 
-export function DropDown(props) {
-	return (
-    
-    <div className="form-group">
-    <label>Come on</label>
-               <select className="form-control" {...props}>
-                  <option value="select">Select</option>
-                  <option value="Java">Java</option>
-                  <option value="C++">C++</option>
-               </select>
-    </div>
-	);
-}
-
 export function FormBtn(props) {
 	return (
 		<button {...props} className="btn btn-success">

@@ -50,9 +50,11 @@ class Sessions extends Component {
 
                         this.setState({sex: res.data.sex, weight: res.data.weight, session: []})    
                     }
-                    }).catch(API.saveUser({
-                                sub: newersub,
-                            }).then(this.loadUser()))
+					})
+					// .catch(API.saveUser({
+                    //             sub: newersub,
+					// 		})
+							.then(this.loadUser())
 
         
           //this.loadUser()

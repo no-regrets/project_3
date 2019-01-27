@@ -26,9 +26,10 @@ class Profile extends Component {
 				console.log(profile);
 				newProfile = profile;
 				this.setState({ profile: newProfile, sub: newProfile.sub.split('|').pop() });
-				API.saveUser({
-					sub: this.state.sub,
-				}).then(this.fetchUser);
+				// API.saveUser({
+				// 	sub: this.state.sub,
+				// }).then(this.fetchUser);
+				this.fetchUser();
 			});
 		} //else {
 		//this.setState({ profile: userProfile });
@@ -37,10 +38,29 @@ class Profile extends Component {
 	//With arrow functions as opposed to standard functions, the context of 'this' points to Profile instead of the getUserInfo function.
 
 	fetchUser = () => {
-		API.getUser(this.state.sub).then(res => {
-			this.setState({ sex: res.data.sex, weight: res.data.weight });
+		let sub = this.state.sub
+		API.getUser(sub).then(res => {
+			console.log("PAYLOAD" + JSON.stringify(res))
+			if(!res.data){
+				console.log("SAVING A NEW ONE")
+				API.saveUser({
+					sub: sub,
+				}).then(res => this.updateUser(sub))
+			} else {
+				console.log("LOADING AN EXISTING")
+				console.log("PAYLOAD" + JSON.stringify(res))
+				this.setState({ sex: res.data.sex, weight: res.data.weight });
+			}
+			
 		});
 	};
+
+	updateUser = (sub) => {
+		API.getUser(sub).then(res2 => {
+			console.log("PAYLOAD TWO" + JSON.stringify(res2))
+		this.setState({ sex: res2.data.sex, weight: res2.data.weight })
+		})
+	}
 
 	startSession = event => {
 		event.preventDefault();

@@ -3,7 +3,7 @@ import { Modal, Button, Input } from 'react-materialize';
 import { InputField } from '../Form';
 
 function ProfileChg(props) {
-	console.log('Profile Props:' + JSON.stringify(props));
+	// console.log('Profile Props:' + JSON.stringify(props));
 	return (
 		<Modal
 			header="Profile"
@@ -28,14 +28,7 @@ function ProfileChg(props) {
 					name="weight"
 					placeholder="Weight (required)"
 				/>
-				{/* <FormBtn
-					// disabled={!(this.state.author && this.state.title)}
-                    onClick={props.onClick}
-				>
-					Save
-				</FormBtn> */}
 			</form>
-			{/* <button onClick={props.onClick}>Hello</button> */}
 		</Modal>
 	);
 }

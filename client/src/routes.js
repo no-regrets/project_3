@@ -5,6 +5,7 @@ import App from './App';
 // import Home from './Home/Home';
 import Profile from './pages/Profile/Profile';
 import Sessions from './pages/Sessions/Sessions';
+import About from './pages/About/About';
 import Callback from './components/Callback/Callback';
 // import LoginPage from './pages/LoginPage/LoginPage'
 import Auth from './components/Authorization/Authorization';
@@ -43,6 +44,11 @@ export const makeMainRoutes = () => {
             exact
             path="/sessions"
             render={props => <Sessions auth={auth} {...props} />}
+          />
+          <Route
+            exact
+            path="/about"
+            render={props => <About auth={auth} {...props} />}
           />
           <Route
             exact

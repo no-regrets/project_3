@@ -5,7 +5,7 @@ import './Profile.css';
 import API from '../../utils/API';
 import SessionBtn from '../../components/SessionBtn/SessionBtn';
 import Header from "../../components/Header/Header";
-import { Container, Row, Col } from 'react-materialize';
+import { Container, Row } from 'react-materialize';
 import ProfileChg from "../../components/ProfileChg/ProfileChg";
 
 
@@ -84,27 +84,7 @@ class Profile extends Component {
 			.catch(err => console.log(err));
 		}
 	  };
-    
-    //   handleFormSubmit = event => {
-	// 	// event.preventDefault();
-	// 	console.log("I'm Working")
-    //     API.updateUser(this.state.sub, {
-    //         sex: "female",
-    //         weight: 500
-    //     })
-    //     // if (this.state.title && this.state.author) {
-    //     //   API.updateUser({
-    //     //     sex: this.state.title,
-    //     //     weight: this.state.author,
-    //     //   })
-    //         // .then(res => this.loadBooks())
-    //         .catch(err => console.log(err));
-        
-	//   };
-	  
-	//   sayHello(){
-	// 	  console.log("Hello There")
-	//   }
+
 
 	render() {
 		const { profile } = this.state;
@@ -113,20 +93,19 @@ class Profile extends Component {
 				<Header props={profile}/>
 				<div className="profile-area">
 					<Container>
-						<Row>
-							<Container>
+						
 								<div className="card horizontal">
 									<div className="card-image">
 										<img src={profile.picture} alt="profile" />
 									</div>
-									<div>
-										<h2 className="header"></h2>
+									{/* <div>
+										<h2 className="header">Profile</h2>
 
-									</div>
+									</div> */}
 									<div className="card-stacked">
 										<div className="card-content">
 											<p>Welcome {profile.name}</p>
-											<p>Your Stats are currently listed as:</p> 
+											<p>Your Current Stats are:</p> 
 											<p>Sex: {this.state.sex} | Weight: {this.state.weight} lbs</p>
 										</div>
 										<div className="card-action">
@@ -140,25 +119,8 @@ class Profile extends Component {
       								</form>
 									</div>
 								</div>
-							</Container>
-						</Row>
-						{/* <h1>{profile.name}</h1>
-					<Panel header="Profile">
-						<img src={profile.picture} alt="profile" />
-						<div>
-							<ControlLabel>
-								<Glyphicon glyph="user" /> Nickname
-							</ControlLabel>
-							<h3>{profile.nickname}</h3>
-						</div>
-						<pre>{JSON.stringify(profile, null, 2)}</pre>
-					</Panel> */}
-						<Link to="/sessions">
-							<SessionBtn />
-						</Link>
+							
 					</Container>
-					{/* <Button onClick={this.addDrink}>Drink</Button>
-          <Button >Logout</Button> */}
 				</div>
 			</div>
 		);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button, Input } from 'react-materialize';
-import { InputField, FormBtn } from '../Form';
+import { InputField } from '../Form';
 
 function ProfileChg(props) {
 	console.log('Profile Props:' + JSON.stringify(props));

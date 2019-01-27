@@ -32,7 +32,7 @@ class Sessions extends Component {
         startTime: ""
 	};
 
-	componentWillMount() {
+	componentDidMount() {
 		const { userProfile, getUserInfo, userInfo } = this.props.auth;
 		if (this.props.auth.isAuthenticated()) {
 			let oldToken = localStorage.getItem('access_token');
@@ -238,9 +238,10 @@ class Sessions extends Component {
 	};
 
 	render() {
+		const { profile } = this.state;
 		return (
 			<div>
-				<Header />
+				<Header props={profile} />
 				<Container>
 					<Row>
 						<Link

@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 // import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
 import './Profile.css';
 import API from '../../utils/API';
 import SessionBtn from '../../components/SessionBtn/SessionBtn';
-import Header from "../../components/Header/Header";
+import Header from '../../components/Header/Header';
 import { Container, Row } from 'react-materialize';
-import ProfileChg from "../../components/ProfileChg/ProfileChg";
-
+import ProfileChg from '../../components/ProfileChg/ProfileChg';
 
 class Profile extends Component {
 	state = {
 		profile: {},
-		sessionID: "",
-		sub: "",
-		sex: "",
+		sessionID: '',
+		sub: '',
+		sex: '',
 		weight: 0,
 	};
 
@@ -28,9 +27,8 @@ class Profile extends Component {
 				newProfile = profile;
 				this.setState({ profile: newProfile, sub: newProfile.sub.split('|').pop() });
 				API.saveUser({
-					sub: this.state.sub
-				}).then(this.fetchUser)
-				
+					sub: this.state.sub,
+				}).then(this.fetchUser);
 			});
 		} //else {
 		//this.setState({ profile: userProfile });
@@ -40,9 +38,9 @@ class Profile extends Component {
 
 	fetchUser = () => {
 		API.getUser(this.state.sub).then(res => {
-			this.setState({sex: res.data.sex, weight: res.data.weight}) 
-	});
-}
+			this.setState({ sex: res.data.sex, weight: res.data.weight });
+		});
+	};
 
 	startSession = event => {
 		event.preventDefault();
@@ -66,62 +64,65 @@ class Profile extends Component {
 	};
 
 	handleInputChange = event => {
-        const { name, value } = event.target;
-        this.setState({
-          [name]: value
-        });
-	  };
-	  
-	  handleFormSubmit = event => {
+		const { name, value } = event.target;
+		this.setState({
+			[name]: value,
+		});
+	};
+
+	handleFormSubmit = event => {
 		event.preventDefault();
 		if (this.state.sex && this.state.weight) {
-		
-		  API.updateUser(this.state.sub, {
-			sex: this.state.sex,
-			weight: this.state.weight
-		  })
-			// .then(res => this.loadBooks())
-			.catch(err => console.log(err));
+			API.updateUser(this.state.sub, {
+				sex: this.state.sex,
+				weight: this.state.weight,
+			})
+				// .then(res => this.loadBooks())
+				.catch(err => console.log(err));
 		}
-	  };
-
+	};
 
 	render() {
 		const { profile } = this.state;
 		return (
 			<div>
-				<Header props={profile}/>
-				<div className="profile-area">
-					<Container>
-						
-								<div className="card horizontal">
-									<div className="card-image">
-										<img src={profile.picture} alt="profile" />
-									</div>
-									{/* <div>
+				<Header props={profile} />
+				<Container>
+					<Row>
+						<div className="profile-area">
+							<div className="card horizontal">
+								<div className="card-image">
+									<img src={profile.picture} alt="profile" />
+								</div>
+								{/* <div>
 										<h2 className="header">Profile</h2>
 
 									</div> */}
-									<div className="card-stacked">
-										<div className="card-content">
-											<p>Welcome {profile.name}</p>
-											<p>Your Current Stats are:</p> 
-											<p>Sex: {this.state.sex} | Weight: {this.state.weight} lbs</p>
-										</div>
-										<div className="card-action">
-											<ProfileChg 
-											state={this.state} 
-											onClick={this.handleFormSubmit} 
-											onChange={this.handleInputChange}
-											/>
-										</div>
-										<form onSubmit={this.handleSubmit}>
-      								</form>
+								<div className="card-stacked">
+									<div className="card-content">
+										<p>Welcome {profile.name}</p>
+										<p>Your Current Stats are:</p>
+										<p>
+											Sex: {this.state.sex} | Weight: {this.state.weight} lbs
+										</p>
 									</div>
+									<div className="card-action">
+										<ProfileChg
+											state={this.state}
+											onClick={this.handleFormSubmit}
+											onChange={this.handleInputChange}
+										/>
+									</div>
+									<form onSubmit={this.handleSubmit} />
+									<Link to="/sessions">
+									<SessionBtn />
+								</Link>
 								</div>
-							
-					</Container>
-				</div>
+								
+							</div>
+						</div>
+					</Row>
+				</Container>
 			</div>
 		);
 	}

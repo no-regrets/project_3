@@ -31,8 +31,8 @@ class Sessions extends Component {
 		bac: 0,
 		maxBAC: 0,
 		tts: '',
-		sessionID: '',
-	};
+		sessionID: ''
+		};
 
 	componentWillMount() {
 		const { userProfile, getUserInfo, userInfo } = this.props.auth;
@@ -330,16 +330,21 @@ class Sessions extends Component {
                                     Drink Goal:
                                     <input type="number" name="drinkGoal" onChange={this.handleInputChange} />
                                 </label>
-                                <div onClick={this.startSession} className="start center"><img alt="Start Session" src={startBtn}/></div>
+								{this.state.sessionID === "" ? 
+									<div onClick={this.startSession} className="start center"><img alt="Start Session" src={startBtn}/></div> :
+									<div>Have a great time! (responsibly)</div> }
                             </form>
 						</Row>
 						<Row>
+							{this.state.sessionID !== "" ? 
 							<Link
-								to="/end"
-								className={window.location.pathname === '/end' ? 'nav-link active' : 'nav-link'}
+							to="/end"
+							className={window.location.pathname === '/end' ? 'nav-link active' : 'nav-link'}
 							>
-								<EndBtn End={this.End} />
-							</Link>
+							<EndBtn End={this.End} />
+							</Link> :
+							<div></div>
+						}
 						</Row>
                         {/* <EndBtn End={this.End}/> */}
                         {console.log("my state is : " + JSON.stringify(this.state))}

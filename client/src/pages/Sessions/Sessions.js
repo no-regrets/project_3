@@ -270,7 +270,8 @@ class Sessions extends Component {
             // drinkGoal: this.state.drinkGoal,
             budget: this.state.budget,
 			maxBAC: this.state.maxBAC,
-            sub: this.state.sub,
+			sub: this.state.sub,
+			drinkGoal: this.state.drinkGoal
 		})
 			.then(res => this.setState({ sessionID: res.data._id }))
 			.catch(err => console.log(err));

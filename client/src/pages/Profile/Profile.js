@@ -55,7 +55,7 @@ class Profile extends Component {
 		const { profile } = this.state;
 		return (
 			<div>
-				<Header />
+				<Header props={profile}/>
 				<div className="profile-area">
 					<Container>
 						<Row>

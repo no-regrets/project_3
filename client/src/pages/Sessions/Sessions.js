@@ -13,6 +13,7 @@ import EndBtn from '../../components/EndBtn/EndBtn';
 // import { Button } from "react-materialize";
 import drinkImg from "../../images/cocktail.png";
 import DrinkGauge from "../../components/DrinkGauge/DrinkGauge";
+import startBtn from "../../images/startBtn.png"
 
 class Sessions extends Component {
 	state = {
@@ -23,9 +24,10 @@ class Sessions extends Component {
 		weight: 0,
 		session: [
 			{
-				drink: [],
+                drink: [],
 			},
-		],
+        ],
+        drinkGoal: 0,
 		bac: 0,
 		maxBAC: 0,
 		tts: '',
@@ -252,15 +254,23 @@ class Sessions extends Component {
 		API.saveSession({ maxBAC: this.state.maxBAC, endedAt: Date.now })
 			.then(res => console.log(res))
 			.catch(err => console.log(err));
-	};
+    };
+    
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+          [name]: value
+        });
+      };
 
 	startSession = () => {
-		//event.preventDefault();
+        //event.preventDefault();
+        // this.setState({ drinkGoal:  })
 		API.saveSession({
-			drinkGoal: this.state.drinkGoal,
+            // drinkGoal: this.state.drinkGoal,
+            budget: this.state.budget,
 			maxBAC: this.state.maxBAC,
-			budget: this.state.budget,
-			sub: this.state.sub,
+            sub: this.state.sub,
 		})
 			.then(res => this.setState({ sessionID: res.data._id }))
 			.catch(err => console.log(err));
@@ -313,8 +323,14 @@ class Sessions extends Component {
 					<div className="row">
 						{/* <Button onClick={this.startSession}>Start</Button>
           <Button onClick={this.addDrink}>Drink</Button> */}
-						<Row className="sessionBtn" onClick={this.startSession}>
-							<SessionBtn Start={this.startSession} />
+						<Row className="sessionBtn">
+                            <form>
+                                <label>
+                                    Drink Goal:
+                                    <input type="number" name="drinkGoal" onChange={this.handleInputChange} />
+                                </label>
+                                <div onClick={this.startSession} className="start center"><img alt="Start Session" src={startBtn}/></div>
+                            </form>
 						</Row>
 						<Row>
 							<Link
@@ -325,9 +341,12 @@ class Sessions extends Component {
 							</Link>
 						</Row>
                         {/* <EndBtn End={this.End}/> */}
+                        {console.log("my state is : " + JSON.stringify(this.state))}
+                        {/* {this.state.session[session.length].drinkGoal ? 
                         <Row>
-                            <DrinkGauge DrinkGoal={this.state.drinkGoal} DrinkCount={this.state.session.drink.length} />
-                        </Row>
+                            <DrinkGauge DrinkGoal={this.state.session.drinkGoal} DrinkCount={this.state.session.drink.length} />
+                        </Row> : <div></div>
+                        } */}
 					</div>
 				</Container>
 			</div>

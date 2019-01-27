@@ -15,7 +15,7 @@ class Profile extends Component {
 		sessionID: "",
 		sub: "",
 		sex: "",
-		weight: "",
+		weight: 0,
 	};
 
 	componentDidMount() {
@@ -27,7 +27,10 @@ class Profile extends Component {
 				console.log(profile);
 				newProfile = profile;
 				this.setState({ profile: newProfile, sub: newProfile.sub.split('|').pop() });
-				this.fetchUser();
+				API.saveUser({
+					sub: this.state.sub
+				}).then(this.fetchUser)
+				
 			});
 		} //else {
 		//this.setState({ profile: userProfile });
@@ -37,17 +40,7 @@ class Profile extends Component {
 
 	fetchUser = () => {
 		API.getUser(this.state.sub).then(res => {
-			// console.log("PAYLOAD: " + res.data.sex)
 			this.setState({sex: res.data.sex, weight: res.data.weight}) 
-			// if(res.length > 0){
-			// 	console.log("FIND ME" + res);
-			// 	this.setState({sex: res.data.sex, weight: res.data.weight})    
-			// }
-			// }).catch(API.saveUser({
-			// 			sub: this.state.sub,
-			// 		})
-			// 		// .then(this.loadUser())
-			// 		)
 	});
 }
 
@@ -77,28 +70,41 @@ class Profile extends Component {
         this.setState({
           [name]: value
         });
-      };
-    
-      handleFormSubmit = event => {
-		// event.preventDefault();
-		console.log("I'm Working")
-        // API.updateUser(this.state.sub, {
-        //     sex: "female",
-        //     weight: 500
-        // })
-        // if (this.state.title && this.state.author) {
-        //   API.updateUser({
-        //     sex: this.state.title,
-        //     weight: this.state.author,
-        //   })
-        //     // .then(res => this.loadBooks())
-        //     .catch(err => console.log(err));
-        // }
 	  };
 	  
-	  sayHello(){
-		  console.log("Hello There")
-	  }
+	  handleFormSubmit = event => {
+		event.preventDefault();
+		if (this.state.sex && this.state.weight) {
+		
+		  API.updateUser(this.state.sub, {
+			sex: this.state.sex,
+			weight: this.state.weight
+		  })
+			// .then(res => this.loadBooks())
+			.catch(err => console.log(err));
+		}
+	  };
+    
+    //   handleFormSubmit = event => {
+	// 	// event.preventDefault();
+	// 	console.log("I'm Working")
+    //     API.updateUser(this.state.sub, {
+    //         sex: "female",
+    //         weight: 500
+    //     })
+    //     // if (this.state.title && this.state.author) {
+    //     //   API.updateUser({
+    //     //     sex: this.state.title,
+    //     //     weight: this.state.author,
+    //     //   })
+    //         // .then(res => this.loadBooks())
+    //         .catch(err => console.log(err));
+        
+	//   };
+	  
+	//   sayHello(){
+	// 	  console.log("Hello There")
+	//   }
 
 	render() {
 		const { profile } = this.state;
@@ -124,20 +130,14 @@ class Profile extends Component {
 											<p>Sex: {this.state.sex} | Weight: {this.state.weight} lbs</p>
 										</div>
 										<div className="card-action">
-											<ProfileChg props={this.state} />
+											<ProfileChg 
+											state={this.state} 
+											onClick={this.handleFormSubmit} 
+											onChange={this.handleInputChange}
+											/>
 										</div>
 										<form onSubmit={this.handleSubmit}>
-        <label>
-          Pick your favorite flavor:
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option value="grapefruit">Grapefruit</option>
-            <option value="lime">Lime</option>
-            <option value="coconut">Coconut</option>
-            <option value="mango">Mango</option>
-          </select>
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      								</form>
 									</div>
 								</div>
 							</Container>

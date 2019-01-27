@@ -1,8 +1,6 @@
 import React from 'react';
 import { Modal, Button, Input } from 'react-materialize';
 import { InputField, FormBtn } from '../Form';
-import DropDown from '../DropDown/DropDown';
-import API from '../../utils/API';
 
 function ProfileChg(props) {
 	console.log('Profile Props:' + JSON.stringify(props));
@@ -13,30 +11,31 @@ function ProfileChg(props) {
 			actions={
 				<div>
 					<Button modal="close">Close</Button>
+                    <Button modal="close" onClick={props.onClick}>Save</Button>
 				</div>
 			}
 		>
 			<form>
 			
-					<Input s={12} type="select" label="Select Sex">
-						<option value="1">Male</option>
-						<option value="2">Female</option>
-					</Input>
+			<Input s={12} type="select" label="Select Sex" value={props.state.sex} name="sex" onChange={props.onChange} defaultValue={props.state.sex}>
+					<option value="male" onChange={props.onChange}>Male</option>
+					<option value="female" onChange={props.onChange}>Female</option>
+			</Input>
 				
 				<InputField
-					value={props.weight}
-					onChange={props.handleInputChange}
+					value={props.state.weight}
+					onChange={props.onChange}
 					name="weight"
 					placeholder="Weight (required)"
 				/>
-				<FormBtn
+				{/* <FormBtn
 					// disabled={!(this.state.author && this.state.title)}
-					onClick={props.sayHello}
+                    onClick={props.onClick}
 				>
 					Save
-				</FormBtn>
+				</FormBtn> */}
 			</form>
-			<button onClick={props.sayHello}>Hello</button>
+			{/* <button onClick={props.onClick}>Hello</button> */}
 		</Modal>
 	);
 }

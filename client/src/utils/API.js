@@ -19,7 +19,7 @@ export default {
   },
   // Updates a user to the database
   updateUser: function(id, userData) {
-    return axios.put("/api/users" + id, userData);
+    return axios.put("/api/users/" + id, userData);
   },
   // Gets all sessions
   getSessions: function() {

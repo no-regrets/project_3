@@ -7,7 +7,7 @@ const userSchema = new Schema({
   email: { type: String, required: false},
   password: { type: String, required: false},
   sex: { type: String, default: "male" },
-  weight: {type: Number, default: "200"},
+  weight: {type: Number, default: 200},
   date: { type: Date, default: Date.now },
   session: [
     {

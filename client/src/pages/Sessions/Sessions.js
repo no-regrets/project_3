@@ -26,7 +26,8 @@ class Sessions extends Component {
 			{
                 drink: [],
 			},
-        ],
+		],
+		currentSessionDrinkCount: 0,
         drinkGoal: 0,
 		bac: 0,
 		maxBAC: 0,
@@ -250,6 +251,8 @@ class Sessions extends Component {
 		})
 			// .then(res => this.loadSessions())
 			.catch(err => console.log(err));
+			let newDrinkCount = this.state.currentSessionDrinkCount + 1;
+			this.setState({currentSessionDrinkCount: newDrinkCount});
 	};
 
 	render() {
@@ -315,7 +318,7 @@ class Sessions extends Component {
 							<div>Tonight's Progress</div>
 						</Row>
 						<Row>
-							<DrinkGauge DrinkCount={4} DrinkGoal={this.state.drinkGoal} /> 
+							<DrinkGauge DrinkCount={this.state.currentSessionDrinkCount} DrinkGoal={this.state.drinkGoal} /> 
 						</Row>
 						</div>
 					  }

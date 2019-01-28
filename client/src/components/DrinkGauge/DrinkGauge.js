@@ -10,6 +10,14 @@ export default class DrinkGauge extends Component {
     };
     startColor = '#6495ed'; // cornflowerblue
     endColor = '#dc143c'; // crimson
+
+
+    componentWillReceiveProps(parentProps) {
+        if (parentProps.DrinkCount !== this.state.DrinkCount) {
+            this.setState({value: (parentProps.DrinkCount / parentProps.DrinkGoal) * 100});
+        };
+    }
+    
  
     render() {
         {console.log(this.state.value)}

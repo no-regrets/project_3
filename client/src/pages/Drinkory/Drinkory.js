@@ -39,7 +39,7 @@ class Drinkory extends Component {
             Drinkory Info
           </div>
           <div className="row">
-            <Link to="/start" className={window.location.pathname === "/start"
+            <Link to="/sessions" className={window.location.pathname === "/sessions"
                 ? "nav-link active" : "nav-link"
             }><SessionBtn />
             </Link>

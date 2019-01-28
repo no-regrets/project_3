@@ -6,12 +6,13 @@ import LiquidFillGauge from 'react-liquid-gauge';
  
 export default class DrinkGauge extends Component {
     state = {
-        value: this.props.DrinkCount / this.props.DrinkGoal
+        value: (this.props.DrinkCount / this.props.DrinkGoal) * 100
     };
     startColor = '#6495ed'; // cornflowerblue
     endColor = '#dc143c'; // crimson
  
     render() {
+        {console.log(this.state.value)}
         const radius = 200;
         const interpolate = interpolateRgb(this.startColor, this.endColor);
         const fillColor = interpolate(this.state.value / 100);
@@ -85,9 +86,6 @@ export default class DrinkGauge extends Component {
                         fill: color('#fff').toString(),
                         fontFamily: 'Arial'
                     }}
-                    onClick={() => {
-                        this.setState({ value: Math.random() * 100 });
-                    }}
                 />
                 <div
                     style={{
@@ -95,15 +93,6 @@ export default class DrinkGauge extends Component {
                         width: 120
                     }}
                 >
-                    <button
-                        type="button"
-                        className="btn btn-default btn-block"
-                        onClick={() => {
-                            this.setState({ value: Math.random() * 100 });
-                        }}
-                    >
-                        Refresh
-                    </button>
                 </div>
             </div>
         );

@@ -287,11 +287,17 @@ class Sessions extends Component {
             </DrinkContainer>*/}
 					{console.log(this.state.session)}
 					<div className="row">
-						{/* <Button onClick={this.startSession}>Start</Button>
-          <Button onClick={this.addDrink}>Drink</Button> */}
-						<Row className="sessionBtn" >
-							<SessionBtn onClick={this.startSession} />
-						</Row>
+		  			{this.state.sessionID === "" ? 
+						<Row className="sessionBtn">
+                            <form>
+                                <label>
+                                    Drink Goal:
+                                    <input type="number" name="drinkGoal" onChange={this.handleInputChange} />
+                                </label>
+									<div onClick={this.startSession} className="start center"><img alt="Start Session" src={startBtn}/></div>
+                            </form>
+						</Row> :
+						<div>
 						<Row>
 							<div>Have a great time! (responsibly)</div>
 						</Row> 
@@ -307,7 +313,7 @@ class Sessions extends Component {
 							<div>Tonight's Progress</div>
 						</Row>
 						<Row>
-							<DrinkGauge DrinkCount={this.state.session[0].drink.length ? this.state.session[0].drink.length : 0} DrinkGoal={this.state.drinkGoal} /> 
+							<DrinkGauge DrinkCount={4} DrinkGoal={this.state.drinkGoal} /> 
 						</Row>
 						</div>
 					  }
@@ -317,5 +323,6 @@ class Sessions extends Component {
 		);
 	}
 }
+
 
 export default Sessions;

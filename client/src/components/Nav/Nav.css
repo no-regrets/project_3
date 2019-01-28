@@ -10,18 +10,27 @@
     color: rgb(171, 209, 224);
     animation: glow2 1s ease-in-out infinite alternate;
 }
+.navContainer{
+    margin:0px;
+    padding:0px;
+}
+
+.navProfile{
+    font-size:18pt !important;
+    text-shadow: 1px 1px rgb(56,181,230);
+
+}
+
+.iconLink{
+    padding-right: 15px;
+}
 
 .linkFont{
-        font-family: enter;
-        /* background-color:white; */
-        color: rgb(156, 223, 250) !important;
-        animation: glow2 1s ease-in-out infinite alternate;
-}
-.sideLink{
-    /* font-family: enter; */
-    /* background-color:black; */
-    color: rgb(156, 223, 250) !important;
-    /* animation: glow2 1s ease-in-out infinite alternate; */
+        color: rgb(225,60,176) !important;
+        text-shadow: 1px 1px rgb(56,181,230);
+        font-size:18pt;
+        padding:0;
+        margin: 10px;
 }
 
 @-webkit-keyframes glow2 {

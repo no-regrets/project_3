@@ -299,7 +299,10 @@ class Sessions extends Component {
                                     Drink Goal:
                                     <input type="number" name="drinkGoal" onChange={this.handleInputChange} />
                                 </label>
-									<div onClick={this.startSession} className="start center"><img alt="Start Session" src={startBtn}/></div>
+									{this.state.drinkGoal > 0 ? 
+										<div onClick={this.startSession} className="start center"><img alt="Start Session" src={startBtn}/></div>
+										: <div></div>
+								}
                             </form>
 						</Row> :
 						<div>

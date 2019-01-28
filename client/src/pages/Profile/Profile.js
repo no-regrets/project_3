@@ -133,6 +133,13 @@ class Profile extends Component {
 							<Col className="category">Weight: </Col>
 							<Col className="stats">{this.state.weight}</Col>
 							<Col className="ibs"> lbs</Col>
+							<Col s={2} className="right">
+								<ProfileChg
+									state={this.state}
+									onClick={this.handleFormSubmit}
+									onChange={this.handleInputChange}
+								/>
+								</Col>
 							</Row>
 							</Container>
 							</Col>
@@ -142,13 +149,6 @@ class Profile extends Component {
 
 									</div> */}
 						<Row className="editBtn">
-						<div className="right">
-								<ProfileChg
-									state={this.state}
-									onClick={this.handleFormSubmit}
-									onChange={this.handleInputChange}
-								/>
-								</div>
 							<form onSubmit={this.handleSubmit} />
 
 						</Row>

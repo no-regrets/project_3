@@ -1,6 +1,6 @@
 import React from "react";
 import "./EndBtn.css";
-import endBtn from "../../images/endBtn.png"
+import endBtn from "../../assets/images/endBtn.png"
 
 // import { Button } from "react-materialize";
 

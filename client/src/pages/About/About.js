@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Card, CardTitle } from 'react-materialize';
 import './About.css';
-import logo from '../../images/gremlin-face.png';
+import logo from '../../assets/images/gremlin-face.png';
 //import Nav from "../../components/Nav/Nav";
 import { pink } from 'react-materialize';
 import Header from '../../components/Header/Header';

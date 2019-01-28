@@ -322,37 +322,34 @@ class Sessions extends Component {
             </DrinkContainer>*/}
 
 					<div className="row">
-						{/* <Button onClick={this.startSession}>Start</Button>
-          <Button onClick={this.addDrink}>Drink</Button> */}
+		  			{this.state.sessionID === "" ? 
 						<Row className="sessionBtn">
                             <form>
                                 <label>
                                     Drink Goal:
                                     <input type="number" name="drinkGoal" onChange={this.handleInputChange} />
                                 </label>
-								{this.state.sessionID === "" ? 
-									<div onClick={this.startSession} className="start center"><img alt="Start Session" src={startBtn}/></div> :
-									<div>Have a great time! (responsibly)</div> }
+									<div onClick={this.startSession} className="start center"><img alt="Start Session" src={startBtn}/></div>
                             </form>
-						</Row>
+						</Row> :
+						<div>
 						<Row>
-							{this.state.sessionID !== "" ? 
+							<div>Have a great time! (responsibly)</div>
+						</Row> 
+						<Row>
 							<Link
 							to="/end"
 							className={window.location.pathname === '/end' ? 'nav-link active' : 'nav-link'}
 							>
 							<EndBtn End={this.End} />
-							</Link> :
-							<div></div>
-						}
+							</Link> 				
 						</Row>
-                        {/* <EndBtn End={this.End}/> */}
+						<Row>
+							<DrinkGauge DrinkCount={2} DrinkGoal={this.state.drinkGoal} /> 
+						</Row>
+						</div>
+					  }
                         {console.log("my state is : " + JSON.stringify(this.state))}
-                        {/* {this.state.session[session.length].drinkGoal ? 
-                        <Row>
-                            <DrinkGauge DrinkGoal={this.state.session.drinkGoal} DrinkCount={this.state.session.drink.length} />
-                        </Row> : <div></div>
-                        } */}
 					</div>
 				</Container>
 			</div>

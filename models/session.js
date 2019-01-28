@@ -6,7 +6,8 @@ const sessionSchema = new Schema({
   maxBAC: { type: Number, required: false, default: 3 },
   budget: {type: Number, required: false, default: 50 },
   createdAt: { type: Date, default: Date.now },
-  endedAt: { type: Date, default: Date.now },
+  endedAt: { type: Date, required: false },
+  inProgress: {type: Boolean, required: false, default: true},
   drink: [
     {
       // Store ObjectIds in the array

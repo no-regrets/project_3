@@ -38,8 +38,8 @@ export default {
     return axios.post("/api/sessions", sessionData);
   },
   // Updates a session to the database
-  updateUser: function(id, sessionData) {
-    return axios.put("/api/users/" + id, sessionData);
+  updateSession: function(id, sessionData) {
+    return axios.put("/api/sessions/" + id, sessionData);
   },
   // Gets all drinks
   getDrinks: function() {
@@ -58,8 +58,8 @@ export default {
     return axios.post("/api/drinks", drinkData);
   },
   // Updates a drink in the database
-  updateUser: function(id, drinkData) {
-    return axios.put("/api/users/" + id, drinkData);
+  updateDrink: function(id, drinkData) {
+    return axios.put("/api/drinks/" + id, drinkData);
   },
 
 };

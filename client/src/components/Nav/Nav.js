@@ -26,7 +26,7 @@ function Nav(props) {
             Welcome {values.name}
         </SideNavItem>
         <SideNavItem divider />
-        <SideNavItem waves href='/profile'>User Profile</SideNavItem>
+        <SideNavItem className="link" waves href='/profile'>User Profile</SideNavItem>
         <SideNavItem waves href='/sessions'>Sessions</SideNavItem>
         <SideNavItem waves href='/drinkory'>Drink History</SideNavItem>
         <SideNavItem waves href='/about'>About Us</SideNavItem>

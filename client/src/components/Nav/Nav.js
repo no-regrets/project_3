@@ -26,8 +26,8 @@ function Nav(props) {
             Welcome {values.name}
         </SideNavItem>
         <SideNavItem divider />
-        <SideNavItem className="link" waves href='/profile'>User Profile</SideNavItem>
-        <SideNavItem waves href='/sessions'>Sessions</SideNavItem>
+        <SideNavItem className="sideLink" waves href='/profile'><p className="linkFont">User Profile</p></SideNavItem>
+        <SideNavItem className="sideLink" waves href='/sessions'>Sessions</SideNavItem>
         <SideNavItem waves href='/drinkory'>Drink History</SideNavItem>
         <SideNavItem waves href='/about'>About Us</SideNavItem>
         {/* <SideNavItem href='#!icon' icon='cloud'>

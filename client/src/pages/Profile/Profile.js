@@ -109,14 +109,14 @@ class Profile extends Component {
 				<Header props={profile} />
 				<Container>
 					<Container>
-						<Row>
-							<div className="center title">
+						<Row className="titleProfile">
+							<div className="center">
 								Profile
 							</div>
 						</Row>
 						<Row className="profile">
 							<Col s={4} className="profilePic" >
-								<img src={profile.picture} alt="profile" />
+								<img className="circle" src={profile.picture} alt="profile" />
 							</Col>
 							<Col s={8}>
 							<Container>

@@ -11,13 +11,7 @@
         font-size: 20pt;
 }
 
-.menu{
-    color: rgb(171, 209, 224);
-    animation: glow2 1s ease-in-out infinite alternate;
-
-}
-
-.no{
+.titleHeader{
     font-family: halo;
     font-size: 20pt;
     color: rgb(221, 171, 206);
@@ -39,9 +33,9 @@
 .regrets{
     font-family: halo;
     font-size: 20pt;
-    color: rgb(221, 171, 206);
+    color: rgb(171, 209, 224);
     margin: 0 0 20px 0;
-    animation: glow 1s ease-in-out infinite alternate;
+    animation: glow2 1s ease-in-out infinite alternate;
 
 }
 

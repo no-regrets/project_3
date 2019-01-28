@@ -11,14 +11,11 @@ function Header(props) {
             <div className="background">
                 <Container className="noMargin">
                     <Row className="noMargin">
-                        <Col s={2} className="menu">
+                        <Col s={2}>
                             <Nav props={props}/>
                         </Col>
-                        <Col s={2} className="no">
-                            No
-                        </Col>
-                        <Col s={8} className="regrets">
-                            Regrets
+                        <Col s={10} className="titleHeader">
+                            No Regrets
                         </Col>
 
                     </Row>

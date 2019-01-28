@@ -320,7 +320,7 @@ class Sessions extends Component {
                 })
             
             </DrinkContainer>*/}
-
+					{console.log(this.state.session)}
 					<div className="row">
 		  			{this.state.sessionID === "" ? 
 						<Row className="sessionBtn">
@@ -348,11 +348,10 @@ class Sessions extends Component {
 							<div>Tonight's Progress</div>
 						</Row>
 						<Row>
-							<DrinkGauge DrinkCount={2} DrinkGoal={this.state.drinkGoal} /> 
+							<DrinkGauge DrinkCount={this.state.session[0].drink.length ? this.state.session[0].drink.length : 0} DrinkGoal={this.state.drinkGoal} /> 
 						</Row>
 						</div>
 					  }
-                        {console.log("my state is : " + JSON.stringify(this.state))}
 					</div>
 				</Container>
 			</div>

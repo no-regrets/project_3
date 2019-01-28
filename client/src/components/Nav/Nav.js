@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./Nav.css"
 import { SideNav, SideNavItem, Button } from "react-materialize";
@@ -6,40 +6,39 @@ import { SideNav, SideNavItem, Button } from "react-materialize";
 // import { Link } from "react-router-dom";
 
 
-class Nav extends Component {
-  render() {
+function Nav(props) {
+  let values = props.props.props
+  // console.log("NAV Props " + values.name)
     return (
+     
       <SideNav
         trigger={<Button className="menuBtn" icon="menu" />}
         options={{ closeOnClick: true }}
       >
         <SideNavItem userView
           user={{
-            name: 'John Doe',
-            email: 'jdandturk@gmail.com'
+            // background: values.picture,
+            image: values.picture,
+            // name: values.name,
           }}
         />
-        <SideNavItem href='#!icon' icon='cloud'>
-          <Link
-            to="/sessions"
-            className={window.location.pathname === "/sessions" ? "nav-link active" : "nav-link"}
-          >Sessions
-          </Link>
-        </SideNavItem>
-        <SideNavItem href='#!second'>
-          <Link
-            to="/drinkory"
-            className={window.location.pathname === "/drinkory" ? "nav-link active" : "nav-link"}
-          >About
-          </Link>
+        <SideNavItem>
+            Welcome {values.name}
         </SideNavItem>
         <SideNavItem divider />
-        <SideNavItem subheader>Subheader</SideNavItem>
-        <SideNavItem waves href='#!third'>Third Link With Waves</SideNavItem>
+        <SideNavItem waves href='/profile'>User Profile</SideNavItem>
+        <SideNavItem waves href='/sessions'>Sessions</SideNavItem>
+        <SideNavItem waves href='/drinkory'>Drink History</SideNavItem>
+        <SideNavItem waves href='/about'>About Us</SideNavItem>
+        {/* <SideNavItem href='#!icon' icon='cloud'>
+            First Item
+        </SideNavItem> */}
+        {/* <SideNavItem subheader>Subheader</SideNavItem> */}
+   
       </SideNav>
 
     )
-  }
+  
 
 };
 

@@ -17,6 +17,10 @@ export default {
   saveUser: function(userData) {
     return axios.post("/api/users", userData);
   },
+  // Updates a user to the database
+  updateUser: function(id, userData) {
+    return axios.put("/api/users/" + id, userData);
+  },
   // Gets all sessions
   getSessions: function() {
     return axios.get("/api/sessions");
@@ -33,6 +37,10 @@ export default {
   saveSession: function(sessionData) {
     return axios.post("/api/sessions", sessionData);
   },
+  // Updates a session to the database
+  updateUser: function(id, sessionData) {
+    return axios.put("/api/users/" + id, sessionData);
+  },
   // Gets all drinks
   getDrinks: function() {
     return axios.get("/api/drinks");
@@ -48,6 +56,10 @@ export default {
   // Saves a drinks to the database
   saveDrink: function(drinkData) {
     return axios.post("/api/drinks", drinkData);
-  }
+  },
+  // Updates a drink in the database
+  updateUser: function(id, drinkData) {
+    return axios.put("/api/users/" + id, drinkData);
+  },
 
 };

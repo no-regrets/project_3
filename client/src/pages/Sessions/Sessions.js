@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'react-materialize';
-import './Sessions.css';
-import Header from '../../components/Header/Header';
-import API from '../../utils/API';
-import Nav from '../../components/Nav/Nav';
-import BAC from '../../components/BAC/BAC';
-import DrinkSession from '../../components/DrinkSession/DrinkSession';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { Container, Row, Col } from "react-materialize";
+import "./Sessions.css";
+import Header from "../../components/Header/Header";
+import API from "../../utils/API"
+//import Nav from "../../components/Nav/Nav";
+import BAC from "../../components/BAC/BAC";
+import DrinkSession from "../../components/DrinkSession/DrinkSession"
 // import DrinkBtn from "../../components/DrinkBtn/DrinkBtn";
 import SessionBtn from '../../components/SessionBtn/SessionBtn';
 import EndBtn from '../../components/EndBtn/EndBtn';
@@ -18,9 +18,9 @@ import startBtn from "../../images/startBtn.png"
 class Sessions extends Component {
 	state = {
 		profile: {},
-		sub: '',
-		username: '',
-		sex: '',
+		sub: "",
+		username: "",
+		sex: "",
 		weight: 0,
 		session: [
 			{
@@ -30,104 +30,66 @@ class Sessions extends Component {
         drinkGoal: 0,
 		bac: 0,
 		maxBAC: 0,
-		tts: '',
-		sessionID: ''
-		};
+		tts: "",
+        sessionID: "",
+        startTime: ""
+	};
 
 	componentWillMount() {
 		const { userProfile, getUserInfo, userInfo } = this.props.auth;
 		if (this.props.auth.isAuthenticated()) {
 			let oldToken = localStorage.getItem('access_token');
-			let newProfile;
+            let newProfile;
 			this.props.auth.lock.getUserInfo(oldToken, (err, profile) => {
 				console.log(profile);
 				newProfile = profile;
-                this.setState({ profile: newProfile });
-                let newsub = this.state.profile.sub;
-                let newersub = newsub.substr(newsub.length - 8);
-                this.setState({ sub: newersub });
-                API.getUser(this.state.sub)
-			.then(res => {
-				if (res.length > 0) {
-					console.log('FIND ME' + res);
-                    this.setState({ sex: res.data.sex, weight: res.data.weight, session: [] });
-					}
-				}).catch(API.saveUser({
-					sub: newersub,
-					}).then(this.loadUser())
-				)
+				this.setState({ profile: newProfile }, () => {
+                    let newsub = this.state.profile.sub
+                    let newersub = newsub.substr(newsub.length  - 8)
+                    this.setState({sub: newersub})
+                    API.getUser(newersub).then(res => {
+                    if(res.length > 0){
+                        console.log("FIND ME" + res);
+
+                        this.setState({sex: res.data.sex, weight: res.data.weight, session: []})    
+                    }
+					})
+					// .catch(API.saveUser({
+                    //             sub: newersub,
+					// 		})
+							.then(this.loadUser())
+
         
-			});
-		} else {
-			this.setState({ profile: userProfile });
-		}
-    }
-    
-    componentDidMount() {
-        console.log("Sub: " + this.state.profile.sub)
-        // const { userProfile, getUserInfo, userInfo } = this.props.auth;
-        // this.setState({ profile }, () => {
-        //     console.log("SUB HERE: " + this.state.profile.sub)
-        //     let newsub = this.state.profile.sub;
-        //     let newersub = newsub.substr(newsub.length - 8);
-        //     this.setState({ sub: newersub });
-        //     API.getUser(this.state.sub)
-		// 	.then(res => {
-		// 		if (res.length > 0) {
-		// 			// console.log('FIND ME' + res);
-        //             this.setState({ sex: res.data.sex, weight: res.data.weight, session: [] });
-		// 			}
-		// 		}).catch(API.saveUser({
-		// 			sub: newersub,
-		// 			}).then(this.loadUser())
-		// 		)
-        // });
-	}
+          //this.loadUser()
+          ;});
+      });
+    } else {
+            console.log("RINGA")
+      this.setState({ profile: userProfile }, this.loadUser()) ;
+      
+    }}
 
-	// componentDidMount() {
-	// 	const { userProfile, getUserInfo, userInfo } = this.props.auth;
-	// 	if (!userProfile) {
-	// 		getUserInfo((err, profile) => {
-	// 			this.setState({ profile }, () => {
-	// 				let newsub = this.state.profile.sub;
-	// 				let newersub = newsub.substr(newsub.length - 8);
-	// 				this.setState({ sub: newersub });
-	// 				API.getUser(newersub)
-	// 					.then(res => {
-	// 						if (res.length > 0) {
-	// 							console.log('FIND ME' + res);
 
-	// 							this.setState({ sex: res.data.sex, weight: res.data.weight, session: [] });
-	// 						}
-	// 					})
-	// 					.catch(
-	// 						API.saveUser({
-	// 							sub: newersub,
-	// 						}).then(this.loadUser())
-	// 					);
-	// 			});
-	// 		});
-	// 	} else {
-	// 		this.setState({ profile: userProfile }, this.loadUser());
-	// 	}
-	// }
+    loadUser = () => {
+        
+        let newsub = this.state.profile.sub
+        let newersub = newsub.substr(newsub.length - 8)
+        API.getUser(newersub)
+            .then(res => {
 
-	loadUser = () => {
-		let newsub = this.state.profile.sub;
-		let newersub = newsub.substr(newsub.length - 8);
-		API.getUser(newersub)
-			.then(res => {
-				console.log('FIND ME' + res);
+                console.log("FIND ME" + res);
 
-				this.setState({ sex: res.data.sex, weight: res.data.weight, session: [] });
-			})
-			.catch(err => console.log(err));
-	};
+                this.setState({ sex: res.data.sex, weight: res.data.weight, session: []})
 
-	Drink = () => {
+            }).catch(err => console.log(err))
+        }
+
+	takeDrink = () => {
 		let bac = this.state.bac;
 		let weight = this.state.weight;
-		let sex = this.state.sex;
+        let sex = this.state.sex;
+        var moment = require('moment');
+		moment().format();
 		if (sex === 'male' || 'm') {
 			if (weight >= 90 && weight < 110) {
 				bac += 0.038;
@@ -180,15 +142,15 @@ class Sessions extends Component {
 				bac += 0.019;
 			}
 		}
-		// console.log(bac)
-		// var current = moment()
-		// var difference = startTime.diff(current, "minutes")
-		// console.log(difference)
-		// difference *= (.015/60)
-		// bac -= difference
-		// if(bac < 0){
-		//     bac = 0
-		// }
+		console.log(bac)
+		var current = moment()
+		var difference = this.state.startTime.diff(current, "minutes")
+		console.log(difference)
+		difference *= (.015/60)
+		bac -= difference
+		if(bac < 0){
+		    bac = 0
+		}
 		let maxBAC = this.state.maxBAC;
 		if (bac > maxBAC) {
 			this.setState({ maxBAC: bac });
@@ -264,8 +226,9 @@ class Sessions extends Component {
       };
 
 	startSession = () => {
-        //event.preventDefault();
-        // this.setState({ drinkGoal:  })
+        var moment = require('moment');
+		moment().format();
+		//event.preventDefault();
 		API.saveSession({
             // drinkGoal: this.state.drinkGoal,
             budget: this.state.budget,
@@ -273,8 +236,9 @@ class Sessions extends Component {
 			sub: this.state.sub,
 			drinkGoal: this.state.drinkGoal
 		})
-			.then(res => this.setState({ sessionID: res.data._id }))
-			.catch(err => console.log(err));
+			.then(res => this.setState({ sessionID: res.data._id , startTime: moment()}, () => console.log("TIME: "+ this.state.startTime)))
+            .catch(err => console.log(err));
+            
 	};
 
 	addDrink = () => {
@@ -287,9 +251,10 @@ class Sessions extends Component {
 	};
 
 	render() {
+		const { profile } = this.state;
 		return (
 			<div>
-				<Header />
+				<Header props={profile} />
 				<Container>
 					<Row>
 						<Link
@@ -307,10 +272,10 @@ class Sessions extends Component {
 						<DrinkSession />
 					</div>
 					<div className="row">
-						<img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="beer" alt="" />
-						<img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="wine" alt="" />
-						<img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="liquor" alt="" />
-						<img src={drinkImg} bac={this.props.bac} Drink={this.Drink} name="liquor" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="beer" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} name="wine" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} name="liquor" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} name="liquor" alt="" />
 					</div>
 					{/* <DrinkContainer>
                 this.state.sessions.drinks.map(drink=>{
@@ -322,17 +287,11 @@ class Sessions extends Component {
             </DrinkContainer>*/}
 					{console.log(this.state.session)}
 					<div className="row">
-		  			{this.state.sessionID === "" ? 
-						<Row className="sessionBtn">
-                            <form>
-                                <label>
-                                    Drink Goal:
-                                    <input type="number" name="drinkGoal" onChange={this.handleInputChange} />
-                                </label>
-									<div onClick={this.startSession} className="start center"><img alt="Start Session" src={startBtn}/></div>
-                            </form>
-						</Row> :
-						<div>
+						{/* <Button onClick={this.startSession}>Start</Button>
+          <Button onClick={this.addDrink}>Drink</Button> */}
+						<Row className="sessionBtn" >
+							<SessionBtn onClick={this.startSession} />
+						</Row>
 						<Row>
 							<div>Have a great time! (responsibly)</div>
 						</Row> 

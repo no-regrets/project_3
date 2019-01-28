@@ -1,8 +1,12 @@
 body {
- color: white;
+ color: black;
  text-align: center;
 }
 
 .sessionBtn{
    float: center;
+}
+
+.profile-area{
+   background-color: white;
 }

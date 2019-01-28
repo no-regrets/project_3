@@ -1,31 +1,21 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
-import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+// import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
 import './Profile.css';
 import API from '../../utils/API';
 import SessionBtn from '../../components/SessionBtn/SessionBtn';
+import Header from '../../components/Header/Header';
+import { Container, Row } from 'react-materialize';
+import ProfileChg from '../../components/ProfileChg/ProfileChg';
 
 class Profile extends Component {
 	state = {
 		profile: {},
 		sessionID: '',
+		sub: '',
+		sex: '',
+		weight: 0,
 	};
-
-	// componentWillMount() {
-	//   this.setState({ profile: {} });
-	//   const { userProfile, getUserInfo } = this.props.auth;
-	//   if (!userProfile) {
-	//     getUserInfo((err, profile) => {
-	//       this.setState({ profile }, () => {API.saveUser({
-	//         sub: this.state.profile.sub,
-	//       })
-	//         // .then(res => this.loadUsers())
-	//         .catch(err => console.log(err));});
-	//     });
-	//   } else {
-	//     this.setState({ profile: userProfile }) ;
-	//   }
-	// }
 
 	componentDidMount() {
 		const { userProfile, getUserInfo, userInfo } = this.props.auth;
@@ -35,13 +25,42 @@ class Profile extends Component {
 			this.props.auth.lock.getUserInfo(oldToken, (err, profile) => {
 				console.log(profile);
 				newProfile = profile;
-				this.setState({ profile: newProfile });
+				this.setState({ profile: newProfile, sub: newProfile.sub.split('|').pop() });
+				// API.saveUser({
+				// 	sub: this.state.sub,
+				// }).then(this.fetchUser);
+				this.fetchUser();
 			});
 		} //else {
 		//this.setState({ profile: userProfile });
 		//}
 	}
 	//With arrow functions as opposed to standard functions, the context of 'this' points to Profile instead of the getUserInfo function.
+
+	fetchUser = () => {
+		let sub = this.state.sub
+		API.getUser(sub).then(res => {
+			// console.log("PAYLOAD" + JSON.stringify(res))
+			if(!res.data){
+				console.log("SAVING A NEW USER")
+				API.saveUser({
+					sub: sub,
+				}).then(res => this.updateUser(sub))
+			} else {
+				console.log("LOADING AN EXISTING USER")
+				// console.log("PAYLOAD" + JSON.stringify(res))
+				this.setState({ sex: res.data.sex, weight: res.data.weight });
+			}
+			
+		});
+	};
+
+	updateUser = (sub) => {
+		API.getUser(sub).then(res2 => {
+			// console.log("PAYLOAD TWO" + JSON.stringify(res2))
+		this.setState({ sex: res2.data.sex, weight: res2.data.weight })
+		})
+	}
 
 	startSession = event => {
 		event.preventDefault();
@@ -64,29 +83,66 @@ class Profile extends Component {
 			.catch(err => console.log(err));
 	};
 
+	handleInputChange = event => {
+		const { name, value } = event.target;
+		this.setState({
+			[name]: value,
+		});
+	};
+
+	handleFormSubmit = event => {
+		event.preventDefault();
+		if (this.state.sex && this.state.weight) {
+			API.updateUser(this.state.sub, {
+				sex: this.state.sex,
+				weight: this.state.weight,
+			})
+				// .then(res => this.loadBooks())
+				.catch(err => console.log(err));
+		}
+	};
+
 	render() {
 		const { profile } = this.state;
 		return (
-			<div className="container">
-				<div className="profile-area">
-					<h1>{profile.name}</h1>
-					<Panel header="Profile">
-						<img src={profile.picture} alt="profile" />
-						<div>
-							<ControlLabel>
-								<Glyphicon glyph="user" /> Nickname
-							</ControlLabel>
-							<h3>{profile.nickname}</h3>
-						</div>
-						<pre>{JSON.stringify(profile, null, 2)}</pre>
-					</Panel>
-					<Link to="/sessions">
-						<SessionBtn />
-					</Link>
+			<div>
+				<Header props={profile} />
+				<Container>
+					<Row>
+						<div className="profile-area">
+							<div className="card horizontal">
+								<div className="card-image">
+									<img src={profile.picture} alt="profile" />
+								</div>
+								{/* <div>
+										<h2 className="header">Profile</h2>
 
-					{/* <Button onClick={this.addDrink}>Drink</Button>
-          <Button >Logout</Button> */}
-				</div>
+									</div> */}
+								<div className="card-stacked">
+									<div className="card-content">
+										<p>Welcome {profile.name}</p>
+										<p>Your Current Stats are:</p>
+										<p>
+											Sex: {this.state.sex} | Weight: {this.state.weight} lbs
+										</p>
+									</div>
+									<div className="card-action">
+										<ProfileChg
+											state={this.state}
+											onClick={this.handleFormSubmit}
+											onChange={this.handleInputChange}
+										/>
+									</div>
+									<form onSubmit={this.handleSubmit} />
+									<Link to="/sessions">
+									<SessionBtn />
+								</Link>
+								</div>
+								
+							</div>
+						</div>
+					</Row>
+				</Container>
 			</div>
 		);
 	}

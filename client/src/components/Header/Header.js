@@ -4,14 +4,15 @@ import "./Header.css"
 
 import Nav from "../Nav/Nav";
 
-function Header() {
+function Header(props) {
+    // console.log("header props: " + JSON.stringify(props))
     return (
         <header className="header">
             <div className="background">
                 <Container className="noMargin">
                     <Row className="noMargin">
                         <Col s={2}>
-                            <Nav />
+                            <Nav props={props}/>
                         </Col>
                         <Col s={10}>
                             No Regrets

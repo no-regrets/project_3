@@ -6,7 +6,7 @@ import startBtn from "../../images/startBtn.png"
 function SessionBtn(props) {
     
     return (
-        <div onClick={props.Start} className="start center"><img alt="Start Session" src={startBtn}/></div>
+        <div onClick={props.onClick} className="start center"><img alt="Start Session" src={startBtn}/></div>
     )
 }
 

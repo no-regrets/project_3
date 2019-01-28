@@ -345,6 +345,9 @@ class Sessions extends Component {
 							</Link> 				
 						</Row>
 						<Row>
+							<div>Tonight's Progress</div>
+						</Row>
+						<Row>
 							<DrinkGauge DrinkCount={2} DrinkGoal={this.state.drinkGoal} /> 
 						</Row>
 						</div>

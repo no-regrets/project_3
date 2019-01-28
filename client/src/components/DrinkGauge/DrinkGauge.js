@@ -13,7 +13,7 @@ export default class DrinkGauge extends Component {
  
     render() {
         {console.log(this.state.value)}
-        const radius = 200;
+        const radius = 100;
         const interpolate = interpolateRgb(this.startColor, this.endColor);
         const fillColor = interpolate(this.state.value / 100);
         const gradientStops = [
@@ -93,6 +93,7 @@ export default class DrinkGauge extends Component {
                         width: 120
                     }}
                 >
+                    Drink Goal: {this.props.DrinkCount} / {this.props.DrinkGoal}
                 </div>
             </div>
         );

@@ -5,7 +5,7 @@ import './Profile.css';
 import API from '../../utils/API';
 import SessionBtn from '../../components/SessionBtn/SessionBtn';
 import Header from '../../components/Header/Header';
-import { Container, Row } from 'react-materialize';
+import { Container, Row, Col } from 'react-materialize';
 import ProfileChg from '../../components/ProfileChg/ProfileChg';
 
 class Profile extends Component {
@@ -41,7 +41,7 @@ class Profile extends Component {
 		let sub = this.state.sub
 		API.getUser(sub).then(res => {
 			// console.log("PAYLOAD" + JSON.stringify(res))
-			if(!res.data){
+			if (!res.data) {
 				console.log("SAVING A NEW USER")
 				API.saveUser({
 					sub: sub,
@@ -51,14 +51,14 @@ class Profile extends Component {
 				// console.log("PAYLOAD" + JSON.stringify(res))
 				this.setState({ sex: res.data.sex, weight: res.data.weight });
 			}
-			
+
 		});
 	};
 
 	updateUser = (sub) => {
 		API.getUser(sub).then(res2 => {
 			// console.log("PAYLOAD TWO" + JSON.stringify(res2))
-		this.setState({ sex: res2.data.sex, weight: res2.data.weight })
+			this.setState({ sex: res2.data.sex, weight: res2.data.weight })
 		})
 	}
 
@@ -108,40 +108,57 @@ class Profile extends Component {
 			<div>
 				<Header props={profile} />
 				<Container>
-					<Row>
-						<div className="profile-area">
-							<div className="card horizontal">
-								<div className="card-image">
-									<img src={profile.picture} alt="profile" />
-								</div>
-								{/* <div>
+					<Container>
+						<Row className="titleProfile">
+							<div className="center">
+								Profile
+							</div>
+						</Row>
+						<Row className="profile">
+							<Col s={4} className="profilePic" >
+								<img className="circle" src={profile.picture} alt="profile" />
+							</Col>
+							<Col s={8}>
+							<Container>
+							<Row className="nameRow">
+								<p className="name">Hello  </p>
+								<p className="name">{profile.name}</p>
+							</Row>
+							
+							<Row className="category">
+							<Col className="category">Sex: </Col>
+							<Col className="stats">{this.state.sex}</Col>
+							</Row>
+							<Row className="category">
+							<Col className="category">Weight: </Col>
+							<Col className="stats">{this.state.weight}</Col>
+							<Col className="ibs"> lbs</Col>
+							<Col s={2} className="right">
+								<ProfileChg
+									state={this.state}
+									onClick={this.handleFormSubmit}
+									onChange={this.handleInputChange}
+								/>
+								</Col>
+							</Row>
+							</Container>
+							</Col>
+						</Row>
+						{/* <div>
 										<h2 className="header">Profile</h2>
 
 									</div> */}
-								<div className="card-stacked">
-									<div className="card-content">
-										<p>Welcome {profile.name}</p>
-										<p>Your Current Stats are:</p>
-										<p>
-											Sex: {this.state.sex} | Weight: {this.state.weight} lbs
-										</p>
-									</div>
-									<div className="card-action">
-										<ProfileChg
-											state={this.state}
-											onClick={this.handleFormSubmit}
-											onChange={this.handleInputChange}
-										/>
-									</div>
-									<form onSubmit={this.handleSubmit} />
-									<Link to="/sessions">
-									<SessionBtn />
-								</Link>
-								</div>
-								
-							</div>
-						</div>
-					</Row>
+						<Row className="editBtn">
+							<form onSubmit={this.handleSubmit} />
+
+						</Row>
+
+						<Row>
+							<Link to="/sessions">
+								<SessionBtn />
+							</Link>
+						</Row>
+					</Container>
 				</Container>
 			</div>
 		);

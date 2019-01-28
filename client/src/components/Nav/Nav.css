@@ -1,11 +1,39 @@
+@font-face{
+    font-family: enter;
+    src: url(../../assets/fonts/LasEnter_PersonalUseOnly.ttf)
+}
+
 .menuBtn {
     padding:0;
     background-color: black;
-    color:  rgb(56,181,230);
-    text-shadow: 1px 1px rgb(225,60,176);
     padding-left: 15px;
-    
+    color: rgb(171, 209, 224);
+    animation: glow2 1s ease-in-out infinite alternate;
 }
+
+.linkFont{
+        font-family: enter;
+        /* background-color:white; */
+        color: rgb(156, 223, 250) !important;
+        animation: glow2 1s ease-in-out infinite alternate;
+}
+.sideLink{
+    /* font-family: enter; */
+    /* background-color:black; */
+    color: rgb(156, 223, 250) !important;
+    /* animation: glow2 1s ease-in-out infinite alternate; */
+}
+
+@-webkit-keyframes glow2 {
+    from {
+      text-shadow: 0 0 5px rgb(35, 172, 226), 0 0 15px rgb(35, 172, 226), 0 0 25px rgb(28, 170, 226), 0 0 35px rgb(28, 170, 226), 0 0 45px rgb(28, 170, 226), 0 0 55px rgb(28, 170, 226), 0 0 65px rgb(28, 170, 226);
+    }
+    
+    to {
+      text-shadow: 0 0 15px rgb(35, 172, 226), 0 0 25px rgb(96, 187, 223), 0 0 35px rgb(28, 170, 226), 0 0 45px rgb(28, 170, 226), 0 0 55px rgb(28, 170, 226), 0 0 65px rgb(28, 170, 226), 0 0 75px rgb(28, 170, 226);
+    }
+  }
+
 
 .position {
     position: absolute;

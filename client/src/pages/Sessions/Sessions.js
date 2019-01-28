@@ -11,9 +11,9 @@ import DrinkSession from "../../components/DrinkSession/DrinkSession"
 import SessionBtn from '../../components/SessionBtn/SessionBtn';
 import EndBtn from '../../components/EndBtn/EndBtn';
 // import { Button } from "react-materialize";
-import drinkImg from "../../images/cocktail.png";
+import drinkImg from "../../assets/images/cocktail.png";
 import DrinkGauge from "../../components/DrinkGauge/DrinkGauge";
-import startBtn from "../../images/startBtn.png"
+import startBtn from "../../assets/images/startBtn.png"
 
 class Sessions extends Component {
 	state = {

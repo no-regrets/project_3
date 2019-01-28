@@ -14,9 +14,9 @@ function Header(props) {
                         <Col s={2}>
                             <Nav props={props}/>
                         </Col>
-                        <Col s={10}>
+                        <Col s={10} className="titleHeader">
                             No Regrets
-                </Col>
+                        </Col>
 
                     </Row>
                 </Container>

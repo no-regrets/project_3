@@ -1,24 +1,59 @@
 @font-face{
-    font-family: halo;
-    src: url(../../assets/fonts/HalogenGasLights.otf);
+    font-family: patio;
+    src: url(../../assets/fonts/LaPatioScript.otf);
 }
 
-.header{
-        padding-top:3px;
-        height: 50px;
-        width: 100%;
-        background-color: rgb(0,0,0, .8);
-        font-size: 20pt;
+@font-face{
+  font-family: halo;
+  src: url(../../assets/fonts/HalogenGasLights.otf)
 }
 
-.titleHeader{
-    font-family: halo;
-    font-size: 20pt;
-    color: rgb(221, 171, 206);
-    margin: 0 0 20px 0;
+h1{
+  font-family: patio;
+  color: rgb(171, 209, 224);
+  /* animation: glow2 1s ease-in-out infinite alternate; */
+}
+
+.btnRow{
+  margin:0 !important;
+  padding:0 !important;
+
+}
+
+.editBtn{
+    font-family: patio;
+    font-size: 12pt;
+    color: rgb(219, 181, 208);
+    margin: 0 15px 0 0;
     animation: glow 1s ease-in-out infinite alternate;
 
 }
+
+
+
+.closeBtn{
+  font-family: halo;
+  font-size: 20px;
+  color: rgb(221, 171, 206);
+  text-align: center;
+  font: 36pt;
+  margin-top:10px;
+  /* margin-left:20px; */
+  animation: glow 1s ease-in-out infinite alternate;
+
+}
+
+.saveBtn{
+  font-family: halo;
+  font-size: 20px;
+  color: rgb(171, 209, 224);
+  text-align: center;
+  font: 36pt;
+  margin-top:10px;
+  animation: glow2 1s ease-in-out infinite alternate;
+
+}
+
 
 @-webkit-keyframes glow {
     from {
@@ -30,16 +65,7 @@
     }
   }
 
-.regrets{
-    font-family: halo;
-    font-size: 20pt;
-    color: rgb(171, 209, 224);
-    margin: 0 0 20px 0;
-    animation: glow2 1s ease-in-out infinite alternate;
-
-}
-
-@-webkit-keyframes glow2 {
+  @-webkit-keyframes glow2 {
     from {
       text-shadow: 0 0 5px rgb(35, 172, 226), 0 0 15px rgb(35, 172, 226), 0 0 25px rgb(28, 170, 226), 0 0 35px rgb(28, 170, 226), 0 0 45px rgb(28, 170, 226), 0 0 55px rgb(28, 170, 226), 0 0 65px rgb(28, 170, 226);
     }
@@ -49,7 +75,5 @@
     }
   }
 
-
-.noMargin{
-    margin: 0;
-}
+/* rgb(225, 60, 176);
+rgb(56,181,230) */

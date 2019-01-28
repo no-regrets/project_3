@@ -11,7 +11,9 @@ import DrinkSession from "../../components/DrinkSession/DrinkSession"
 import SessionBtn from '../../components/SessionBtn/SessionBtn';
 import EndBtn from '../../components/EndBtn/EndBtn';
 // import { Button } from "react-materialize";
-import drinkImg from '../../images/cocktail.png';
+import drinkImg from "../../images/cocktail.png";
+import DrinkGauge from "../../components/DrinkGauge/DrinkGauge";
+import startBtn from "../../images/startBtn.png"
 
 class Sessions extends Component {
 	state = {
@@ -22,9 +24,11 @@ class Sessions extends Component {
 		weight: 0,
 		session: [
 			{
-				drink: [],
+                drink: [],
 			},
 		],
+		currentSessionDrinkCount: 0,
+        drinkGoal: 0,
 		bac: 0,
 		maxBAC: 0,
 		tts: "",
@@ -215,17 +219,25 @@ class Sessions extends Component {
 		API.updateSession(this.state.sessionID, { maxBAC: this.state.maxBAC, endedAt: Date.now(), inProgress: false })
 			.then(res => console.log(res))
 			.catch(err => console.log(err));
-	};
+    };
+    
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+          [name]: value
+        });
+      };
 
 	startSession = () => {
         var moment = require('moment');
 		moment().format();
 		//event.preventDefault();
 		API.saveSession({
-			drinkGoal: this.state.drinkGoal,
+            // drinkGoal: this.state.drinkGoal,
+            budget: this.state.budget,
 			maxBAC: this.state.maxBAC,
-			budget: this.state.budget,
 			sub: this.state.sub,
+			drinkGoal: this.state.drinkGoal
 		})
 			.then(res => this.setState({ sessionID: res.data._id , startTime: moment(), inProgress: res.data.inProgress}, () => console.log("TIME: "+ this.state.startTime)))
             .catch(err => console.log(err));
@@ -239,6 +251,8 @@ class Sessions extends Component {
 		})
 			// .then(res => this.loadSessions())
 			.catch(err => console.log(err));
+			let newDrinkCount = this.state.currentSessionDrinkCount + 1;
+			this.setState({currentSessionDrinkCount: newDrinkCount});
 	};
 
 	render() {
@@ -276,13 +290,25 @@ class Sessions extends Component {
                 })
             
             </DrinkContainer>*/}
-
+					{console.log(this.state.session)}
 					<div className="row">
-						{/* <Button onClick={this.startSession}>Start</Button>
-          <Button onClick={this.addDrink}>Drink</Button> */}
-						<Row className="sessionBtn" >
-							<SessionBtn onClick={this.startSession} />
-						</Row>
+		  			{this.state.sessionID === "" ? 
+						<Row className="sessionBtn">
+                            <form>
+                                <label>
+                                    Drink Goal:
+                                    <input type="number" name="drinkGoal" onChange={this.handleInputChange} />
+                                </label>
+									{this.state.drinkGoal > 0 ? 
+										<div onClick={this.startSession} className="start center"><img alt="Start Session" src={startBtn}/></div>
+										: <div></div>
+								}
+                            </form>
+						</Row> :
+						<div>
+						<Row>
+							<div>Have a great time! (responsibly)</div>
+						</Row> 
 						<Row>
 							<Link
 								to="/drinkory"
@@ -291,12 +317,20 @@ class Sessions extends Component {
 								<EndBtn onClick={this.endSession} />
 							</Link>
 						</Row>
-						{/* <EndBtn End={this.End}/> */}
+						<Row>
+							<div>Tonight's Progress</div>
+						</Row>
+						<Row>
+							<DrinkGauge DrinkCount={this.state.currentSessionDrinkCount} DrinkGoal={this.state.drinkGoal} /> 
+						</Row>
+						</div>
+					  }
 					</div>
 				</Container>
 			</div>
 		);
 	}
 }
+
 
 export default Sessions;

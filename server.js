@@ -23,7 +23,3 @@ mongoose.connect(
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
-
-//make sure db is correct above, run mongod - 1 window
-//run server - 2 window
-//then start client - 3 window

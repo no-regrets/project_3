@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Nav.css"
-import { SideNav, SideNavItem, Button } from "react-materialize";
+import { SideNav, SideNavItem, Button, Icon } from "react-materialize";
 
 // import { Link } from "react-router-dom";
 
@@ -22,19 +22,37 @@ function Nav(props) {
             // name: values.name,
           }}
         />
-        <SideNavItem>
-            Welcome {values.name}
+        <SideNavItem className="navProfile">
+            {values.name}
         </SideNavItem>
         <SideNavItem divider />
-        <SideNavItem className="sideLink" waves href='/profile'><p className="linkFont">User Profile</p></SideNavItem>
-        <SideNavItem className="sideLink" waves href='/sessions'>Sessions</SideNavItem>
-        <SideNavItem waves href='/drinkory'>Drink History</SideNavItem>
-        <SideNavItem waves href='/about'>About Us</SideNavItem>
+        <SideNavItem waves href='/profile'>
+          <p className="linkFont">
+            <Icon className="iconLink">account_circle</Icon>
+              Profile</p>
+        </SideNavItem>
+        <SideNavItem waves href='/sessions'>
+          <p className="linkFont">
+          <Icon className="iconLink">local_bar</Icon>
+
+          Sessions</p>
+        </SideNavItem>
+        <SideNavItem waves href='/drinkory'>
+          <p className="linkFont">
+          <Icon className="iconLink">event_note</Icon>
+
+            History</p>
+        </SideNavItem>
+        <SideNavItem waves href='/about'>
+          <p className="linkFont">
+          <Icon className="iconLink">face</Icon>
+
+            About Us</p>
+        </SideNavItem>
         {/* <SideNavItem href='#!icon' icon='cloud'>
             First Item
         </SideNavItem> */}
         {/* <SideNavItem subheader>Subheader</SideNavItem> */}
-   
       </SideNav>
 
     )

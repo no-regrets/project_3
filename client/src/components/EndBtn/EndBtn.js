@@ -1,17 +1,16 @@
-import React, {Component} from "react";
+import React from "react";
 import "./EndBtn.css";
 import endBtn from "../../images/endBtn.png"
 
 // import { Button } from "react-materialize";
 
 
-class EndBtn extends Component {
-    render(){
+function EndBtn(props) {
         return(
-            <div className="end center" alt="End Session" onClick={this.props.End}>
+            <div className="end center" alt="End Session" onClick={props.onClick}>
                 <img src={endBtn} alt=""/>
             </div>
-        )}}
+        )}
 
 
 export default EndBtn;

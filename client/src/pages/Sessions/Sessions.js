@@ -32,7 +32,8 @@ class Sessions extends Component {
 		maxBAC: 0,
 		tts: "",
         sessionID: "",
-        startTime: ""
+		startTime: "",
+		inProgress: false
 	};
 
 	componentWillMount() {
@@ -45,7 +46,7 @@ class Sessions extends Component {
 				newProfile = profile;
 				this.setState({ profile: newProfile }, () => {
                     let newsub = this.state.profile.sub
-                    let newersub = newsub.substr(newsub.length  - 8)
+                    let newersub = newsub.split('|').pop()
                     this.setState({sub: newersub})
                     API.getUser(newersub).then(res => {
                     if(res.length > 0){
@@ -73,11 +74,11 @@ class Sessions extends Component {
     loadUser = () => {
         
         let newsub = this.state.profile.sub
-        let newersub = newsub.substr(newsub.length - 8)
+        let newersub = newsub.split('|').pop()
         API.getUser(newersub)
             .then(res => {
 
-                console.log("FIND ME" + res);
+                // console.log("FIND ME" + res);
 
                 this.setState({ sex: res.data.sex, weight: res.data.weight, session: []})
 
@@ -211,9 +212,10 @@ class Sessions extends Component {
 		this.setState({ tts: TimeOfSober });
 		console.log(this.state.tts);
 	};
-	End = () => {
+	endSession = () => {
+		console.log("Date punchout" + Date.now())
 		this.setState({ bac: 0, tts: '' });
-		API.saveSession({ maxBAC: this.state.maxBAC, endedAt: Date.now })
+		API.updateSession(this.state.sessionID, { maxBAC: this.state.maxBAC, endedAt: Date.now(), inProgress: false })
 			.then(res => console.log(res))
 			.catch(err => console.log(err));
     };
@@ -236,7 +238,7 @@ class Sessions extends Component {
 			sub: this.state.sub,
 			drinkGoal: this.state.drinkGoal
 		})
-			.then(res => this.setState({ sessionID: res.data._id , startTime: moment()}, () => console.log("TIME: "+ this.state.startTime)))
+			.then(res => this.setState({ sessionID: res.data._id , startTime: moment(), inProgress: res.data.inProgress}, () => console.log("TIME: "+ this.state.startTime)))
             .catch(err => console.log(err));
             
 	};
@@ -273,9 +275,9 @@ class Sessions extends Component {
 					</div>
 					<div className="row">
 						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="beer" alt="" />
-						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} name="wine" alt="" />
-						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} name="liquor" alt="" />
-						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} name="liquor" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="wine" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="liquor" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="liquor" alt="" />
 					</div>
 					{/* <DrinkContainer>
                 this.state.sessions.drinks.map(drink=>{
@@ -303,11 +305,11 @@ class Sessions extends Component {
 						</Row> 
 						<Row>
 							<Link
-							to="/end"
-							className={window.location.pathname === '/end' ? 'nav-link active' : 'nav-link'}
+								to="/drinkory"
+								className={window.location.pathname === '/drinkory' ? 'nav-link active' : 'nav-link'}
 							>
-							<EndBtn End={this.End} />
-							</Link> 				
+								<EndBtn onClick={this.endSession} />
+							</Link>
 						</Row>
 						<Row>
 							<div>Tonight's Progress</div>

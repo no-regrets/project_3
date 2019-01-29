@@ -29,6 +29,8 @@ function Nav(props) {
         <SideNavItem className="navProfile">
             {values.name}
         </SideNavItem>
+        
+        
         <SideNavItem divider />
         <SideNavItem waves href='/profile'>
           <p className="linkFont">
@@ -54,7 +56,12 @@ function Nav(props) {
             About Us</p>
         </SideNavItem>
         <SideNavItem divider />
-        <SideNavItem onClick={props.props.logout}>Log Out</SideNavItem>
+        <SideNavItem waves onClick={props.props.logout}>
+        <p className="linkFont">
+          <Icon className="iconLink">computer</Icon>
+
+            Log Out</p></SideNavItem>
+        
         {/* <SideNavItem href='#!icon' icon='cloud'>
             First Item
         </SideNavItem> */}

@@ -48,7 +48,7 @@ class About extends Component {
 										<img className="circle" src={Wes} />
 										<Row className="aboutInfo">
 											<p className="nameAbout">Wes Kruger</p>
-											<p className="cardFont">Psst. You want some routes? Cause I got the good stuff over here.</p>
+											<p className="cardFont">Psst. You want some Auth0? Cause I got the good stuff over here.</p>
 										</Row>
 									</Row>
 								</Card>
@@ -62,7 +62,7 @@ class About extends Component {
 										<img className="circle" src={Joe} />
 										<Row className="aboutInfo">
 											<p className="nameAbout">Joseaph Mankin</p>
-											<p className="cardFont">Sure it's a dumpster fire, but it's OUR dumpster fire.</p>
+											<p className="cardFont">Welcome to our MERNtastic voyage.</p>
 										</Row>
 									</Row>
 								</Card>
@@ -90,7 +90,7 @@ class About extends Component {
 										<img className="circle" src={Casey} />
 										<Row className="aboutInfo">
 											<p className="nameAbout">Casey Lee</p>
-											<p className="cardFont">I like big buttons and I can not lie.	</p>
+											<p className="cardFont">I like big buttons and I can not lie.</p>
 										</Row>
 									</Row>
 								</Card>

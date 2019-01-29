@@ -6,11 +6,37 @@ body {
     background-position: center; 
 }
 
+@font-face{
+    font-family: enter;
+    src: url(../../assets//fonts/LasEnter_PersonalUseOnly.ttf)
+ }
+
+.titleSessions{
+    margin:0;
+    font-family:enter;
+    font-size: 48pt;
+    color: rgb(171, 209, 224);
+       animation: glow2 1s ease-in-out infinite alternate;
+ 
+ 
+ }
+
 .sessionBtn{
    float: center;
 }
 
-.bg-light {
-    background-color:rgba(255, 255, 255, .9);
-    color: black;
+
+.drinkBtn{
+    height:60px;
+    width:auto;
+}
+
+.drinkCol{
+    margin:0;
+    padding:0 !important;
+}
+
+.drinkRow{
+    margin:10px;
+    background:rgb(0,0,0,.9);
 }

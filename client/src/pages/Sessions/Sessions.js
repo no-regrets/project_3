@@ -6,14 +6,14 @@ import Header from "../../components/Header/Header";
 import API from "../../utils/API"
 //import Nav from "../../components/Nav/Nav";
 import BAC from "../../components/BAC/BAC";
-import DrinkSession from "../../components/DrinkSession/DrinkSession"
 // import DrinkBtn from "../../components/DrinkBtn/DrinkBtn";
 import SessionBtn from '../../components/SessionBtn/SessionBtn';
 import EndBtn from '../../components/EndBtn/EndBtn';
 // import { Button } from "react-materialize";
-import drinkImg from "../../assets/images/cocktail.png";
+import drinkImg from "../../assets/images/cocktailBtn.png";
 import DrinkGauge from "../../components/DrinkGauge/DrinkGauge";
 import startBtn from "../../assets/images/startBtn.png"
+import moment from 'moment'
 
 class Sessions extends Component {
 	state = {
@@ -146,15 +146,15 @@ class Sessions extends Component {
 				bac += 0.019;
 			}
 		}
-		console.log(bac)
-		var current = moment()
-		var difference = this.state.startTime.diff(current, "minutes")
-		console.log(difference)
-		difference *= (.015 / 60)
-		bac -= difference
-		if (bac < 0) {
-			bac = 0
-		}
+		// console.log(bac)
+		// var current = moment()
+		// var difference = this.state.startTime.diff(current, "minutes")
+		// console.log(difference)
+		// difference *= (.015/60)
+		// bac -= difference
+		// if(bac < 0){
+		//     bac = 0
+		// }
 		let maxBAC = this.state.maxBAC;
 		if (bac > maxBAC) {
 			this.setState({ maxBAC: bac });
@@ -212,13 +212,13 @@ class Sessions extends Component {
 		var TimeTillSober = moment().add(minutes, 'minutes');
 		var current = moment();
 		console.log(TimeTillSober.diff(current, 'minutes'));
-		this.setState({ tts: TimeOfSober });
+		this.setState({ tts: TimeOfSober }, this.addDrink());
 		console.log(this.state.tts);
 	};
 	endSession = () => {
 		console.log("Date punchout" + Date.now())
 		this.setState({ bac: 0, tts: '' });
-		API.updateSession(this.state.sessionID, { maxBAC: this.state.maxBAC, endedAt: Date.now(), inProgress: false })
+		API.updateSession(this.state.sessionID, { maxBAC: this.state.maxBAC, endedAt: moment().format('MMM Do YYYY, h:mm:ss a'), inProgress: false })
 			.then(res => console.log(res))
 			.catch(err => console.log(err));
 	};
@@ -239,7 +239,8 @@ class Sessions extends Component {
 			budget: this.state.budget,
 			maxBAC: this.state.maxBAC,
 			sub: this.state.sub,
-			drinkGoal: this.state.drinkGoal
+			drinkGoal: this.state.drinkGoal,
+			createdAt: moment().format('MMM Do YYYY, h:mm:ss a')
 		})
 			.then(res => this.setState({ sessionID: res.data._id, startTime: moment(), inProgress: res.data.inProgress }, () => console.log("TIME: " + this.state.startTime)))
 			.catch(err => console.log(err));
@@ -263,58 +264,46 @@ class Sessions extends Component {
 			<div>
 				<Header props={profile} />
 				<Container>
-					<Row>
-						<Link
-							to="/profile"
-							className={window.location.pathname === '/profile' ? 'nav-link active' : 'nav-link'}
-						>
-							Profile
-						</Link>
-						{this.state.weight}
-					</Row>
-					<Row>
-						<BAC bac={this.state.bac} tts={this.state.tts} />
-					</Row>
-					<div className="row">
-						<DrinkSession />
-					</div>
-
-					<div className="bg-light">
-						<Row>
-							{this.state.sessionID !== "" ?
-								<div className="row">
-									<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="beer" alt="" />
-									<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="wine" alt="" />
-									<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="liquor" alt="" />
-									<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="liquor" alt="" />
-								</div> :
-								<div>
-									<h1>How many drinks should you have tonight?</h1>
-								</div>
-							}
+					<Container>
+						<Row className="titleSessions">
+							<div className="center">
+								Sessions
+						</div>
 						</Row>
+						<Row>
+							<BAC bac={this.state.bac} tts={this.state.tts} />
+						</Row>
+						<Row className="drinkRow center">
+							<Col s={4} className="drinkCol">
+								<img src={drinkImg} className="drinkBtn"
+									bac={this.props.bac} onClick={this.takeDrink}
+									onClick={this.addDrink} name="beer" alt="" />
+							</Col>
+							<Col s={4} className="drinkCol">
+								<img src={drinkImg} className="drinkBtn"
+									bac={this.props.bac} onClick={this.takeDrink}
+									onClick={this.addDrink} name="wine" alt="" />
+							</Col>
+							<Col s={4} className="drinkCol">
+								<img src={drinkImg} className="drinkBtn"
+									bac={this.props.bac} onClick={this.takeDrink}
+									onClick={this.addDrink} name="liquor" alt="" />
+							</Col>
 
-						{/* <DrinkContainer>
-                this.state.sessions.drinks.map(drink=>{
-                    return(
-                        <DrinkBtn oz=this.props.drink.oz alc= this.props.drink.alc Drink={this.CreatedDrink(drink.oz, drink.alc)} name=this.props.drink.name />
-                    )
-                })
-            
-            </DrinkContainer>*/}
-						{console.log(this.state.session)}
-						<div className="row">
+						</Row>
+						<Row>
 							{this.state.sessionID === "" ?
 								<Row className="sessionBtn">
-									<Col s={2} className="center-align">
-										<form>
-										<input type="number" name="drinkGoal" onChange={this.handleInputChange} />
-											{this.state.drinkGoal > 0 ?
-												<div onClick={this.startSession} className="start center"><img alt="Start Session" src={startBtn} /></div>
-												: <div></div>
-											}
-										</form>
-									</Col>
+									<form>
+										<label>
+											Drink Goal:
+                                    <input type="number" name="drinkGoal" onChange={this.handleInputChange} />
+										</label>
+										{this.state.drinkGoal > 0 ?
+											<div onClick={this.startSession} className="start center"><img alt="Start Session" src={startBtn} /></div>
+											: <div></div>
+										}
+									</form>
 								</Row> :
 								<div>
 									<Row>
@@ -336,9 +325,8 @@ class Sessions extends Component {
 									</Row>
 								</div>
 							}
-						</div>
-					</div>
-
+						</Row>
+					</Container>
 				</Container>
 			</div>
 		);

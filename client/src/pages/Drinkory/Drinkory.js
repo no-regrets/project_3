@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header';
 import Nav from "../../components/Nav/Nav";
 import BAC from "../../components/BAC/BAC";
 import SessionBtn from "../../components/SessionBtn/SessionBtn";
-import { Table } from "react-materialize";
+import { Table, Container } from "react-materialize";
 import API from "../../utils/API";
 import TableItem from "../../components/TableItem/TableItem";
 
@@ -81,18 +81,19 @@ class Drinkory extends Component {
         }
   render() {
     const { profile } = this.state;
+    const Style = {
+      color: 'black',
+      "background-color": 'white'
+    };
    
     return(
       <div>
          <Header props={profile} />
         <div className="container">
           <div className="row">
-            <BAC />
           </div>
-          <div className="row">
-            Drinkory Info
-          </div>
-          <Table>
+          {/* <Container> */}
+          <Table className="bordered responsive centered" style={Style}>
             <thead>
               <tr>
                 <th>Start Time</th>
@@ -105,15 +106,11 @@ class Drinkory extends Component {
               {this.state.session.length ? (this.state.session.map(session => (<TableItem key={session._id} start={session.createdAt} end={session.endedAt} goal={session.drinkGoal} drinks={session.drink.length}/>))) : (<div>No results</div>)}
             </tbody>
           </Table>
+          {/* </Container> */}
           <div className="row">
             <Link to="/sessions" className={window.location.pathname === "/sessions"
                 ? "nav-link active" : "nav-link"
             }><SessionBtn />
-            </Link>
-            or 
-            <Link to="/end" className={window.location.pathname === "/end"
-                ? "nav-link active" : "nav-link"
-            }>End
             </Link>
           </div>
         </div>

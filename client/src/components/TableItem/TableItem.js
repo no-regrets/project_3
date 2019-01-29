@@ -1,6 +1,5 @@
 import React from "react";
-
-
+import "./TableItem.css"
 
 function TableItem(props){
     return (

@@ -32,7 +32,8 @@ class Sessions extends Component {
         drinkGoal: 0,
 		bac: 0,
 		maxBAC: 0,
-		tts: "",
+		tts: "You're legally sober.",
+		ttcs:"You're completely sober.",
         sessionID: "",
 		startTime: "",
 		inProgress: false
@@ -145,7 +146,7 @@ class Sessions extends Component {
 				bac += 0.019;
 			}
 		}
-		// console.log(bac)
+		console.log(bac)
 		// var current = moment()
 		// var difference = this.state.startTime.diff(current, "minutes")
 		// console.log(difference)
@@ -188,6 +189,8 @@ class Sessions extends Component {
 		var moment = require('moment');
 		moment().format();
 		var minutes = 0;
+		var cminutes = 0;
+		var ctbac = tbac
 		//not using state for tbac since state is asynchronous and will not update immediately, which was leading to the time present always one drink behind
 		//let tbac = this.state.bac
 		//bac reduces at .015 an hour
@@ -198,22 +201,45 @@ class Sessions extends Component {
 		while (tbac > 0.08) {
 			tbac -= bacReductionPerMinute;
 			minutes += 1;
+			
 		}
-		console.log(minutes);
+		while (ctbac > 0.00) {
+			ctbac -= bacReductionPerMinute;
+			cminutes += 1;
+			
+		}
+		if(cminutes === 0){
+			this.setState({ttcs: "You're completely sober."})
+			
+		}
+		else{
+			var TimeOfCSober = moment()
+				.add(cminutes, 'minutes')
+				.format('hh:mm a');
 
+			//finds difference in minutes between current time and time will sober, though all of this is unnecessary since the minutes variable already knows this information....
+			// var TimeTillSober = moment().add(minutes, 'minutes');
+			// var current = moment();
+			// console.log(TimeTillSober.diff(current, 'minutes'));
+			this.setState({ ttcs: TimeOfCSober }, this.addDrink());
+
+			if(minutes === 0){
+			this.setState({ tts: "You're legally sober." })
+			
+		}
 		//takes current time then adds the amount of minutes until sober, formats into hour:minutes AM/PM
-		var TimeOfSober = moment()
-			.add(minutes, 'minutes')
-			.format('hh:mm a');
-		console.log(TimeOfSober);
+		else{
+			var TimeOfSober = moment()
+				.add(minutes, 'minutes')
+				.format('hh:mm a');
+		
+			//finds difference in minutes between current time and time will sober, though all of this is unnecessary since the minutes variable already knows this information....
+			this.setState({ tts: TimeOfSober }, this.addDrink());
+		}
 
-		//finds difference in minutes between current time and time will sober, though all of this is unnecessary since the minutes variable already knows this information....
-		var TimeTillSober = moment().add(minutes, 'minutes');
-		var current = moment();
-		console.log(TimeTillSober.diff(current, 'minutes'));
-		this.setState({ tts: TimeOfSober }, this.addDrink());
-		console.log(this.state.tts);
-	};
+		}
+		}
+	
 	endSession = () => {
 		console.log("Date punchout" + Date.now())
 		this.setState({ bac: 0, tts: '' });
@@ -264,7 +290,7 @@ class Sessions extends Component {
 				<Header props={profile} />
 				<Container>
 					<Row>
-						<BAC bac={this.state.bac} tts={this.state.tts} />
+						<BAC bac={this.state.bac} tts={this.state.tts} ttcs={this.state.ttcs} />
 					</Row>
 					<div className="row">
 						<DrinkSession />

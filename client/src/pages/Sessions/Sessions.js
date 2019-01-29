@@ -164,7 +164,7 @@ class Sessions extends Component {
 
 		//console.log("pressed")
 		bac = parseFloat(bac.toFixed(3));
-		this.setState({ bac: bac }, this.bacDecay(bac));
+		this.setState({ bac: bac }, this.bacDecay(bac),this.addDrink());
 	};
 
 	createdDrink = (oz, alcPercent) => {
@@ -222,7 +222,7 @@ class Sessions extends Component {
 			// var TimeTillSober = moment().add(minutes, 'minutes');
 			// var current = moment();
 			// console.log(TimeTillSober.diff(current, 'minutes'));
-			this.setState({ ttcs: TimeOfCSober }, this.addDrink());
+			this.setState({ ttcs: TimeOfCSober });
 
 			if(minutes === 0){
 			this.setState({ tts: "You're legally sober." })
@@ -235,7 +235,7 @@ class Sessions extends Component {
 				.format('hh:mm a');
 		
 			//finds difference in minutes between current time and time will sober, though all of this is unnecessary since the minutes variable already knows this information....
-			this.setState({ tts: TimeOfSober }, this.addDrink());
+			this.setState({ tts: TimeOfSober });
 		}
 
 		}
@@ -303,17 +303,17 @@ class Sessions extends Component {
 							<Col s={4} className="drinkCol">
 								<img src={drinkImg} className="drinkBtn"
 									bac={this.props.bac} onClick={this.takeDrink}
-									onClick={this.addDrink} name="beer" alt="" />
+									 name="beer" alt="" />
 							</Col>
 							<Col s={4} className="drinkCol">
 								<img src={drinkImg} className="drinkBtn"
 									bac={this.props.bac} onClick={this.takeDrink}
-									onClick={this.addDrink} name="wine" alt="" />
+									 name="wine" alt="" />
 							</Col>
 							<Col s={4} className="drinkCol">
 								<img src={drinkImg} className="drinkBtn"
 									bac={this.props.bac} onClick={this.takeDrink}
-									onClick={this.addDrink} name="liquor" alt="" />
+									 name="liquor" alt="" />
 							</Col>
 
 						</Row>

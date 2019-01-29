@@ -6,22 +6,89 @@ body {
     background-position: center; 
 }
 
+@font-face{
+    font-family: enter;
+    src: url(../../assets/fonts/LasEnter_PersonalUseOnly.ttf);
+}
+
+@font-face{
+    font-family: halo;
+    src: url(../../assets/fonts/HalogenGasLights.otf);
+}
+
+.titleAbout{
+    margin:0;
+    font-family:enter;
+    font-size: 48pt;
+    color: rgb(171, 209, 224);
+       animation: glow2 1s ease-in-out infinite alternate;
+ 
+ 
+ }
+
+.cardMargin{
+    margin: 15px;
+}
+
 .margin{
     max-width: 85%;
     margin-top: 20px;
 }
 
-.card {
+
+.cardFont{
+    color: white !important;
+    text-shadow: 1px 1px rgb(225,60,176);
+}
+
+.nameAbout{
+    font-family: halo;
+    font-size:18pt;
+    color: rgb(221, 171, 206) !important;
+    margin:10px !important;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+.cardAbout {
     height: 30px;
     width: auto;
     padding-top: 25px;
-    background: black;
-    color: rgb(56,181,230);
+    /* background: black; */
+    color: white;
     text-shadow: 1px 1px rgb(225,60,176);
 
 }
 
-.link {
-    color: rgb(225,60,176);
-    text-shadow: 1px 1px rgb(56,181,230);
+.aboutMargin{
+    margin-bottom:0 !important;
 }
+
+.aboutInfo{
+    margin:0 !important;
+    padding:0;
+}
+
+.linkAbout {
+  color: rgb(171, 209, 224) !important;
+    animation: glow2 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 5px rgb(218, 22, 159), 0 0 15px rgb(218, 22, 159), 0 0 25px rgb(223, 96, 185), 0 0 35px rgb(223, 96, 185), 0 0 45px rgb(223, 96, 185), 0 0 55px rgb(223, 96, 185), 0 0 65px rgb(223, 96, 185);
+    }
+    
+    to {
+      text-shadow: 0 0 15px rgb(218, 22, 159), 0 0 25px rgb(216, 120, 187), 0 0 35px rgb(223, 96, 185), 0 0 45px rgb(223, 96, 185), 0 0 55px rgb(223, 96, 185), 0 0 65px rgb(223, 96, 185), 0 0 75px rgb(223, 96, 185);
+    }
+  }
+
+  @-webkit-keyframes glow2 {
+    from {
+      text-shadow: 0 0 5px rgb(35, 172, 226), 0 0 15px rgb(35, 172, 226), 0 0 25px rgb(28, 170, 226), 0 0 35px rgb(28, 170, 226), 0 0 45px rgb(28, 170, 226), 0 0 55px rgb(28, 170, 226), 0 0 65px rgb(28, 170, 226);
+    }
+    
+    to {
+      text-shadow: 0 0 15px rgb(35, 172, 226), 0 0 25px rgb(96, 187, 223), 0 0 35px rgb(28, 170, 226), 0 0 45px rgb(28, 170, 226), 0 0 55px rgb(28, 170, 226), 0 0 65px rgb(28, 170, 226), 0 0 75px rgb(28, 170, 226);
+    }
+  }

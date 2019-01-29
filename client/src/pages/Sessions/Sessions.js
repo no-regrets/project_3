@@ -10,7 +10,11 @@ import BAC from "../../components/BAC/BAC";
 import SessionBtn from '../../components/SessionBtn/SessionBtn';
 import EndBtn from '../../components/EndBtn/EndBtn';
 // import { Button } from "react-materialize";
-import drinkImg from "../../assets/images/cocktailBtn.png";
+import Cocktail from "../../assets/images/cocktailBtn.png";
+import Wine from "../../assets/images/wineBtn.png";
+import Beer from "../../assets/images/beerBtn.png";
+import Shot from "../../assets/images/shotBtn.png";
+
 import DrinkGauge from "../../components/DrinkGauge/DrinkGauge";
 import startBtn from "../../assets/images/startBtn.png"
 import moment from 'moment'
@@ -303,22 +307,26 @@ class Sessions extends Component {
 									<BAC bac={this.state.bac} tts={this.state.tts} ttcs={this.state.ttcs} />
 								</Row>
 								<Row className="drinkRow center">
-									<Col s={4} className="drinkCol">
-										<img src={drinkImg} className="drinkBtn"
+									<Col s={3} className="drinkCol">
+										<img src={Beer} className="drinkBtn"
 											bac={this.props.bac} onClick={this.takeDrink}
 											name="beer" alt="" />
 									</Col>
-									<Col s={4} className="drinkCol">
-										<img src={drinkImg} className="drinkBtn"
+									<Col s={3} className="drinkCol">
+										<img src={Shot} className="drinkBtn"
 											bac={this.props.bac} onClick={this.takeDrink}
 											name="wine" alt="" />
 									</Col>
-									<Col s={4} className="drinkCol">
-										<img src={drinkImg} className="drinkBtn"
+									<Col s={3} className="drinkCol">
+										<img src={Wine} className="drinkBtn"
 											bac={this.props.bac} onClick={this.takeDrink}
 											name="liquor" alt="" />
 									</Col>
-
+									<Col s={3} className="drinkCol">
+										<img src={Cocktail} className="drinkBtn"
+											bac={this.props.bac} onClick={this.takeDrink}
+											name="liquor" alt="" />
+									</Col>
 								</Row>
 							</div> :
 							<div />
@@ -333,14 +341,16 @@ class Sessions extends Component {
 								<Row className="center">
 								<Col s={2}/>
 									<Col s={8} className="drinkInput center"> 
-										<label className="drinkInLabel">
+									<form>
+										<label className="drinkInLabel ">
 											Tonight's drinks:
-                                    <Input type="number" name="drinkGoal" className="drinkNumber" onChange={this.handleInputChange} />
+                                    <input type="number" name="drinkGoal" className="drinkNumber" onChange={this.handleInputChange} />
 										</label>
 										{this.state.drinkGoal > 0 ?
 											<div onClick={this.startSession} className="start center"><img alt="Start Session" className="startBtnSess" src={startBtn} /></div>
 											: <div></div>
 										}
+										</form>
 									</Col>
 									<Col s={2}/>
 								</Row> :

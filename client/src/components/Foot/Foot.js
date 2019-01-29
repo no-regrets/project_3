@@ -4,7 +4,8 @@ import "./Foot.css";
 function Foot() {
     return(
       <footer className="footer">
-          copyright 2019
+      <p className="footMargin">
+          copyright 2019</p>
         </footer>
 
     )

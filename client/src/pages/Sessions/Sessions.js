@@ -6,7 +6,6 @@ import Header from "../../components/Header/Header";
 import API from "../../utils/API"
 //import Nav from "../../components/Nav/Nav";
 import BAC from "../../components/BAC/BAC";
-import DrinkSession from "../../components/DrinkSession/DrinkSession"
 // import DrinkBtn from "../../components/DrinkBtn/DrinkBtn";
 import SessionBtn from '../../components/SessionBtn/SessionBtn';
 import EndBtn from '../../components/EndBtn/EndBtn';
@@ -266,70 +265,67 @@ class Sessions extends Component {
 				<Header props={profile} />
 				<Container>
 					<Container>
-					<Row className="titleSessions">
-						<div className="center">
-							Sessions
+						<Row className="titleSessions">
+							<div className="center">
+								Sessions
 						</div>
-					</Row>
-					<Row>
-						<BAC bac={this.state.bac} tts={this.state.tts} />
-					</Row>
-					<Row>
-						<DrinkSession />
-					</Row>
-					<Row className="drinkRow center">
-						<Col s={4} className="drinkCol">
-							<img src={drinkImg} className="drinkBtn"
-								bac={this.props.bac} onClick={this.takeDrink}
-								onClick={this.addDrink} name="beer" alt="" />
-						</Col>
-						<Col s={4} className="drinkCol">
-							<img src={drinkImg} className="drinkBtn"
-								bac={this.props.bac} onClick={this.takeDrink}
-								onClick={this.addDrink} name="wine" alt="" />
-						</Col>
-						<Col s={4} className="drinkCol">
-							<img src={drinkImg} className="drinkBtn"
-								bac={this.props.bac} onClick={this.takeDrink}
-								onClick={this.addDrink} name="liquor" alt="" />
-						</Col>
+						</Row>
+						<Row>
+							<BAC bac={this.state.bac} tts={this.state.tts} />
+						</Row>
+						<Row className="drinkRow center">
+							<Col s={4} className="drinkCol">
+								<img src={drinkImg} className="drinkBtn"
+									bac={this.props.bac} onClick={this.takeDrink}
+									onClick={this.addDrink} name="beer" alt="" />
+							</Col>
+							<Col s={4} className="drinkCol">
+								<img src={drinkImg} className="drinkBtn"
+									bac={this.props.bac} onClick={this.takeDrink}
+									onClick={this.addDrink} name="wine" alt="" />
+							</Col>
+							<Col s={4} className="drinkCol">
+								<img src={drinkImg} className="drinkBtn"
+									bac={this.props.bac} onClick={this.takeDrink}
+									onClick={this.addDrink} name="liquor" alt="" />
+							</Col>
 
-					</Row>
-					<Row>
-						{this.state.sessionID === "" ?
-							<Row className="sessionBtn">
-								<form>
-									<label>
-										Drink Goal:
+						</Row>
+						<Row>
+							{this.state.sessionID === "" ?
+								<Row className="sessionBtn">
+									<form>
+										<label>
+											Drink Goal:
                                     <input type="number" name="drinkGoal" onChange={this.handleInputChange} />
-									</label>
-									{this.state.drinkGoal > 0 ?
-										<div onClick={this.startSession} className="start center"><img alt="Start Session" src={startBtn} /></div>
-										: <div></div>
-									}
-								</form>
-							</Row> :
-							<div>
-								<Row>
-									<div>Have a great time! (responsibly)</div>
-								</Row>
-								<Row>
-									<Link
-										to="/drinkory"
-										className={window.location.pathname === '/drinkory' ? 'nav-link active' : 'nav-link'}
-									>
-										<EndBtn onClick={this.endSession} />
-									</Link>
-								</Row>
-								<Row>
-									<div>Tonight's Progress</div>
-								</Row>
-								<Row>
-									<DrinkGauge DrinkCount={this.state.currentSessionDrinkCount} DrinkGoal={this.state.drinkGoal} />
-								</Row>
-							</div>
-						}
-					</Row>
+										</label>
+										{this.state.drinkGoal > 0 ?
+											<div onClick={this.startSession} className="start center"><img alt="Start Session" src={startBtn} /></div>
+											: <div></div>
+										}
+									</form>
+								</Row> :
+								<div>
+									<Row>
+										<div>Have a great time! (responsibly)</div>
+									</Row>
+									<Row>
+										<Link
+											to="/drinkory"
+											className={window.location.pathname === '/drinkory' ? 'nav-link active' : 'nav-link'}
+										>
+											<EndBtn onClick={this.endSession} />
+										</Link>
+									</Row>
+									<Row>
+										<div>Tonight's Progress</div>
+									</Row>
+									<Row>
+										<DrinkGauge DrinkCount={this.state.currentSessionDrinkCount} DrinkGoal={this.state.drinkGoal} />
+									</Row>
+								</div>
+							}
+						</Row>
 					</Container>
 				</Container>
 			</div>

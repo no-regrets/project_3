@@ -32,8 +32,8 @@ class Sessions extends Component {
 		bac: 0,
 		maxBAC: 0,
 		tts: "You're legally sober.",
-		ttcs:"You're completely sober.",
-        sessionID: "",
+		ttcs: "You're completely sober.",
+		sessionID: "",
 		startTime: "",
 		inProgress: false
 	};
@@ -164,7 +164,7 @@ class Sessions extends Component {
 
 		//console.log("pressed")
 		bac = parseFloat(bac.toFixed(3));
-		this.setState({ bac: bac }, this.bacDecay(bac),this.addDrink());
+		this.setState({ bac: bac }, this.bacDecay(bac), this.addDrink());
 	};
 
 	createdDrink = (oz, alcPercent) => {
@@ -202,18 +202,18 @@ class Sessions extends Component {
 		while (tbac > 0.08) {
 			tbac -= bacReductionPerMinute;
 			minutes += 1;
-			
+
 		}
 		while (ctbac > 0.00) {
 			ctbac -= bacReductionPerMinute;
 			cminutes += 1;
-			
+
 		}
-		if(cminutes === 0){
-			this.setState({ttcs: "You're completely sober."})
-			
+		if (cminutes === 0) {
+			this.setState({ ttcs: "You're completely sober." })
+
 		}
-		else{
+		else {
 			var TimeOfCSober = moment()
 				.add(cminutes, 'minutes')
 				.format('hh:mm a');
@@ -224,23 +224,23 @@ class Sessions extends Component {
 			// console.log(TimeTillSober.diff(current, 'minutes'));
 			this.setState({ ttcs: TimeOfCSober });
 
-			if(minutes === 0){
-			this.setState({ tts: "You're legally sober." })
-			
-		}
-		//takes current time then adds the amount of minutes until sober, formats into hour:minutes AM/PM
-		else{
-			var TimeOfSober = moment()
-				.add(minutes, 'minutes')
-				.format('hh:mm a');
-		
-			//finds difference in minutes between current time and time will sober, though all of this is unnecessary since the minutes variable already knows this information....
-			this.setState({ tts: TimeOfSober });
-		}
+			if (minutes === 0) {
+				this.setState({ tts: "You're legally sober." })
+
+			}
+			//takes current time then adds the amount of minutes until sober, formats into hour:minutes AM/PM
+			else {
+				var TimeOfSober = moment()
+					.add(minutes, 'minutes')
+					.format('hh:mm a');
+
+				//finds difference in minutes between current time and time will sober, though all of this is unnecessary since the minutes variable already knows this information....
+				this.setState({ tts: TimeOfSober });
+			}
 
 		}
-		}
-	
+	}
+
 	endSession = () => {
 		console.log("Date punchout" + Date.now())
 		this.setState({ bac: 0, tts: '' });
@@ -294,35 +294,45 @@ class Sessions extends Component {
 						<Row className="titleSessions">
 							<div className="center">
 								Sessions
-						</div>
+							</div>
 						</Row>
-						<Row>
-							<BAC bac={this.state.bac} tts={this.state.tts} ttcs={this.state.ttcs} />
-						</Row>
-						<Row className="drinkRow center">
-							<Col s={4} className="drinkCol">
-								<img src={drinkImg} className="drinkBtn"
-									bac={this.props.bac} onClick={this.takeDrink}
-									 name="beer" alt="" />
-							</Col>
-							<Col s={4} className="drinkCol">
-								<img src={drinkImg} className="drinkBtn"
-									bac={this.props.bac} onClick={this.takeDrink}
-									 name="wine" alt="" />
-							</Col>
-							<Col s={4} className="drinkCol">
-								<img src={drinkImg} className="drinkBtn"
-									bac={this.props.bac} onClick={this.takeDrink}
-									 name="liquor" alt="" />
-							</Col>
 
-						</Row>
+						{this.state.sessionID !== "" ?
+							<div>
+							<Row>
+								<BAC bac={this.state.bac} tts={this.state.tts} ttcs={this.state.ttcs} />
+							</Row>
+							<Row className="drinkRow center">
+								<Col s={4} className="drinkCol">
+									<img src={drinkImg} className="drinkBtn"
+										bac={this.props.bac} onClick={this.takeDrink}
+										name="beer" alt="" />
+								</Col>
+								<Col s={4} className="drinkCol">
+									<img src={drinkImg} className="drinkBtn"
+										bac={this.props.bac} onClick={this.takeDrink}
+										name="wine" alt="" />
+								</Col>
+								<Col s={4} className="drinkCol">
+									<img src={drinkImg} className="drinkBtn"
+										bac={this.props.bac} onClick={this.takeDrink}
+										name="liquor" alt="" />
+								</Col>
+
+							</Row> 
+							</div>:
+							<div>
+								<h1>Let's get started! How many drinks should you have tonight?</h1>
+							</div>
+					}
+
+
 						<Row>
 							{this.state.sessionID === "" ?
 								<Row className="sessionBtn">
 									<form>
 										<label>
-											Drink Goal:
+											Tonight's drinks:
                                     <input type="number" name="drinkGoal" onChange={this.handleInputChange} />
 										</label>
 										{this.state.drinkGoal > 0 ?

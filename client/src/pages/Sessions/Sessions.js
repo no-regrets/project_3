@@ -24,15 +24,15 @@ class Sessions extends Component {
 		weight: 0,
 		session: [
 			{
-                drink: [],
+				drink: [],
 			},
 		],
 		currentSessionDrinkCount: 0,
-        drinkGoal: 0,
+		drinkGoal: 0,
 		bac: 0,
 		maxBAC: 0,
 		tts: "",
-        sessionID: "",
+		sessionID: "",
 		startTime: "",
 		inProgress: false
 	};
@@ -41,56 +41,58 @@ class Sessions extends Component {
 		const { userProfile, getUserInfo, userInfo } = this.props.auth;
 		if (this.props.auth.isAuthenticated()) {
 			let oldToken = localStorage.getItem('access_token');
-            let newProfile;
+			let newProfile;
 			this.props.auth.lock.getUserInfo(oldToken, (err, profile) => {
 				console.log(profile);
 				newProfile = profile;
 				this.setState({ profile: newProfile }, () => {
-                    let newsub = this.state.profile.sub
-                    let newersub = newsub.split('|').pop()
-                    this.setState({sub: newersub})
-                    API.getUser(newersub).then(res => {
-                    if(res.length > 0){
-                        console.log("FIND ME" + res);
+					let newsub = this.state.profile.sub
+					let newersub = newsub.split('|').pop()
+					this.setState({ sub: newersub })
+					API.getUser(newersub).then(res => {
+						if (res.length > 0) {
+							console.log("FIND ME" + res);
 
-                        this.setState({sex: res.data.sex, weight: res.data.weight, session: []})    
-                    }
+							this.setState({ sex: res.data.sex, weight: res.data.weight, session: [] })
+						}
 					})
-					// .catch(API.saveUser({
-                    //             sub: newersub,
-					// 		})
-							.then(this.loadUser())
-
-        
-          //this.loadUser()
-          ;});
-      });
-    } else {
-            console.log("RINGA")
-      this.setState({ profile: userProfile }, this.loadUser()) ;
-      
-    }}
+						// .catch(API.saveUser({
+						//             sub: newersub,
+						// 		})
+						.then(this.loadUser())
 
 
-    loadUser = () => {
-        
-        let newsub = this.state.profile.sub
-        let newersub = newsub.split('|').pop()
-        API.getUser(newersub)
-            .then(res => {
+						//this.loadUser()
+						;
+				});
+			});
+		} else {
+			console.log("RINGA")
+			this.setState({ profile: userProfile }, this.loadUser());
 
-                // console.log("FIND ME" + res);
+		}
+	}
 
-                this.setState({ sex: res.data.sex, weight: res.data.weight, session: []})
 
-            }).catch(err => console.log(err))
-        }
+	loadUser = () => {
+
+		let newsub = this.state.profile.sub
+		let newersub = newsub.split('|').pop()
+		API.getUser(newersub)
+			.then(res => {
+
+				// console.log("FIND ME" + res);
+
+				this.setState({ sex: res.data.sex, weight: res.data.weight, session: [] })
+
+			}).catch(err => console.log(err))
+	}
 
 	takeDrink = () => {
 		let bac = this.state.bac;
 		let weight = this.state.weight;
-        let sex = this.state.sex;
-        var moment = require('moment');
+		let sex = this.state.sex;
+		var moment = require('moment');
 		moment().format();
 		if (sex === 'male' || 'm') {
 			if (weight >= 90 && weight < 110) {
@@ -148,10 +150,10 @@ class Sessions extends Component {
 		var current = moment()
 		var difference = this.state.startTime.diff(current, "minutes")
 		console.log(difference)
-		difference *= (.015/60)
+		difference *= (.015 / 60)
 		bac -= difference
-		if(bac < 0){
-		    bac = 0
+		if (bac < 0) {
+			bac = 0
 		}
 		let maxBAC = this.state.maxBAC;
 		if (bac > maxBAC) {
@@ -219,29 +221,29 @@ class Sessions extends Component {
 		API.updateSession(this.state.sessionID, { maxBAC: this.state.maxBAC, endedAt: Date.now(), inProgress: false })
 			.then(res => console.log(res))
 			.catch(err => console.log(err));
-    };
-    
-    handleInputChange = event => {
-        const { name, value } = event.target;
-        this.setState({
-          [name]: value
-        });
-      };
+	};
+
+	handleInputChange = event => {
+		const { name, value } = event.target;
+		this.setState({
+			[name]: value
+		});
+	};
 
 	startSession = () => {
-        var moment = require('moment');
+		var moment = require('moment');
 		moment().format();
 		//event.preventDefault();
 		API.saveSession({
-            // drinkGoal: this.state.drinkGoal,
-            budget: this.state.budget,
+			// drinkGoal: this.state.drinkGoal,
+			budget: this.state.budget,
 			maxBAC: this.state.maxBAC,
 			sub: this.state.sub,
 			drinkGoal: this.state.drinkGoal
 		})
-			.then(res => this.setState({ sessionID: res.data._id , startTime: moment(), inProgress: res.data.inProgress}, () => console.log("TIME: "+ this.state.startTime)))
-            .catch(err => console.log(err));
-            
+			.then(res => this.setState({ sessionID: res.data._id, startTime: moment(), inProgress: res.data.inProgress }, () => console.log("TIME: " + this.state.startTime)))
+			.catch(err => console.log(err));
+
 	};
 
 	addDrink = () => {
@@ -251,8 +253,8 @@ class Sessions extends Component {
 		})
 			// .then(res => this.loadSessions())
 			.catch(err => console.log(err));
-			let newDrinkCount = this.state.currentSessionDrinkCount + 1;
-			this.setState({currentSessionDrinkCount: newDrinkCount});
+		let newDrinkCount = this.state.currentSessionDrinkCount + 1;
+		this.setState({ currentSessionDrinkCount: newDrinkCount });
 	};
 
 	render() {
@@ -276,13 +278,23 @@ class Sessions extends Component {
 					<div className="row">
 						<DrinkSession />
 					</div>
-					<div className="row">
-						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="beer" alt="" />
-						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="wine" alt="" />
-						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="liquor" alt="" />
-						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="liquor" alt="" />
-					</div>
-					{/* <DrinkContainer>
+
+					<div className="bg-light">
+						<Row>
+							{this.state.sessionID !== "" ?
+								<div className="row">
+									<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="beer" alt="" />
+									<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="wine" alt="" />
+									<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="liquor" alt="" />
+									<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="liquor" alt="" />
+								</div> :
+								<div>
+									<h1>How many drinks should you have tonight?</h1>
+								</div>
+							}
+						</Row>
+
+						{/* <DrinkContainer>
                 this.state.sessions.drinks.map(drink=>{
                     return(
                         <DrinkBtn oz=this.props.drink.oz alc= this.props.drink.alc Drink={this.CreatedDrink(drink.oz, drink.alc)} name=this.props.drink.name />
@@ -290,42 +302,43 @@ class Sessions extends Component {
                 })
             
             </DrinkContainer>*/}
-					{console.log(this.state.session)}
-					<div className="row">
-		  			{this.state.sessionID === "" ? 
-						<Row className="sessionBtn">
-                            <form>
-                                <label>
-                                    Drink Goal:
-                                    <input type="number" name="drinkGoal" onChange={this.handleInputChange} />
-                                </label>
-									{this.state.drinkGoal > 0 ? 
-										<div onClick={this.startSession} className="start center"><img alt="Start Session" src={startBtn}/></div>
-										: <div></div>
-								}
-                            </form>
-						</Row> :
-						<div>
-						<Row>
-							<div>Have a great time! (responsibly)</div>
-						</Row> 
-						<Row>
-							<Link
-								to="/drinkory"
-								className={window.location.pathname === '/drinkory' ? 'nav-link active' : 'nav-link'}
-							>
-								<EndBtn onClick={this.endSession} />
-							</Link>
-						</Row>
-						<Row>
-							<div>Tonight's Progress</div>
-						</Row>
-						<Row>
-							<DrinkGauge DrinkCount={this.state.currentSessionDrinkCount} DrinkGoal={this.state.drinkGoal} /> 
-						</Row>
+						{console.log(this.state.session)}
+						<div className="row">
+							{this.state.sessionID === "" ?
+								<Row className="sessionBtn">
+									<Col s={2} className="center-align">
+										<form>
+										<input type="number" name="drinkGoal" onChange={this.handleInputChange} />
+											{this.state.drinkGoal > 0 ?
+												<div onClick={this.startSession} className="start center"><img alt="Start Session" src={startBtn} /></div>
+												: <div></div>
+											}
+										</form>
+									</Col>
+								</Row> :
+								<div>
+									<Row>
+										<div>Have a great time! (responsibly)</div>
+									</Row>
+									<Row>
+										<Link
+											to="/drinkory"
+											className={window.location.pathname === '/drinkory' ? 'nav-link active' : 'nav-link'}
+										>
+											<EndBtn onClick={this.endSession} />
+										</Link>
+									</Row>
+									<Row>
+										<div>Tonight's Progress</div>
+									</Row>
+									<Row>
+										<DrinkGauge DrinkCount={this.state.currentSessionDrinkCount} DrinkGoal={this.state.drinkGoal} />
+									</Row>
+								</div>
+							}
 						</div>
-					  }
 					</div>
+
 				</Container>
 			</div>
 		);

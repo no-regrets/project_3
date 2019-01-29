@@ -144,15 +144,15 @@ class Sessions extends Component {
 				bac += 0.019;
 			}
 		}
-		console.log(bac)
-		var current = moment()
-		var difference = this.state.startTime.diff(current, "minutes")
-		console.log(difference)
-		difference *= (.015/60)
-		bac -= difference
-		if(bac < 0){
-		    bac = 0
-		}
+		// console.log(bac)
+		// var current = moment()
+		// var difference = this.state.startTime.diff(current, "minutes")
+		// console.log(difference)
+		// difference *= (.015/60)
+		// bac -= difference
+		// if(bac < 0){
+		//     bac = 0
+		// }
 		let maxBAC = this.state.maxBAC;
 		if (bac > maxBAC) {
 			this.setState({ maxBAC: bac });
@@ -210,7 +210,7 @@ class Sessions extends Component {
 		var TimeTillSober = moment().add(minutes, 'minutes');
 		var current = moment();
 		console.log(TimeTillSober.diff(current, 'minutes'));
-		this.setState({ tts: TimeOfSober });
+		this.setState({ tts: TimeOfSober }, this.addDrink());
 		console.log(this.state.tts);
 	};
 	endSession = () => {
@@ -262,35 +262,17 @@ class Sessions extends Component {
 				<Header props={profile} />
 				<Container>
 					<Row>
-						<Link
-							to="/profile"
-							className={window.location.pathname === '/profile' ? 'nav-link active' : 'nav-link'}
-						>
-							Profile
-						</Link>
-						{this.state.weight}
-					</Row>
-					<Row>
 						<BAC bac={this.state.bac} tts={this.state.tts} />
 					</Row>
 					<div className="row">
 						<DrinkSession />
 					</div>
 					<div className="row">
-						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="beer" alt="" />
-						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="wine" alt="" />
-						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="liquor" alt="" />
-						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink} onClick={this.addDrink} name="liquor" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink}  name="beer" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink}  name="wine" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink}  name="liquor" alt="" />
+						<img src={drinkImg} bac={this.props.bac} onClick={this.takeDrink}  name="liquor" alt="" />
 					</div>
-					{/* <DrinkContainer>
-                this.state.sessions.drinks.map(drink=>{
-                    return(
-                        <DrinkBtn oz=this.props.drink.oz alc= this.props.drink.alc Drink={this.CreatedDrink(drink.oz, drink.alc)} name=this.props.drink.name />
-                    )
-                })
-            
-            </DrinkContainer>*/}
-					{console.log(this.state.session)}
 					<div className="row">
 		  			{this.state.sessionID === "" ? 
 						<Row className="sessionBtn">

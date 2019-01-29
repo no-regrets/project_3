@@ -11,7 +11,6 @@ import Callback from './components/Callback/Callback';
 // import LoginPage from './pages/LoginPage/LoginPage'
 import Auth from './components/Authorization/Authorization';
 import history from './history';
-import Nav from './components/Nav/Nav'
 
 const auth = new Auth();
 

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Nav.css"
 import { SideNav, SideNavItem, Button, Icon } from "react-materialize";
+import LogoutBtn from "../../components/LogoutBtn/LogoutBtn"
 
 // import { Link } from "react-router-dom";
 
@@ -53,7 +54,7 @@ function Nav(props) {
             About Us</p>
         </SideNavItem>
         <SideNavItem divider />
-        <SideNavItem onClick={() => this.props.auth.logout()}>Log Out</SideNavItem>
+        <SideNavItem onClick={values.sayHowdy}>Log Out</SideNavItem>
         {/* <SideNavItem href='#!icon' icon='cloud'>
             First Item
         </SideNavItem> */}

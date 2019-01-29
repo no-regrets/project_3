@@ -102,11 +102,16 @@ class Profile extends Component {
 		}
 	};
 
+	sayHowdy = () => {
+		console.log("Howdy!")
+	}
+	
+
 	render() {
 		const { profile } = this.state;
 		return (
 			<div>
-				<Header props={profile} />
+				<Header props={profile} sayHowdy={this.sayHowdy()} />
 				<Container>
 					<Container>
 						<Row className="titleProfile">

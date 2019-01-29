@@ -11,7 +11,7 @@ const DataSeries = React.createClass({
   getDefaultProps() {
     return {
       data:               [],
-      interpolationType:  'cardinal',
+      interpolationType:  'inal',
       colors:             d3.scale.category10()
     };
   },

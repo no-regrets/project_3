@@ -2,14 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Nav.css"
 import { SideNav, SideNavItem, Button, Icon } from "react-materialize";
+import LogoutBtn from "../../components/LogoutBtn/LogoutBtn"
 
 // import { Link } from "react-router-dom";
 
 
 function Nav(props) {
   let values = props.props.props
-  // console.log("NAV Props " + values.name)
+  // console.log("NAV Props " + JSON.stringify(values))
+
+  
     return (
+      
      
       <SideNav
         trigger={<Button className="menuBtn" icon="menu" />}
@@ -25,6 +29,8 @@ function Nav(props) {
         <SideNavItem className="navProfile">
             {values.name}
         </SideNavItem>
+        
+        
         <SideNavItem divider />
         <SideNavItem waves href='/profile'>
           <p className="linkFont">
@@ -49,6 +55,13 @@ function Nav(props) {
 
             About Us</p>
         </SideNavItem>
+        <SideNavItem divider />
+        <SideNavItem waves onClick={props.props.logout}>
+        <p className="linkFont">
+          <Icon className="iconLink">computer</Icon>
+
+            Log Out</p></SideNavItem>
+        
         {/* <SideNavItem href='#!icon' icon='cloud'>
             First Item
         </SideNavItem> */}

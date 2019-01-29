@@ -101,12 +101,13 @@ class Profile extends Component {
 				.catch(err => console.log(err));
 		}
 	};
+	
 
 	render() {
 		const { profile } = this.state;
 		return (
 			<div>
-				<Header props={profile} />
+				<Header props={profile} logout={() => {this.props.auth.logout()}} />
 				<Container>
 					<Container>
 						<Row className="titleProfile">

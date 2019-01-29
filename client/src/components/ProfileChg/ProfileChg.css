@@ -22,7 +22,7 @@ h1{
 
 .editBtn{
     font-family: patio;
-    font-size: 12pt;
+    font-size: 25pt;
     color: rgb(219, 181, 208);
     margin: 0 15px 0 0;
     animation: glow 1s ease-in-out infinite alternate;

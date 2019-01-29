@@ -8,7 +8,7 @@ import endBtn from "../../assets/images/endBtn.png"
 function EndBtn(props) {
         return(
             <div className="end center" alt="End Session" onClick={props.onClick}>
-                <img className="endBtnSess" src={endBtn} alt="end session"/>
+                <img className="BtnSess" src={endBtn} alt="end session"/>
             </div>
         )}
 

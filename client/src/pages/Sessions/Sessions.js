@@ -14,6 +14,7 @@ import EndBtn from '../../components/EndBtn/EndBtn';
 import drinkImg from "../../assets/images/cocktail.png";
 import DrinkGauge from "../../components/DrinkGauge/DrinkGauge";
 import startBtn from "../../assets/images/startBtn.png"
+import moment from 'moment'
 
 class Sessions extends Component {
 	state = {
@@ -216,7 +217,7 @@ class Sessions extends Component {
 	endSession = () => {
 		console.log("Date punchout" + Date.now())
 		this.setState({ bac: 0, tts: '' });
-		API.updateSession(this.state.sessionID, { maxBAC: this.state.maxBAC, endedAt: Date.now(), inProgress: false })
+		API.updateSession(this.state.sessionID, { maxBAC: this.state.maxBAC, endedAt: moment().format('MMM Do YYYY, h:mm:ss a'), inProgress: false })
 			.then(res => console.log(res))
 			.catch(err => console.log(err));
     };
@@ -237,7 +238,8 @@ class Sessions extends Component {
             budget: this.state.budget,
 			maxBAC: this.state.maxBAC,
 			sub: this.state.sub,
-			drinkGoal: this.state.drinkGoal
+			drinkGoal: this.state.drinkGoal,
+			createdAt: moment().format('MMM Do YYYY, h:mm:ss a')
 		})
 			.then(res => this.setState({ sessionID: res.data._id , startTime: moment(), inProgress: res.data.inProgress}, () => console.log("TIME: "+ this.state.startTime)))
             .catch(err => console.log(err));

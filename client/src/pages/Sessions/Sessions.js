@@ -288,7 +288,7 @@ class Sessions extends Component {
 		const { profile } = this.state;
 		return (
 			<div>
-				<Header props={profile} />
+				<Header props={profile} logout={() => {this.props.auth.logout()}} />
 				<Container>
 					<Container>
 						<Row className="titleSessions">

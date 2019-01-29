@@ -101,17 +101,13 @@ class Profile extends Component {
 				.catch(err => console.log(err));
 		}
 	};
-
-	sayHowdy = () => {
-		console.log("Howdy!")
-	}
 	
 
 	render() {
 		const { profile } = this.state;
 		return (
 			<div>
-				<Header props={profile} sayHowdy={this.sayHowdy()} />
+				<Header props={profile} logout={() => {this.props.auth.logout()}} />
 				<Container>
 					<Container>
 						<Row className="titleProfile">

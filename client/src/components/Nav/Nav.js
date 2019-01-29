@@ -54,7 +54,7 @@ function Nav(props) {
             About Us</p>
         </SideNavItem>
         <SideNavItem divider />
-        <SideNavItem onClick={values.sayHowdy}>Log Out</SideNavItem>
+        <SideNavItem onClick={props.props.logout}>Log Out</SideNavItem>
         {/* <SideNavItem href='#!icon' icon='cloud'>
             First Item
         </SideNavItem> */}

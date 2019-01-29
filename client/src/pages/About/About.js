@@ -32,7 +32,7 @@ class About extends Component {
 		const { profile } = this.state;
 		return (
 			<div className="">
-				<Header props={profile} />
+				<Header props={profile} logout={() => {this.props.auth.logout()}} />
 				<Container>
 					<Container className="margin">
 						<Row className="titleAbout">

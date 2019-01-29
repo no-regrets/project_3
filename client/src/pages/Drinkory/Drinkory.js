@@ -88,7 +88,7 @@ class Drinkory extends Component {
    
     return(
       <div>
-         <Header props={profile} />
+         <Header props={profile} logout={() => {this.props.auth.logout()}} />
         <div className="container">
           <div className="row">
           </div>

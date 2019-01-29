@@ -8,7 +8,7 @@ import { SideNav, SideNavItem, Button, Icon } from "react-materialize";
 
 function Nav(props) {
   let values = props.props.props
-  // console.log("NAV Props " + values.name)
+  // console.log("NAV Props " + JSON.stringify(values))
     return (
      
       <SideNav
@@ -49,6 +49,8 @@ function Nav(props) {
 
             About Us</p>
         </SideNavItem>
+        <SideNavItem divider />
+        <SideNavItem onClick={() => this.props.auth.logout()}>Log Out</SideNavItem>
         {/* <SideNavItem href='#!icon' icon='cloud'>
             First Item
         </SideNavItem> */}

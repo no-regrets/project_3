@@ -315,17 +315,17 @@ class Sessions extends Component {
 									<Col s={3} className="drinkCol">
 										<img src={Shot} className="drinkBtn"
 											bac={this.props.bac} onClick={this.takeDrink}
-											name="wine" alt="" />
+											name="shot" alt="" />
 									</Col>
 									<Col s={3} className="drinkCol">
 										<img src={Wine} className="drinkBtn"
 											bac={this.props.bac} onClick={this.takeDrink}
-											name="liquor" alt="" />
+											name="wine" alt="" />
 									</Col>
 									<Col s={3} className="drinkCol">
 										<img src={Cocktail} className="drinkBtn"
 											bac={this.props.bac} onClick={this.takeDrink}
-											name="liquor" alt="" />
+											name="cocktail" alt="" />
 									</Col>
 								</Row>
 							</div> :

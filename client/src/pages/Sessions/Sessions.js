@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Container, Row, Col } from "react-materialize";
+import { Container, Row, Col, Input } from "react-materialize";
 import "./Sessions.css";
 import Header from "../../components/Header/Header";
 import API from "../../utils/API"
@@ -288,7 +288,7 @@ class Sessions extends Component {
 		const { profile } = this.state;
 		return (
 			<div>
-				<Header props={profile} logout={() => {this.props.auth.logout()}} />
+				<Header props={profile} logout={() => { this.props.auth.logout() }} />
 				<Container>
 					<Container>
 						<Row className="titleSessions">
@@ -299,47 +299,50 @@ class Sessions extends Component {
 
 						{this.state.sessionID !== "" ?
 							<div>
-							<Row>
-								<BAC bac={this.state.bac} tts={this.state.tts} ttcs={this.state.ttcs} />
-							</Row>
-							<Row className="drinkRow center">
-								<Col s={4} className="drinkCol">
-									<img src={drinkImg} className="drinkBtn"
-										bac={this.props.bac} onClick={this.takeDrink}
-										name="beer" alt="" />
-								</Col>
-								<Col s={4} className="drinkCol">
-									<img src={drinkImg} className="drinkBtn"
-										bac={this.props.bac} onClick={this.takeDrink}
-										name="wine" alt="" />
-								</Col>
-								<Col s={4} className="drinkCol">
-									<img src={drinkImg} className="drinkBtn"
-										bac={this.props.bac} onClick={this.takeDrink}
-										name="liquor" alt="" />
-								</Col>
+								<Row>
+									<BAC bac={this.state.bac} tts={this.state.tts} ttcs={this.state.ttcs} />
+								</Row>
+								<Row className="drinkRow center">
+									<Col s={4} className="drinkCol">
+										<img src={drinkImg} className="drinkBtn"
+											bac={this.props.bac} onClick={this.takeDrink}
+											name="beer" alt="" />
+									</Col>
+									<Col s={4} className="drinkCol">
+										<img src={drinkImg} className="drinkBtn"
+											bac={this.props.bac} onClick={this.takeDrink}
+											name="wine" alt="" />
+									</Col>
+									<Col s={4} className="drinkCol">
+										<img src={drinkImg} className="drinkBtn"
+											bac={this.props.bac} onClick={this.takeDrink}
+											name="liquor" alt="" />
+									</Col>
 
-							</Row> 
-							</div>:
-							<div>
-								<h1>Let's get started! How many drinks should you have tonight?</h1>
+								</Row>
+							</div> :
+							<div />
+						}
+
+
+						<Row className="drinkQ center">
+							<div >
+								<p>Cheers! How many drinks should you have tonight?</p>
 							</div>
-					}
-
-
-						<Row>
 							{this.state.sessionID === "" ?
-								<Row className="sessionBtn">
-									<form>
-										<label>
+								<Row className="center">
+								<Col s={2}/>
+									<Col s={8} className="drinkInput center"> 
+										<label className="drinkInLabel">
 											Tonight's drinks:
-                                    <input type="number" name="drinkGoal" onChange={this.handleInputChange} />
+                                    <Input type="number" name="drinkGoal" className="drinkNumber" onChange={this.handleInputChange} />
 										</label>
 										{this.state.drinkGoal > 0 ?
-											<div onClick={this.startSession} className="start center"><img alt="Start Session" src={startBtn} /></div>
+											<div onClick={this.startSession} className="start center"><img alt="Start Session" className="startBtnSess" src={startBtn} /></div>
 											: <div></div>
 										}
-									</form>
+									</Col>
+									<Col s={2}/>
 								</Row> :
 								<div>
 									<Row>

@@ -21,9 +21,10 @@ body {
  
  }
 
-.sessionBtn{
+
+/* .sessionBtn{
    float: center;
-}
+} */
 
 
 .drinkBtn{
@@ -39,4 +40,40 @@ body {
 .drinkRow{
     margin:10px;
     background:rgb(0,0,0,.9);
+}
+
+.drinkQ{
+    background-color:rgb(0,0,0,.75);
+    color:white;
+    text-shadow: 1px 1px rgb(225,60,176);
+    padding: 5px 10px 5px;
+
+}
+
+.drinkInput{
+    max-width: 75%;
+    height: 45px;
+    /* margin-left: 35px; */
+    background-color:black;
+    
+}
+
+.drinkInLabel{
+    color:white;
+    text-shadow: 1px 1px rgb(225,60,176);
+
+    /* font-size: 12pt; */
+}
+
+.drinkNumber{
+    font-size: 36pt;
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px rgb(127, 169, 185);
+}
+
+.startBtnSess{
+    margin-top: 10px;
+    max-width:150px;
+    height: auto;
 }

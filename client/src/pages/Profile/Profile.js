@@ -134,7 +134,7 @@ class Profile extends Component {
 							<Col className="category">Weight: </Col>
 							<Col className="stats">{this.state.weight}</Col>
 							<Col className="ibs"> lbs</Col>
-							<Col s={2} className="right">
+							<Col  className="right">
 								<ProfileChg
 									state={this.state}
 									onClick={this.handleFormSubmit}
@@ -154,10 +154,22 @@ class Profile extends Component {
 
 						</Row>
 
-						<Row>
+						<Row className="center">
+								<Col s={1}/>
+							<Col s={5} className="linkBack">
 							<Link to="/sessions">
-								<SessionBtn />
+								<p className="p1Link"> Start a</p>
+								<p className="p1Link"> Session </p>
 							</Link>
+							</Col>
+							<Col s={5} className="linkBack">
+							<Link to="/drinkory">
+								<p className="p2Link"> Check your</p>
+								<p className="p2Link"> History </p>
+							</Link>
+							</Col>
+							<Col s={1}/>
+
 						</Row>
 					</Container>
 				</Container>

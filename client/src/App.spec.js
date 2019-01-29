@@ -7,7 +7,7 @@ configure({ adapter: new Adapter() });
 it("should render the Container Component", () => {
   const wrapper = shallow(<App auth={{ isAuthenticated: () => true }} />);
   // console.log(wrapper.html());
-  expect(wrapper.find("div").length).toEqual(2);
+  expect(wrapper.find("div").length).toEqual(1);
   // expect(wrapper.containsMatchingElement(<NavBar />)).toEqual(true);
 });
 // describe("App", () => {

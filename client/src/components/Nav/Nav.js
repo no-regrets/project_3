@@ -9,7 +9,10 @@ import { SideNav, SideNavItem, Button, Icon } from "react-materialize";
 function Nav(props) {
   let values = props.props.props
   // console.log("NAV Props " + JSON.stringify(values))
+
+  
     return (
+      
      
       <SideNav
         trigger={<Button className="menuBtn" icon="menu" />}

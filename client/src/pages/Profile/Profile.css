@@ -11,8 +11,8 @@ body {
    src: url(../../assets//fonts/LasEnter_PersonalUseOnly.ttf)
 }
 @font-face{
-   font-family: rounded;
-   src: url(../../assets/fonts/ArialRoundedBold.ttf);
+   font-family: patio;
+   src: url(../../assets/fonts/LaPatioScript.otf);
 }
 
 .titleProfile{
@@ -26,7 +26,7 @@ body {
 }
 
 .profile{
-   /* margin-top: 10px; */
+   margin-top: 25px;
    margin-bottom: 15px;
    padding: 10px;
 
@@ -84,6 +84,29 @@ body {
    padding:0 !important;
    /* animation: glow2 1s ease-in-out infinite alternate; */
 
+}
+
+.linkBack{
+   background-color: rgb(0,0,0,0.7);
+   margin: 35px 10px 0;
+}
+
+.p1Link{
+   font-size:20pt;
+   font-family: patio;
+   color: rgb(221, 171, 206);
+   animation: glow 1s ease-in-out infinite alternate;
+   margin:0;
+   padding:0;
+}
+
+.p2Link{
+   font-size:20pt;
+   font-family: patio;
+   color: rgb(171, 209, 224);
+   animation: glow2 1s ease-in-out infinite alternate;
+   margin:0;
+   padding:0;
 }
 
 

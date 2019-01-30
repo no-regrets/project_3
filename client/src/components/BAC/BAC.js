@@ -13,12 +13,12 @@ class BAC extends Component {
                     <Col className="info">{this.props.bac}</Col>
                 </Row>
                 <Row>
-                    <Col className="label">Estimated time when legally sober:</Col>
+                    <Col className="label">Est. time when legally sober:</Col>
                     <Col className="info"> {this.props.tts} </Col>
                 </Row>
                 <Row>
-                    <Col className="label">Estimated time when completely sober: </Col>
-                    <Col className="label">{this.props.ttcs}</Col>
+                    <Col className="label">Est. time when completely sober: </Col>
+                    <Col className="info">{this.props.ttcs}</Col>
                 </Row>
             </Container>
             {/* <Container className="time">

@@ -1,8 +1,10 @@
 import { color } from 'd3-color';
 import { interpolateRgb } from 'd3-interpolate';
 import React, { Component } from 'react';
+import {Container,Row} from "react-materialize";
 import ReactDOM from 'react-dom';
 import LiquidFillGauge from 'react-liquid-gauge';
+import "./DrinkGauge.css"
  
 export default class DrinkGauge extends Component {
     state = {
@@ -46,7 +48,13 @@ export default class DrinkGauge extends Component {
         ];
  
         return (
-            <div>
+            <div className="gaugeBack">
+            <Container>
+                <Row className="center">
+                    <div className="titleGauge">
+                        Tonight's Progress
+                    </div>
+                </Row>
                 <LiquidFillGauge
                     style={{ margin: '0 auto' }}
                     width={radius * 2}
@@ -101,8 +109,9 @@ export default class DrinkGauge extends Component {
                         width: 120
                     }}
                 >
-                    Drink Goal: {this.props.DrinkCount} / {this.props.DrinkGoal}
+                   <p className="gaugeFont"> Drink Goal: {this.props.DrinkCount} / {this.props.DrinkGoal}</p>
                 </div>
+                </Container>
             </div>
         );
     }

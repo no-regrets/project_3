@@ -1,0 +1,38 @@
+
+.titleHistory{
+    margin:0;
+    font-family:enter;
+    font-size: 48pt;
+    color: rgb(171, 209, 224);
+       animation: glow2 1s ease-in-out infinite alternate;
+ 
+
+}
+.tableHead{
+    background-color: rgb(0,0,0,.85);
+    color: white;
+    text-shadow: 1px 1px rgb(127, 169, 185);
+
+}
+
+.tableBody{
+    color: rgb(225,60,176);
+    text-shadow: 1px 1px rgb(127, 169, 185);
+
+}
+
+
+.newStartBack{
+    margin-top: 25px;
+    padding :10px;
+    background-color:rgb(0,0,0,.80);
+}
+
+.newStart{
+    font-size:20pt;
+    font-family: patio;
+    color: rgb(171, 209, 224);
+    animation: glow2 1s ease-in-out infinite alternate;
+    margin:0;
+    padding:0;
+}

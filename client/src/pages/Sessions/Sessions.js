@@ -306,6 +306,9 @@ class Sessions extends Component {
 								<Row>
 									<BAC bac={this.state.bac} tts={this.state.tts} ttcs={this.state.ttcs} />
 								</Row>
+								<Row className="titleSessionsSub center">
+									<div className="titleSessionsSub">Drinks</div>
+								</Row>
 								<Row className="drinkRow center">
 									<Col s={3} className="drinkCol">
 										<img src={Beer} className="drinkBtn"
@@ -329,34 +332,41 @@ class Sessions extends Component {
 									</Col>
 								</Row>
 							</div> :
-							<div />
+							<div >
+								<Row className="drinkQ center">
+									<div >
+										<p>Cheers! How many drinks should you have tonight?</p>
+									</div>
+								</Row>
+
+							</div>
 						}
 
 
-						<Row className="drinkQ center">
-							<div >
-								<p>Cheers! How many drinks should you have tonight?</p>
-							</div>
+						<Row className="center">
+
 							{this.state.sessionID === "" ?
-								<Row className="center">
-								<Col s={2}/>
-									<Col s={8} className="drinkInput center"> 
-									<form>
-										<label className="drinkInLabel ">
-											Tonight's drinks:
+								<Container>
+									<Row className="drinkQ">
+										<Col s={2} />
+										<Col s={8} className="drinkInput center">
+											<form>
+												<label className="drinkInLabel ">
+													Tonight's drinks:
                                     <input type="number" name="drinkGoal" className="drinkNumber" onChange={this.handleInputChange} />
-										</label>
-										{this.state.drinkGoal > 0 ?
-											<div onClick={this.startSession} className="start center"><img alt="Start Session" className="startBtnSess" src={startBtn} /></div>
-											: <div></div>
-										}
-										</form>
-									</Col>
-									<Col s={2}/>
-								</Row> :
+												</label>
+												{this.state.drinkGoal > 0 ?
+													<div onClick={this.startSession} className="start center"><img alt="Start Session" className="startBtnSess" src={startBtn} /></div>
+													: <div></div>
+												}
+											</form>
+										</Col>
+										<Col s={2} />
+									</Row>
+								</Container> :
 								<div>
 									<Row>
-										<div>Have a great time! (responsibly)</div>
+										<DrinkGauge DrinkCount={this.state.currentSessionDrinkCount} DrinkGoal={this.state.drinkGoal} />
 									</Row>
 									<Row>
 										<Link
@@ -365,12 +375,6 @@ class Sessions extends Component {
 										>
 											<EndBtn onClick={this.endSession} />
 										</Link>
-									</Row>
-									<Row>
-										<div>Tonight's Progress</div>
-									</Row>
-									<Row>
-										<DrinkGauge DrinkCount={this.state.currentSessionDrinkCount} DrinkGoal={this.state.drinkGoal} />
 									</Row>
 								</div>
 							}

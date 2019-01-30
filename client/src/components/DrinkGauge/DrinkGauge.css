@@ -1,0 +1,20 @@
+.gaugeFont{
+    color: white;
+    text-shadow: 1px 1px rgb(225,60,176);
+
+}
+
+.gaugeBack{
+    margin: 10px;
+    padding: 20px 0 5px;
+    background-color: rgb(0,0,0,.85);
+}
+
+.titleGauge{
+    font-family:patio;
+    color: rgb(171, 209, 224);
+
+    /* color: rgb(221, 171, 206); */
+    font-size:28pt;
+    animation: glow2 1s ease-in-out infinite alternate;
+}

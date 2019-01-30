@@ -35,11 +35,13 @@ body {
 .drinkCol{
     margin:0;
     padding:0 !important;
+    border:5px white;
+
 }
 
 .drinkRow{
-    margin:10px;
-    background:rgb(0,0,0,.9);
+    background-color:rgb(0,0,0,.65);
+    margin-bottom: 50px;
 }
 
 .drinkQ{
@@ -54,7 +56,6 @@ body {
     max-width: 75%;
     height: 45px;
     /* margin-left: 35px; */
-    background-color:black;
     
 }
 
@@ -74,8 +75,20 @@ body {
 
 .startBtnSess{
     padding:10px;
-    background-color: rgb(0,0,0,.85);
+    background-color: rgb(0,0,0,.75);
     margin-top: 10px;
     max-width:150px;
     height: auto;
 }
+
+.titleSessionsSub{
+    font-family:patio;
+    background-color: rgb(0,0,0,.75);
+    /* color: rgb(171, 209, 224); */
+    margin-bottom:0;
+    color: rgb(221, 171, 206);
+    font-size:36pt;
+    animation: glow 1s ease-in-out infinite alternate;
+
+}
+
